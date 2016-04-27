@@ -1,1 +1,1 @@
-# wow-collections
+# wow-collections-ui
