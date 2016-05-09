@@ -11,35 +11,39 @@
       request: request
     };
 
-    
+
     function request(settings) {
       var deferred = $q.defer();
       $http(settings)
-        .success(requestSuccess)
+        .success(requestSuccess(deferred))
         .error(requestError);
       return deferred.promise;
     }
 
 
-    function requestSuccess(data, status, headers, config) {
-      var response = {
-        data: data,
-        status: status,
-        headers: headers,
-        config: config
-      };
-      deferred.resolve(response);
+    function requestSuccess(deferred) {
+      return function(data, status, headers, config) {
+        var response = {
+          data: data,
+          status: status,
+          headers: headers,
+          config: config
+        };
+        deferred.resolve(response);
+      }
     }
-    
 
-    function requestError(data, status, headerse, config) {
-      var response = {
-        data: data,
-        status: status,
-        headers: headers,
-        config: config
-      };
-      deferred.reject(response);
+
+    function requestError(deferred) {
+    return function(data, status, headerse, config) {
+        var response = {
+          data: data,
+          status: status,
+          headers: headers,
+          config: config
+        };
+        deferred.reject(response);
+      }
     }
 
   }
