@@ -6,17 +6,36 @@
     .module('wowCollectionsUi')
     .controller('MainController', MainController);
 
-  function MainController(bnetFactory) {
+  function MainController($q, bnetFactory, dataFactory) {
+
     var vm = this;
 
-    vm.pets = [];
+    /* data */
+    vm.realm = {};
+    vm.character = '';
+    
+    vm.current = dataFactory.current;
 
-    bnetFactory
-      .getPets('Dalaran', 'Thulse')
-      .then(function(response) {
-        console.log(response);
-        vm.pets = response.data.pets.collected;
-      });
+    /* functions */
+    vm.getCharacter = getCharacter;
+
+
+    (function activate() {
+      bnetFactory
+          .getRealms()
+          .then(function (response) {
+            vm.realms = response.data.realms;
+          });
+    })();
+
+
+    function getCharacter() {
+      bnetFactory
+        .getCharacter(vm.realm, vm.character)
+        .then(function (response) {
+          dataFactory.current.character = response.data;
+        });
+    }
+
   }
-
 })();

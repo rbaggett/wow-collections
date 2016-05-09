@@ -1,3 +1,18 @@
-<div data-ng-repeat="pet in vm.pets">
-  <span data-ng-bind="pet | json"></span>
-</div>
+<!--<div data-ng-repeat="pet in vm.missingPets">-->
+  <!--<img data-ng-src="http://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">-->
+<!--</div>-->
+
+<label>
+  Realm
+  <select class="form-control" data-ng-model="vm.realm" data-ng-options="realm.slug as realm.name for realm in vm.realms"></select>
+</label>
+
+<label>
+  Character
+  <input class="form-control" data-ng-model="vm.character">
+</label>
+
+<button class="btn btn-primary" data-ng-click="vm.getCharacter()">Search</button>
+
+<img data-ng-src="http://us.battle.net/static-render/us/{{vm.current.character.thumbnail}}">
+<pre data-ng-bind="vm.current | json"></pre>
