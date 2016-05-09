@@ -2,18 +2,16 @@
 
 /**
  * @ngdoc overview
- * @name wowCollectingApp
+ * @name wowCollectionsUiApp
  * @description
- * # wowCollectingApp
+ * # wowCollectionsUiApp
  *
  * Main module of the application.
  */
 angular
-  .module('wowCollectingApp', [
+  .module('wowCollectionsUiApp', [
     'ngAnimate',
-    'ngAria',
     'ngCookies',
-    'ngMessages',
     'ngResource',
     'ngRoute',
     'ngSanitize',

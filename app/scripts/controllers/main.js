@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name wowCollectingApp.controller:MainCtrl
+ * @name wowCollectionsUiApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the wowCollectingApp
+ * Controller of the wowCollectionsUiApp
  */
-angular.module('wowCollectingApp')
+angular.module('wowCollectionsUiApp')
   .controller('MainCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
