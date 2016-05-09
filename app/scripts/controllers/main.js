@@ -1,17 +1,17 @@
-'use strict';
+(function () {
 
-/**
- * @ngdoc function
- * @name wowCollectionsUiApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the wowCollectionsUiApp
- */
-angular.module('wowCollectionsUiApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  'use strict';
+
+  angular
+    .module('wowCollectionsUi')
+    .controller('MainController', MainController);
+
+  function MainController(bnetFactory) {
+    bnetFactory
+      .getPets('Dalaran', 'Thulse')
+      .then(function(response) {
+        console.log(response);
+      });
+  }
+
+})();
