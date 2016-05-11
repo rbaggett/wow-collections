@@ -1,18 +1,33 @@
 <!--<div data-ng-repeat="pet in vm.missingPets">-->
-  <!--<img data-ng-src="http://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">-->
+<!--<img data-ng-src="http://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">-->
 <!--</div>-->
 
-<label>
-  Realm
-  <select class="form-control" data-ng-model="vm.realm" data-ng-options="realm.slug as realm.name for realm in vm.realms"></select>
-</label>
+<!--<div class="row">-->
+  <!--<div class="well">-->
+    <!--<label>-->
+      <!--Realm-->
+      <!--<select class="form-control" data-ng-model="vm.realm"-->
+              <!--data-ng-options="realm.slug as realm.name for realm in vm.realms"></select>-->
+    <!--</label>-->
 
-<label>
-  Character
-  <input class="form-control" data-ng-model="vm.character">
-</label>
+    <!--<label>-->
+      <!--Character-->
+      <!--<input class="form-control" data-ng-model="vm.character">-->
+    <!--</label>-->
 
-<button class="btn btn-primary" data-ng-click="vm.getCharacter()">Search</button>
+    <!--<button class="btn btn-primary" data-ng-click="vm.getCharacter()">Search</button>-->
+  <!--</div>-->
+<!--</div>-->
 
-<img data-ng-src="http://us.battle.net/static-render/us/{{vm.current.character.thumbnail}}">
-<pre data-ng-bind="vm.current | json"></pre>
+<div class="row">
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a data-ui-sref=".char">Character</a></li>
+    <li role="presentation"><a data-ui-sref=".pets">Pets</a></li>
+    <li role="presentation"><a data-ui-sref=".mounts">Mounts</a></li>
+    <li role="presentation"><a data-ui-sref=".toys">Toys</a></li>
+  </ul>
+</div>
+
+<div data-ui-view></div>
+
+
