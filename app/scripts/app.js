@@ -10,25 +10,35 @@
  */
 angular
   .module('wowCollectionsUi', [
+    'angularUtils.directives.dirPagination',
     'ngAnimate',
     'ngCookies',
+    'ngMaterial',
     'ngResource',
     'ngRoute',
     'ngSanitize',
     'ngTouch',
     'ui.router'
   ])
-  .config(routing);
+  .config(routing)
+  .config(palette);
+
+function loadMasterData(masterFactory) {
+  return masterFactory.loadData();
+}
 
 
 function routing($stateProvider, $urlRouterProvider) {
-
   $urlRouterProvider.otherwise("/home");
-
   $stateProvider
     .state('home', {
       url: "/home",
-      templateUrl: "views/main.html"
+      resolve: {
+        loadMasterData: loadMasterData
+      },
+      templateUrl: "views/main.html",
+      controller: 'MainController',
+      controllerAs: 'vm'
     })
     .state('home.char', {
       url: "",
@@ -56,30 +66,10 @@ function routing($stateProvider, $urlRouterProvider) {
     });
 }
 
+function palette($mdThemingProvider) {
+  $mdThemingProvider
+    .theme('default')
+    .primaryPalette('blue')
+    .accentPalette('red');
+}
 
-// .config(function ($routeProvider) {
-//   $routeProvider
-//     .when('/', {
-//       templateUrl: 'views/main.html',
-//       controller: 'MainController',
-//       controllerAs: 'vm'
-//     })
-//     .when('/pets', {
-//       templateUrl: 'views/pets.html',
-//       controller: 'PetsController',
-//       controllerAs: 'vm'
-//     })
-//     .when('/mounts', {
-//       templateUrl: 'views/mounts.html',
-//       controller: 'MountsController',
-//       controllerAs: 'vm'
-//     })
-//     .when('/toys', {
-//       templateUrl: 'views/toys.html',
-//       controller: 'ToysController',
-//       controllerAs: 'vm'
-//     })
-//     .otherwise({
-//       redirectTo: '/'
-//     });
-// });

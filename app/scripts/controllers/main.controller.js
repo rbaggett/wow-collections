@@ -6,9 +6,11 @@
     .module('wowCollectionsUi')
     .controller('MainController', MainController);
 
-  function MainController() {
+  function MainController(characterFactory) {
 
     var vm = this;
+    
+    vm.data = characterFactory.data;
 
   }
 })();

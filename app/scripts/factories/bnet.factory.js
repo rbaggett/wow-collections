@@ -10,7 +10,7 @@
     return {
       getCharacter: getCharacter,
       getPets: getPets,
-      getPlayerPets: getPlayerPets,
+      getCharacterPets: getCharacterPets,
       getRealms: getRealms
     };
 
@@ -33,7 +33,7 @@
     }
 
 
-    function getPlayerPets(server, player) {
+    function getCharacterPets(server, player) {
       var settings = {
         method: 'GET',
         url: 'https://us.api.battle.net/wow/character/' + server + '/' + player + '?fields=pets&locale=en_US&apikey=' + constants.bnetKey

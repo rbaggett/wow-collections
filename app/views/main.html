@@ -1,33 +1,27 @@
-<!--<div data-ng-repeat="pet in vm.missingPets">-->
-<!--<img data-ng-src="http://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">-->
-<!--</div>-->
-
-<!--<div class="row">-->
-  <!--<div class="well">-->
-    <!--<label>-->
-      <!--Realm-->
-      <!--<select class="form-control" data-ng-model="vm.realm"-->
-              <!--data-ng-options="realm.slug as realm.name for realm in vm.realms"></select>-->
-    <!--</label>-->
-
-    <!--<label>-->
-      <!--Character-->
-      <!--<input class="form-control" data-ng-model="vm.character">-->
-    <!--</label>-->
-
-    <!--<button class="btn btn-primary" data-ng-click="vm.getCharacter()">Search</button>-->
-  <!--</div>-->
-<!--</div>-->
-
-<div class="row">
-  <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a data-ui-sref=".char">Character</a></li>
-    <li role="presentation"><a data-ui-sref=".pets">Pets</a></li>
-    <li role="presentation"><a data-ui-sref=".mounts">Mounts</a></li>
-    <li role="presentation"><a data-ui-sref=".toys">Toys</a></li>
-  </ul>
+<div data-ng-if="vm.data.loaded">
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="character">
+        <md-content class="md-padding">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
+        </md-content>
+      </md-tab>
+      <md-tab label="pets">
+        <md-content class="md-padding">
+          <div data-ng-include="'views/pets.html'" data-ng-controller="PetsController as vm"></div>
+        </md-content>
+      </md-tab>
+      <md-tab label="mounts">
+        <md-content class="md-padding">
+          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+        </md-content>
+      </md-tab>
+      <md-tab label="toys">
+        <md-content class="md-padding">
+          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
 </div>
-
-<div data-ui-view></div>
-
 

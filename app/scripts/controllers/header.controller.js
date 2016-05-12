@@ -6,19 +6,18 @@
     .module('wowCollectionsUi')
     .controller('HeaderController', HeaderController);
 
-  function HeaderController($q, bnetFactory, dataFactory) {
+  function HeaderController(bnetFactory, characterFactory) {
 
     var vm = this;
 
     /* data */
-    vm.realm = {};
-    vm.character = '';
-
-    vm.current = dataFactory.current;
+    vm.realm = {name: 'Dalaran', slug: 'dalaran'};
+    vm.character = 'Thulse';
 
     /* functions */
     vm.getCharacter = getCharacter;
-
+    vm.getRealms = getRealms;
+    
 
     (function activate() {
       bnetFactory
@@ -30,11 +29,18 @@
 
 
     function getCharacter() {
-      bnetFactory
-        .getCharacter(vm.realm, vm.character)
-        .then(function (response) {
-          dataFactory.current.character = response.data;
+      characterFactory
+        .loadData(vm.realm.name, vm.character)
+        .then(function () {
+          
         });
+    }
+
+
+    function getRealms(query) {
+      return _.filter(vm.realms, function (realm) {
+        return (realm.slug.indexOf(query) === 0)
+      })
     }
 
   }

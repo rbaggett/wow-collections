@@ -6,43 +6,19 @@
     .module('wowCollectionsUi')
     .controller('PetsController', PetsController);
 
-  function PetsController() {
-    
+  function PetsController(characterFactory, masterFactory) {
+
     var vm = this;
 
-    
+    vm.characterData = characterFactory.data;
+    vm.masterData = masterFactory.data;
+    vm.pets = [];
+    vm.pageSize = 64;
+
     (function activate() {
-      $q
-        .all([getPets(), getPlayerPets()])
-        .then(getMissingPets);
+      // vm.pets = vm.masterData.pets;
+      // _.foreach(vm.pets, )
     })();
 
-
-    function getPets() {
-      return bnetFactory
-        .getPets()
-        .then(function (response) {
-          vm.pets = response.data.pets;
-        });
-
-    }
-
-
-    function getPlayerPets() {
-      return bnetFactory
-        .getPlayerPets('Dalaran', 'Thulse')
-        .then(function (response) {
-          vm.playerPets = response.data.pets.collected;
-        });
-
-    }
-
-
-    function getMissingPets() {
-      vm.missingPets = _.differenceBy(vm.pets, vm.playerPets, 'creatureId');
-    }
-
-
   }
-
 })();
