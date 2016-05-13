@@ -9,7 +9,7 @@
   function MainController(characterFactory) {
 
     var vm = this;
-    
+
     vm.data = characterFactory.data;
 
   }
