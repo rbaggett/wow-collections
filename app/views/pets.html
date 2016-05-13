@@ -19,7 +19,7 @@
 <!--</md-grid-list>-->
 
 <div class="row">
-  <div class="col-sm-3" dir-paginate="pet in vm.pets | itemsPerPage: vm.pageSize | orderBy:'creatureName'">
+  <div class="col-sm-4" dir-paginate="pet in vm.pets | itemsPerPage: vm.pageSize | orderBy:'creatureName'">
     <div class="col-sm-12" data-ng-bind="pet.creatureName"></div>
     <div class="col-sm-6">
       <a>

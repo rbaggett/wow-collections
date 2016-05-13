@@ -27,7 +27,7 @@
     function getPets() {
       var settings = {
         method: 'GET',
-        url: 'https://us.api.battle.net/wow/pet/?locale=en_US&apikey=' + constants.bnetKey
+        url: 'https://us.api.battle.net/wow/pet/?fields=species&apikey=' + constants.bnetKey
       };
       return httpFactory.request(settings);
     }
