@@ -13,15 +13,13 @@ angular
     'angularUtils.directives.dirPagination',
     'ngAnimate',
     'ngCookies',
-    'ngMaterial',
     'ngResource',
     'ngRoute',
     'ngSanitize',
     'ngTouch',
     'ui.router'
   ])
-  .config(routing)
-  .config(palette);
+  .config(routing);
 
 function loadMasterData(masterFactory) {
   return masterFactory.loadData();
@@ -29,47 +27,66 @@ function loadMasterData(masterFactory) {
 
 
 function routing($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise("/home");
+
+  $urlRouterProvider.otherwise("/");
+
   $stateProvider
-    .state('home', {
-      url: "/home",
+    .state('wcui', {
+      abstract: true,
       resolve: {
         loadMasterData: loadMasterData
-      },
-      templateUrl: "views/main.html",
-      controller: 'MainController',
-      controllerAs: 'vm'
+      }
     })
-    .state('home.char', {
-      url: "",
-      templateUrl: "views/character.html",
-      controller: 'CharacterController',
-      controllerAs: 'vm'
+    .state('wcui.empty', {
+      url: "/",
+      views: {
+        'wcui@': {
+          templateUrl: 'views/empty.html'
+        }
+      }
     })
-    .state('home.pets', {
-      url: "",
-      templateUrl: "views/pets.html",
-      controller: 'PetsController',
-      controllerAs: 'vm'
+    .state('wcui.main', {
+      url: "/",
+      views: {
+        'wcui@': {
+          templateUrl: 'views/main.html',
+          controller: 'MainController',
+          controllerAs: 'vm'
+        }
+      }
     })
-    .state('home.mounts', {
+
+
+    .state('wcui.main.pets', {
       url: "",
-      templateUrl: "views/mounts.html",
-      controller: 'MountsController',
-      controllerAs: 'vm'
+      views: {
+        'tab@wcui.main': {
+          templateUrl: 'views/pets.html',
+          controller: 'PetsController',
+          controllerAs: 'vm'
+        }
+      }
     })
-    .state('home.toys', {
+    .state('wcui.main.mounts', {
       url: "",
-      templateUrl: "views/toys.html",
-      controller: 'ToysController',
-      controllerAs: 'vm'
+      views: {
+        'tab@wcui.main': {
+          templateUrl: 'views/mounts.html',
+          controller: 'MountsController',
+          controllerAs: 'vm'
+        }
+      }
+    })
+    .state('wcui.main.toys', {
+      url: "",
+      views: {
+        'tab@wcui.main': {
+          templateUrl: 'views/toys.html',
+          controller: 'ToysController',
+          controllerAs: 'vm'
+        }
+      }
     });
 }
 
-function palette($mdThemingProvider) {
-  $mdThemingProvider
-    .theme('default')
-    .primaryPalette('blue')
-    .accentPalette('red');
-}
 

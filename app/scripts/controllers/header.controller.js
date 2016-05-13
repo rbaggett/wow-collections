@@ -6,41 +6,41 @@
     .module('wowCollectionsUi')
     .controller('HeaderController', HeaderController);
 
-  function HeaderController(bnetFactory, characterFactory) {
+  function HeaderController($state, characterFactory, masterFactory) {
 
     var vm = this;
 
     /* data */
-    vm.realm = {name: 'Dalaran', slug: 'dalaran'};
+    vm.realm = 'dalaran';
+    vm.data = masterFactory.data;
     vm.character = 'Thulse';
 
     /* functions */
     vm.getCharacter = getCharacter;
-    vm.getRealms = getRealms;
-    
+    // vm.getRealms = getRealms;
+
 
     (function activate() {
-      bnetFactory
-        .getRealms()
-        .then(function (response) {
-          vm.realms = response.data.realms;
-        });
+      // something?
     })();
 
 
     function getCharacter() {
       characterFactory
-        .loadData(vm.realm.name, vm.character)
-        .then(function () {
-          
-        });
+        .loadData(vm.realm, vm.character)
+        .then(navigateToMain);
     }
 
 
-    function getRealms(query) {
-      return _.filter(vm.realms, function (realm) {
-        return (realm.slug.indexOf(query) === 0)
-      })
+    // function getRealms(query) {
+    //   return _.filter(vm.realms, function (realm) {
+    //     return (realm.slug.indexOf(query) === 0)
+    //   })
+    // }
+
+
+    function navigateToMain() {
+      $state.go('wcui.main');
     }
 
   }

@@ -18,7 +18,7 @@
     function getCharacter(realm, character) {
       var settings = {
         method: 'GET',
-        url: 'https://us.api.battle.net/wow/character/' + realm + '/' + character + '?locale=en_US&apikey=' + constants.bnetKey
+        url: 'https://us.api.battle.net/wow/character/' + realm + '/' + character + '?fields=pets,mounts&apikey=' + constants.bnetKey
       };
       return httpFactory.request(settings);
     }

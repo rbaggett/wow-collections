@@ -1,17 +1,43 @@
+<!--<md-grid-list md-cols-gt-xs="3" md-row-height-gt-md="1:1" md-row-height="fit"  flex>-->
+<!--<md-grid-tile dir-paginate="pet in vm.pets | itemsPerPage: vm.pageSize">-->
+<!--<a href="http://www.wowhead.com/npc={{pet.creatureId}}" target="_blank">-->
+<!--<div layout="row" flex>-->
 
-<md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="8" md-row-height-gt-md="1:1"md-row-height="fit" md-gutter="12px" md-gutter-gt-sm="8px" flex>
-  <md-grid-tile dir-paginate="pet in vm.masterData.pets | itemsPerPage: vm.pageSize">
-    <a>
-      <img data-ng-src="http://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">
-    </a>
-    <!--<md-grid-tile-footer>-->
-      <!--<small>{{pet.name}}</small>-->
-    <!--</md-grid-tile-footer>-->
-  </md-grid-tile>
-</md-grid-list>
+<!--<div flex="none">-->
+<!--<img data-ng-src="http://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg" style="width:72px;height:72px">-->
+<!--</div>-->
+<!--<div flex="10"></div>-->
+<!--<div layout="column" flex="45">-->
+<!--<div>{{vm.breeds[pet.stats.breedId].letters}}</div>-->
+<!--<div>{{pet.stats.health}}</div>-->
+<!--<div>{{pet.stats.power}}</div>-->
+<!--<div>{{pet.stats.speed}}</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</a>-->
+<!--</md-grid-tile>-->
+<!--</md-grid-list>-->
 
-<div flex layout="row" layout-align="center">
+<div class="row">
+  <div class="col-sm-3" dir-paginate="pet in vm.pets | itemsPerPage: vm.pageSize | orderBy:'creatureName'">
+    <div class="col-sm-12" data-ng-bind="pet.creatureName"></div>
+    <div class="col-sm-6">
+      <a>
+        <img data-ng-src="http://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">
+      </a>
+    </div>
+    <div class="col-sm-6">
+      <div>{{vm.breeds[pet.stats.breedId].letters}}</div>
+      <div>{{pet.stats.health}}</div>
+      <div>{{pet.stats.power}}</div>
+      <div>{{pet.stats.speed}}</div>
+    </div>
+  </div>
+</div>
+
+<div class="row text-center">
   <dir-pagination-controls></dir-pagination-controls>
 </div>
+
 
 

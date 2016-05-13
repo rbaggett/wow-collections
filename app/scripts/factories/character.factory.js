@@ -8,16 +8,17 @@
 
   function characterFactory($q, bnetFactory) {
 
-    var data = {
-      character: {},
-      loaded: false,
-      pets: [],
-      mounts: [],
-      toys: []
-    };
+    // var data = {
+    //   character: {},
+    //   loaded: false,
+    //   pets: [],
+    //   mounts: [],
+    //   toys: []
+    // };
+    var character = {};
 
     return {
-      data:data,
+      character: character,
       loadData: loadData
     };
 
@@ -25,43 +26,19 @@
     function loadData(realm, character) {
       return bnetFactory
         .getCharacter(realm, character)
-        .then(function (response) {
-          data.character = response.data;
-        })
-        .then(loadDataCollections);
+        .then(loadDataSuccess)
+        .catch(loadDataFailure);
     }
 
 
-    function loadDataCollections() {
-      return $q.all([loadPets(), loadMounts(), loadToys()])
-        .then(function() {
-          data.loaded = true;
-        })
-        .catch(function() {
-          data.loaded = false;
-        })
+    function loadDataFailure(error) {
+      console.log('loadData failed:' + error);
     }
 
 
-    function loadMounts() {
-
+    function loadDataSuccess(response) {
+      angular.copy(response.data, character);
     }
-
-
-
-    function loadPets() {
-      return bnetFactory
-        .getCharacterPets(data.character.realm, data.character.name)
-        .then(function (response) {
-          data.pets = response.data.pets.collected;
-        })
-    }
-
-
-    function loadToys() {
-
-    }
-
 
   }
 })();

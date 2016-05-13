@@ -23,7 +23,7 @@
 
 
     function loadData() {
-      return $q.all([loadPets(), loadMounts(), loadToys()])
+      return $q.all([loadRealms(), loadPets(), loadMounts(), loadToys()])
         .then(function() {
           data.loaded = true;
         })
@@ -47,6 +47,26 @@
     }
 
 
+    
+    function loadRealms() {
+      return bnetFactory
+        .getRealms()
+        .then(loadRealmsSuccess)
+        .catch(loadRealmsFailure);
+    }
+    
+    
+    
+    function loadRealmsSuccess(response) {
+      data.realms = response.data.realms;
+    }
+    
+    
+    function loadRealmsFailure(error) {
+      console.log('loadRealms failed:' + error);
+    }
+    
+    
     function loadToys() {
 
     }

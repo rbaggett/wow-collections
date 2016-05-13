@@ -1,41 +1,40 @@
-<md-content layout-padding>
-  <div layout="row">
+<!--<md-content layout-padding>-->
+  <!--<div layout="row">-->
 
-    <md-autocomplete md-selected-item="vm.realm" md-search-text="searchText"
-                     md-items="realm in vm.getRealms(searchText)" md-item-text="realm.name"
-                     md-floating-label="Select a Realm" flex>
-      <span md-highlight-text="searchText">{{realm.name}}</span>
-    </md-autocomplete>
+    <!--<md-autocomplete md-selected-item="vm.realm" md-search-text="searchText"-->
+                     <!--md-items="realm in vm.getRealms(searchText)" md-item-text="realm.name"-->
+                     <!--md-floating-label="Select a Realm" flex>-->
+      <!--<span md-highlight-text="searchText">{{realm.name}}</span>-->
+    <!--</md-autocomplete>-->
 
-    <div flex="5"></div>
+    <!--<div flex="5"></div>-->
 
-    <md-input-container>
-      <label>Name</label>
-      <input type="text" data-ng-model="vm.character">
-    </md-input-container>
+    <!--<md-input-container>-->
+      <!--<label>Name</label>-->
+      <!--<input type="text" data-ng-model="vm.character">-->
+    <!--</md-input-container>-->
 
-    <div flex="5"></div>
+    <!--<div flex="5"></div>-->
 
-    <md-input-container layout-align="start">
-      <md-button class="md-raised md-primary" data-ng-click="vm.getCharacter()">Search</md-button>
-    </md-input-container>
+    <!--<md-input-container layout-align="start">-->
+      <!--<md-button class="md-raised md-primary" data-ng-click="vm.getCharacter()">Search</md-button>-->
+    <!--</md-input-container>-->
 
-  </div>
-</md-content>
-
-<!--<div class="row">-->
-  <!--<div class="well">-->
-    <!--<label>-->
-      <!--Realm-->
-      <!--<select class="form-control" data-ng-model="vm.realm"-->
-              <!--data-ng-options="realm.slug as realm.name for realm in vm.realms"></select>-->
-    <!--</label>-->
-
-    <!--<label>-->
-      <!--Character-->
-      <!--<input class="form-control" data-ng-model="vm.character">-->
-    <!--</label>-->
-
-    <!--<button class="btn btn-primary" data-ng-click="vm.getCharacter()">Search</button>-->
   <!--</div>-->
-<!--</div>-->
+<!--</md-content>-->
+
+<div class="row">
+  <div class="well">
+    <label>
+      Realm
+      <select class="form-control" data-ng-model="vm.realm" data-ng-options="realm.slug as realm.name for realm in vm.data.realms"></select>
+    </label>
+
+    <label>
+      Character
+      <input class="form-control" data-ng-model="vm.character">
+    </label>
+
+    <button class="btn btn-primary" data-ng-click="vm.getCharacter()">Search</button>
+  </div>
+</div>

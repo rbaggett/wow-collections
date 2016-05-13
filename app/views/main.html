@@ -1,27 +1,35 @@
-<div data-ng-if="vm.data.loaded">
-  <md-content>
-    <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="character">
-        <md-content class="md-padding">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
-        </md-content>
-      </md-tab>
-      <md-tab label="pets">
-        <md-content class="md-padding">
-          <div data-ng-include="'views/pets.html'" data-ng-controller="PetsController as vm"></div>
-        </md-content>
-      </md-tab>
-      <md-tab label="mounts">
-        <md-content class="md-padding">
-          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-        </md-content>
-      </md-tab>
-      <md-tab label="toys">
-        <md-content class="md-padding">
-          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-        </md-content>
-      </md-tab>
-    </md-tabs>
-  </md-content>
-</div>
+<!--<div data-ng-if="vm.data.loaded">-->
+  <!--<md-content>-->
+    <!--<md-tabs md-dynamic-height md-border-bottom>-->
+      <!--<md-tab label="character">-->
+        <!--<md-content class="md-padding">-->
+          <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>-->
+        <!--</md-content>-->
+      <!--</md-tab>-->
+      <!--<md-tab label="pets">-->
+        <!--<md-content class="md-padding">-->
+          <!--<div data-ng-include="'views/pets.html'" data-ng-controller="PetsController as vm"></div>-->
+        <!--</md-content>-->
+      <!--</md-tab>-->
+      <!--<md-tab label="mounts">-->
+        <!--<md-content class="md-padding">-->
+          <!--<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>-->
+        <!--</md-content>-->
+      <!--</md-tab>-->
+      <!--<md-tab label="toys">-->
+        <!--<md-content class="md-padding">-->
+          <!--<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>-->
+        <!--</md-content>-->
+      <!--</md-tab>-->
+    <!--</md-tabs>-->
+  <!--</md-content>-->
+<!--</div>-->
+{{vm.data.character}}
 
+<ul class="nav nav-tabs">
+  <li><a ui-sref=".pets">Pets</a></li>
+  <li><a ui-sref=".mounts">Mounts</a></li>
+  <li><a ui-sref=".toys">Toys</a></li>
+</ul>
+
+<div ui-view="tab"></div>
