@@ -1,16 +1,24 @@
 <div class="row">
-  <div class="col-sm-4" dir-paginate="pet in vm.pets | itemsPerPage: vm.pageSize | orderBy:'creatureName'">
-    <div class="col-sm-12" data-ng-bind="pet.creatureName"></div>
-    <div class="col-sm-6">
-      <a>
-        <img data-ng-src="http://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">
-      </a>
-    </div>
-    <div class="col-sm-6">
-      <div>{{vm.breeds[pet.stats.breedId].letters}}</div>
-      <div>{{pet.stats.health}}</div>
-      <div>{{pet.stats.power}}</div>
-      <div>{{pet.stats.speed}}</div>
+  <div class="col-sm-4 col-md-3" dir-paginate="pet in vm.pets | itemsPerPage: vm.pageSize | orderBy:'creatureName'">
+    <div class="clearfix"
+         data-ng-class="{'pet-tile-blue': pet.qualityId===3, 'pet-tile-green':pet.qualityId===2, 'pet-tile-grey':pet.qualityId<2}">
+      <div class="row">
+        <div class="text-center pet-tile-header">
+          <span data-ng-show="pet.creatureName">{{pet.creatureName}}</span>
+          <span data-ng-hide="pet.creatureName">n/a</span>
+        </div>
+      </div>
+      <div class="col-sm-4 pet-tile-body">
+        <a>
+          <img data-ng-src="http://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">
+        </a>
+      </div>
+      <div class="col-sm-8">
+        <div>{{vm.breeds[pet.stats.breedId].letters}}</div>
+        <div><span class="icon" data-ng-include="'images/heart.svg'"></span>{{pet.stats.health}}</div>
+        <div>{{pet.stats.power}}</div>
+        <div>{{pet.stats.speed}}</div>
+      </div>
     </div>
   </div>
 </div>

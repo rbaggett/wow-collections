@@ -3,11 +3,71 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+body {
+  //font-family: 'LifeCraftx', verdana;
+}
+
+//@font-face {
+//  font-family: 'LifeCraft';
+//  src: url('fonts/LifeCraft_Font.ttf'),
+//  url('fonts/LifeCraft_Font.eot'); /* IE */
+//}
+
+.navbar-center {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
   color: #000;
   padding: 0.2em 0;
 }
+
+.pet-tile {
+  border-radius: 3px;
+  box-shadow: 7px 7px 15px 0 lighten(black, 50%);
+  margin-top: 20px;
+  overflow: hidden;
+  text-overflow: clip ellipsis;
+  white-space: nowrap;
+
+  .pet-tile-body {
+    padding-top: 5px;
+  }
+}
+
+.pet-tile-blue {
+  @extend .pet-tile;
+  border: 2px solid lighten($brand-primary, 10%);
+
+  .pet-tile-header {
+    background-color: lighten($brand-primary, 10%);
+    color: white;
+  }
+}
+
+.pet-tile-green {
+  @extend .pet-tile;
+  border: 2px solid lighten($brand-success, 10%);
+
+  .pet-tile-header {
+    background-color: lighten($brand-success, 10%);
+    color: white;
+  }
+}
+
+.pet-tile-grey {
+  @extend .pet-tile;
+  border: 2px solid lighten(black, 50%);
+
+  .pet-tile-header {
+    background-color: lighten(black, 50%);
+    color: white;
+  }
+}
+
 
 
