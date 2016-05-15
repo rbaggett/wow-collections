@@ -21,14 +21,17 @@
           <div><span class="speed-icon"></span>{{pet.stats.speed}}</div>
         </div>
         <div class="col-sm-7 text-center">
-          <!--<div data-ng-if="pet.collected + pet.canBattle" class="text-center label label-{{pet.theme}} block">-->
-            <!--{{pet.stats.level}}&nbsp;&nbsp;{{vm.breeds[pet.stats.breedId].letters}}-->
-          <!--</div>-->
           <h1 class="text-{{pet.theme}}">{{pet.stats.level}}</h1>
-          <div class="pet-family pet-family-{{pet.species.family}}">
-            <data-ng-include src="pet.familyIcon"></data-ng-include>
-          </div>
-          <!--<img src="http://wow.zamimg.com/images/pets/types/tiny/magic.png">-->
+          <div data-ng-if="pet.species.family==='dragonkin'" class="pet-family pet-family-dragonkin" data-ng-include="'images/Pet_type_dragonkin.svg'"></div>
+          <div data-ng-if="pet.species.family==='magical'" class="pet-family pet-family-magical" data-ng-include="'images/Pet_type_magical.svg'"></div>
+          <div data-ng-if="pet.species.family==='water'" class="pet-family pet-family-water" data-ng-include="'images/Pet_type_water.svg'"></div>
+          <div data-ng-if="pet.species.family==='flying'" class="pet-family pet-family-flying" data-ng-include="'images/Pet_type_flying.svg'"></div>
+          <div data-ng-if="pet.species.family==='mechanical'" class="pet-family pet-family-mechanical" data-ng-include="'images/Pet_type_mechanical.svg'"></div>
+          <div data-ng-if="pet.species.family==='undead'" class="pet-family pet-family-undead" data-ng-include="'images/Pet_type_undead.svg'"></div>
+          <div data-ng-if="pet.species.family==='beast'" class="pet-family pet-family-beast" data-ng-include="'images/Pet_type_beast.svg'"></div>
+          <div data-ng-if="pet.species.family==='critter'" class="pet-family pet-family-critter" data-ng-include="'images/Pet_type_critter.svg'"></div>
+          <div data-ng-if="pet.species.family==='elemental'" class="pet-family pet-family-elemental" data-ng-include="'images/Pet_type_elemental.svg'"></div>
+          <div data-ng-if="pet.species.family==='humanoid'" class="pet-family pet-family-humanoid" data-ng-include="'images/Pet_type_humanoid.svg'"></div>
         </div>
       </div>
     </div>

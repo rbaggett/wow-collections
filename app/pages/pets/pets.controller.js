@@ -43,7 +43,6 @@
         pet.collected = true;
         pet.theme = getPetTheme(pet);
         pet.species = getPetSpecies(pet);
-        pet.familyIcon = 'images/pets/Pet_type_' + pet.species.family + '.svg';
       }
     }
 
