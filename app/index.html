@@ -21,7 +21,7 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<header data-ng-include="'layout/header.html'" data-ng-controller="HeaderController as vm"></header>
+<header data-ng-include="'pages/header/header.html'" data-ng-controller="HeaderController as vm"></header>
 <div class="container">
   <div data-ui-view="wcui"></div>
 </div>
@@ -48,7 +48,7 @@
 <script src="app.route.js"></script>
 
 <!-- controllers -->
-<script src="layout/header.controller.js"></script>
+<script src="pages/header/header.controller.js"></script>
 <script src="pages/main/main.controller.js"></script>
 <script src="pages/mounts/mounts.controller.js"></script>
 <script src="pages/pets/pets.controller.js"></script>
