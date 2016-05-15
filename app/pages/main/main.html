@@ -1,0 +1,7 @@
+<ul class="nav nav-tabs">
+  <li data-ng-class="{'active':vm.viewState.tab.pets}"><a ui-sref=".pets">Pets</a></li>
+  <li data-ng-class="{'active':vm.viewState.tab.mounts}"><a ui-sref=".mounts">Mounts</a></li>
+  <li class="disabled" data-ng-class="{'active':vm.viewState.tab.toys}"><a ui-sref=".toys">Toys</a></li>
+</ul>
+
+<div ui-view="tab"></div>

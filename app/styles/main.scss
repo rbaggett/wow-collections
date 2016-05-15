@@ -13,6 +13,10 @@ body {
 //  url('fonts/LifeCraft_Font.eot'); /* IE */
 //}
 
+.block {
+  display: block;
+}
+
 .navbar-center {
   position: absolute;
   width: 100%;
@@ -26,46 +30,162 @@ body {
   padding: 0.2em 0;
 }
 
+.health-icon {
+  background: url(http://wow.zamimg.com/images/BattlePetStatCalc/stat-health.png) left 0 no-repeat;
+  padding-left: 19px;
+}
+
+.power-icon {
+  background: url(http://wow.zamimg.com/images/BattlePetStatCalc/stat-power.png) left 0 no-repeat;
+  padding-left: 19px;
+}
+
+.speed-icon {
+  background: url(http://wow.zamimg.com/images/BattlePetStatCalc/stat-speed.png) left 0 no-repeat;
+  padding-left: 19px;
+}
+
+.pet-family {
+  height: 170px;
+  position: absolute;
+  right: -20px;
+  top: -40px;
+  width: 170px;
+  opacity: 0.15;
+  z-index: -1;
+}
+
+.pet-family-dragonkin {
+  fill: $brand-success;
+}
+
+.pet-family-magical {
+  fill: #6a37ff;
+}
+
+.pet-family-water {
+  fill: $brand-primary;
+}
+
+.pet-family-flying {
+  fill: #867218;
+}
+
+.pet-family-mechanical {
+  fill: #4e4e4e;
+}
+
+.pet-family-undead {
+  fill: #8e666a;
+}
+
+.pet-family-beast {
+  fill: $brand-success;
+}
+
+.pet-family-critter {
+  fill: $brand-success;
+}
+
+.pet-family-elemental {
+  fill: $brand-success;
+}
+
+.pet-family-humanoid svg {
+  fill: $brand-success;
+}
+
+.pet-icon {
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 60px;
+  padding: 2px;
+  width: 60px;
+}
+
+.pet-icon-primary {
+  background-color: lighten($brand-primary, 10%);
+}
+
+.pet-icon-success {
+  background-color: lighten($brand-success, 10%);
+}
+
+.pet-icon-default {
+  background-color: $gray-dark;
+}
+
+.pet-favorite {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+
+  svg {
+    height: 25px;
+    width: 25px;
+    fill: yellow;
+  }
+
+  polygon {
+    stroke: black;
+    stroke-width: 28px;
+  }
+}
+
 .pet-tile {
   border-radius: 3px;
   box-shadow: 7px 7px 15px 0 lighten(black, 50%);
   margin-top: 20px;
   overflow: hidden;
-  text-overflow: clip ellipsis;
+  text-overflow: clip;
   white-space: nowrap;
 
   .pet-tile-body {
-    padding-top: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 
-.pet-tile-blue {
+.pet-tile-primary {
   @extend .pet-tile;
   border: 2px solid lighten($brand-primary, 10%);
 
   .pet-tile-header {
+    border-bottom: 2px solid $brand-primary;
     background-color: lighten($brand-primary, 10%);
     color: white;
   }
 }
 
-.pet-tile-green {
+.pet-tile-success {
   @extend .pet-tile;
   border: 2px solid lighten($brand-success, 10%);
 
   .pet-tile-header {
+    border-bottom: 2px solid $brand-success;
     background-color: lighten($brand-success, 10%);
     color: white;
   }
 }
 
-.pet-tile-grey {
+.pet-tile-default {
   @extend .pet-tile;
-  border: 2px solid lighten(black, 50%);
+  border: 2px solid $gray-light;
 
   .pet-tile-header {
-    background-color: lighten(black, 50%);
+    border-bottom: 2px solid $gray-dark;
+    background-color: $gray-light;
     color: white;
+  }
+}
+
+.pet-tile-default-dashed {
+  @extend .pet-tile;
+  border: 2px dashed $gray-light;
+
+  .pet-tile-header {
+    border-bottom: 2px dashed $gray-light;
+    color: $gray-light;
   }
 }
 

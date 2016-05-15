@@ -14,31 +14,17 @@
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
 </head>
-<body ng-app="wowCollectionsUi">
+<body data-ng-app="wowCollectionsUi">
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
   your browser</a> to improve your experience.</p>
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<header data-ng-include="'views/header.html'" data-ng-controller="HeaderController as vm"></header>
+<header data-ng-include="'layout/header.html'" data-ng-controller="HeaderController as vm"></header>
 <div class="container">
   <div data-ui-view="wcui"></div>
 </div>
-
-
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-<script>
-  !function (A, n, g, u, l, a, r) {
-    A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
-        (A[l].q = A[l].q || []).push(arguments)
-      }, A[l].l = +new Date, a = n.createElement(g),
-      r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
-  }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-  ga('create', 'UA-XXXXX-X');
-  ga('send', 'pageview');
-</script>
 
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
@@ -58,23 +44,37 @@
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="scripts/app.js"></script>
+<script src="app.js"></script>
+<script src="app.route.js"></script>
 
 <!-- controllers -->
-<script src="scripts/controllers/character.controller.js"></script>
-<script src="scripts/controllers/header.controller.js"></script>
-<script src="scripts/controllers/main.controller.js"></script>
-<script src="scripts/controllers/mounts.controller.js"></script>
-<script src="scripts/controllers/pets.controller.js"></script>
-<script src="scripts/controllers/toys.controller.js"></script>
+<script src="layout/header.controller.js"></script>
+<script src="pages/main/main.controller.js"></script>
+<script src="pages/mounts/mounts.controller.js"></script>
+<script src="pages/pets/pets.controller.js"></script>
+<script src="pages/toys/toys.controller.js"></script>
 
 <!-- providers-->
-<script src="scripts/constants/constants.js"></script>
-<script src="scripts/factories/bnet.factory.js"></script>
-<script src="scripts/factories/character.factory.js"></script>
-<script src="scripts/factories/http.factory.js"></script>
-<script src="scripts/factories/master.factory.js"></script>
+<script src="constants/constants.js"></script>
+<script src="components/bnet.factory.js"></script>
+<script src="components/character.factory.js"></script>
+<script src="components/http.factory.js"></script>
+<script src="components/master.factory.js"></script>
+<script src="components/util.factory.js"></script>
 <!-- endbuild -->
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<script>
+  !function (A, n, g, u, l, a, r) {
+    A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
+        (A[l].q = A[l].q || []).push(arguments)
+      }, A[l].l = +new Date, a = n.createElement(g),
+      r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+  }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-XXXXX-X');
+  ga('send', 'pageview');
+</script>
 
 </body>
 </html>

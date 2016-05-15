@@ -6,18 +6,20 @@
     .module('wowCollectionsUi')
     .controller('HeaderController', HeaderController);
 
-  function HeaderController($state, characterFactory, masterFactory) {
+  function HeaderController($state, characterFactory, masterFactory, utilFactory) {
 
     var vm = this;
 
     /* data */
+    // vm.realm = 'ghostlands';
     vm.realm = 'dalaran';
     vm.data = masterFactory.data;
+    // vm.character = 'Phalys';
     vm.character = 'Thulse';
 
     /* functions */
     vm.getCharacter = getCharacter;
-    // vm.getRealms = getRealms;
+
 
 
     (function activate() {
@@ -32,14 +34,8 @@
     }
 
 
-    // function getRealms(query) {
-    //   return _.filter(vm.realms, function (realm) {
-    //     return (realm.slug.indexOf(query) === 0)
-    //   })
-    // }
-
-
     function navigateToMain() {
+      utilFactory.setActiveView();
       $state.go('wcui.main');
     }
 
