@@ -1,47 +1,109 @@
-<div class="row">
-  <div class="col-xs-6 col-sm-4 col-md-3"
-       dir-paginate="pet in vm.pets | itemsPerPage: vm.pageSize | orderBy:'creatureName'">
-    <div class="pet-favorite" data-ng-if="pet.isFavorite" data-ng-include="'images/favorite.svg'"></div>
-    <div class="clearfix" data-ng-class="vm.getPetTile(pet)">
-      <div class="row">
-        <div class="text-center pet-tile-header">
-          <span data-ng-show="pet.collected" title="{{pet.creatureName}}">{{pet.creatureName}}</span>
-          <span data-ng-hide="pet.collected" title="{{pet.name}}">{{pet.name}}</span>
+<section class="pets">
+
+  <!-- FILTERS -->
+  <div class="row">
+    <div class="col-xs-12" style="padding-top:10px;">
+      <div class="col-xs-12" style="border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+
+        <!-- PETS/PAGE -->
+        <div class="col-xs-2">
+          <div class="input-group">
+            <span class="input-group-addon">Pets/Page</span>
+            <input class="form-control" data-ng-model="vm.pageSize">
+          </div>
         </div>
-      </div>
-      <div class="col-sm-3 pet-tile-body text-center">
-        <a href="http://www.wowhead.com/npc={{pet.creatureId}}" target="_blank" title="view on wowhead.com">
-          <img class="pet-icon pet-icon-{{pet.theme}}" data-ng-src="http://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">
-        </a>
-      </div>
-      <div class="col-sm-9 pet-tile-body">
-        <div class="col-sm-5">
-          <div><span class="health-icon"></span>{{pet.stats.health}}</div>
-          <div><span class="power-icon"></span>{{pet.stats.power}}</div>
-          <div><span class="speed-icon"></span>{{pet.stats.speed}}</div>
+
+        <!-- COLLECTED -->
+        <div class="col-xs-3">
+          <div class="btn-group">
+            <button class="btn btn-default" data-ng-click="vm.filterCollected(true)">Have</button>
+            <button class="btn btn-default" data-ng-click="vm.filterCollected(false)">Need</button>
+            <button class="btn btn-default" data-ng-click="vm.filterCollected()">All</button>
+          </div>
         </div>
-        <div class="col-sm-7 text-center">
-          <h1 class="text-{{pet.theme}}">{{pet.stats.level}}</h1>
-          <div data-ng-if="pet.species.family==='dragonkin'" class="pet-family pet-family-dragonkin" data-ng-include="'images/Pet_type_dragonkin.svg'"></div>
-          <div data-ng-if="pet.species.family==='magical'" class="pet-family pet-family-magical" data-ng-include="'images/Pet_type_magical.svg'"></div>
-          <div data-ng-if="pet.species.family==='water'" class="pet-family pet-family-water" data-ng-include="'images/Pet_type_water.svg'"></div>
-          <div data-ng-if="pet.species.family==='flying'" class="pet-family pet-family-flying" data-ng-include="'images/Pet_type_flying.svg'"></div>
-          <div data-ng-if="pet.species.family==='mechanical'" class="pet-family pet-family-mechanical" data-ng-include="'images/Pet_type_mechanical.svg'"></div>
-          <div data-ng-if="pet.species.family==='undead'" class="pet-family pet-family-undead" data-ng-include="'images/Pet_type_undead.svg'"></div>
-          <div data-ng-if="pet.species.family==='beast'" class="pet-family pet-family-beast" data-ng-include="'images/Pet_type_beast.svg'"></div>
-          <div data-ng-if="pet.species.family==='critter'" class="pet-family pet-family-critter" data-ng-include="'images/Pet_type_critter.svg'"></div>
-          <div data-ng-if="pet.species.family==='elemental'" class="pet-family pet-family-elemental" data-ng-include="'images/Pet_type_elemental.svg'"></div>
-          <div data-ng-if="pet.species.family==='humanoid'" class="pet-family pet-family-humanoid" data-ng-include="'images/Pet_type_humanoid.svg'"></div>
+
+        <!-- QUALITY -->
+        <div class="col-xs-3">
+          <div>
+            <button class="btn btn-sm btn-primary" data-ng-click="vm.filterQuality(3)" style="width:40px;">R</button>
+            <button class="btn btn-sm btn-success" data-ng-click="vm.filterQuality(2)" style="width:40px;">U</button>
+            <button class="btn btn-sm btn-default" data-ng-click="vm.filterQuality(1)" style="width:40px;">C</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- TILES -->
+  <div class="row">
+    <div class="col-xs-6 col-sm-4 col-md-3" data-dir-paginate="pet in vm.pets | itemsPerPage: vm.pageSize track by $index">
+      <!-- favorite -->
+      <!--<div class="pet-favorite" data-ng-if="pet.isFavorite" data-ng-include="'images/favorite.svg'"></div>-->
+      <!-- tile -->
+      <!--<div class="clearfix" data-ng-class="vm.getPetTile(pet)">-->
+      <div class="clearfix" data-ng-class="vm.getPetTile(pet)">
+
+        <!-- NAME -->
+        <div class="row">
+          <div class="text-center pet-tile-header" title="{{pet.creatureName}}">{{pet.creatureName}}</div>
+        </div>
+
+        <!-- ICON -->
+        <div class="col-sm-3 pet-tile-body text-center">
+          <a href="http://www.wowhead.com/npc={{pet.creatureId}}" target="_blank" title="view on wowhead.com">
+            <img class="pet-icon pet-icon-{{pet.theme}}" data-ng-src="http://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">
+          </a>
+        </div>
+
+        <div class="col-sm-9 pet-tile-body">
+
+          <!-- STATS -->
+          <div class="col-sm-5">
+            <div><span class="pet-battle-icon-health"></span>{{pet.stats.health}}</div>
+            <div><span class="pet-battle-icon-power"></span>{{pet.stats.power}}</div>
+            <div><span class="pet-battle-icon-speed"></span>{{pet.stats.speed}}</div>
+          </div>
+
+          <div class="col-sm-7 text-center">
+            <!-- LEVEL -->
+            <div class="pet-level-container">
+              <div class="pet-level-label">level</div>
+              <div class="text-{{pet.theme}} pet-level-number"><strong>{{pet.stats.level}}</strong>
+                {{vm.breeds[pet.stats.breedId].letters}}
+              </div>
+            </div>
+            <!-- FAMILY -->
+            <div data-ng-if="pet.species.family==='dragonkin'" class="pet-family pet-family-dragonkin"
+                 data-ng-include="'images/Pet_type_dragonkin.svg'"></div>
+            <div data-ng-if="pet.species.family==='magical'" class="pet-family pet-family-magical"
+                 data-ng-include="'images/Pet_type_magical.svg'"></div>
+            <div data-ng-if="pet.species.family==='water'" class="pet-family pet-family-water"
+                 data-ng-include="'images/Pet_type_water.svg'"></div>
+            <div data-ng-if="pet.species.family==='flying'" class="pet-family pet-family-flying"
+                 data-ng-include="'images/Pet_type_flying.svg'"></div>
+            <div data-ng-if="pet.species.family==='mechanical'" class="pet-family pet-family-mechanical"
+                 data-ng-include="'images/Pet_type_mechanical.svg'"></div>
+            <div data-ng-if="pet.species.family==='undead'" class="pet-family pet-family-undead"
+                 data-ng-include="'images/Pet_type_undead.svg'"></div>
+            <div data-ng-if="pet.species.family==='beast'" class="pet-family pet-family-beast"
+                 data-ng-include="'images/Pet_type_beast.svg'"></div>
+            <div data-ng-if="pet.species.family==='critter'" class="pet-family pet-family-critter"
+                 data-ng-include="'images/Pet_type_critter.svg'"></div>
+            <div data-ng-if="pet.species.family==='elemental'" class="pet-family pet-family-elemental"
+                 data-ng-include="'images/Pet_type_elemental.svg'"></div>
+            <div data-ng-if="pet.species.family==='humanoid'" class="pet-family pet-family-humanoid"
+                 data-ng-include="'images/Pet_type_humanoid.svg'"></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="row text-center">
-  <dir-pagination-controls></dir-pagination-controls>
-</div>
-
-
+  <!-- PAGING -->
+  <div class="row text-center">
+    <dir-pagination-controls></dir-pagination-controls>
+  </div>
 
 
+</section>
