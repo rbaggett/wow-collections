@@ -21,24 +21,10 @@
     vm.pageSize = 24;
     vm.pets = [];
 
-    // /* scope view state */
-    // vm.viewState = {
-    //   filters: {
-    //     collected: {
-    //       dupe: false,
-    //       have: false,
-    //       need: false
-    //     }
-    //   }
-    // };
-
-
     /* scope functions */
-    // vm.filterCollectionExtra = filterCollectionExtra;
     vm.filterCollected = filterCollected;
     vm.filterDuplicate = filterDuplicate;
     vm.filterNotCollected = filterNotCollected;
-    // vm.filterCollectionNeed = filterCollectionNeed;
     vm.filterPets = filterPets;
     vm.filterQuality = filterQuality;
     vm.getPetTile = getPetTile;
@@ -50,6 +36,15 @@
       sortPets(['creatureName']);
       pets = pets.concat(vm.pets);
       utilFactory.setActiveView('pets');
+      // console.log(characterPets.length)
+      // for (var k = 0, l = characterPets.length; k < l; k++) {
+      //   if (characterPets[k].creatureId === 104332) {
+      //     debugger
+      //   }
+      // }
+      // // for (var k = 0, l = masterPets.length; k < l; k++) {
+      // //   console.log(masterPets[k].name)
+      // // }
     })();
 
 
@@ -90,6 +85,7 @@
       vm.pets.length = 0;
       vm.pets = vm.pets.concat(pets);
       vm.pets = _.filter(vm.pets, vm.filters);
+      console.log(vm.pets);
     }
 
 
@@ -155,7 +151,6 @@
      */
     function getPetTheme(pet) {
       var theme;
-      // if (pet.collected) {
       switch (pet.qualityId) {
         case 4:
         case 3:
@@ -169,8 +164,6 @@
           break;
       }
       return theme;
-      // }
-      // return 'default';
     }
 
 
@@ -180,8 +173,6 @@
      */
     function mergePets() {
       var cPets, mPet, nPet;
-      // var foo = 0;
-
       /* loop through the master pet list */
       for (var i = 0, j = masterPets.length; i < j; i++) {
         mPet = angular.copy(masterPets[i]);
@@ -192,29 +183,21 @@
           for (var k = 0, l = cPets.length; k < l; k++) {
             nPet = angular.copy(_.extend(mPet, cPets[k]));
             nPet.collected = true;
-
             nPet.duplicate = (k > 0);
-            // console.log(nPet.duplicate)
-            // console.log(cPets[k].creatureName)
-            // console.log('------------------------')
             nPet.notCollected = false;
             nPet.original = (k === 0);
             nPet.theme = getPetTheme(nPet);
             vm.pets.push(nPet);
-            // if (k > 0) {
-            //   foo++;
-            // }
           }
           continue;
         }
         /* not collected */
-        nPet.collected = false;
+        mPet.collected = false;
         mPet.creatureName = mPet.name;
         mPet.notCollected = true;
         mPet.theme = getPetTheme(mPet);
         vm.pets.push(mPet);
       }
-      // console.log('dupes:' + foo);
     }
 
 
@@ -228,3 +211,6 @@
 
   }
 })();
+
+
+
