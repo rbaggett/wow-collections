@@ -28,15 +28,24 @@
 
 
     function getCharacter() {
+      $state.go('wcui.empty');
       characterFactory
         .loadData(vm.realm, vm.character)
-        .then(navigateToMain);
+        .then(navigateToMain)
+        .catch(navigateToCharacterNotFound);
     }
+
+
+    function navigateToCharacterNotFound() {
+      debugger
+      //$state.go('wcui.characterNotFound');
+    }
+
 
 
     function navigateToMain() {
       utilFactory.setActiveView();
-      $state.go('wcui.main');
+      $state.go('wcui.tabs.pets');
     }
 
   }

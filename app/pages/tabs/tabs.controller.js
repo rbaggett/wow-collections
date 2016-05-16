@@ -4,13 +4,12 @@
 
   angular
     .module('wowCollectionsUi')
-    .controller('MainController', MainController);
+    .controller('TabsController', TabsController);
 
-  function MainController(characterFactory, utilFactory) {
+  function TabsController(utilFactory) {
 
     var vm = this;
 
-    vm.data = characterFactory.data;
     vm.viewState = utilFactory.viewState;
 
   }
