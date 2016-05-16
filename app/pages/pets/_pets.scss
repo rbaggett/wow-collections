@@ -137,7 +137,7 @@
     border-color: lighten($brand-primary, 10%);
 
     .pet-tile-header {
-      border-bottom: 2px solid $brand-primary;
+      border-bottom-color: $brand-primary;
       background-color: lighten($brand-primary, 10%);
       color: white;
     }
@@ -148,7 +148,7 @@
     border-color: lighten($brand-success, 10%);
 
     .pet-tile-header {
-      border-bottom: 2px solid $brand-success;
+      border-bottom-color: $brand-success;
       background-color: lighten($brand-success, 10%);
       color: white;
     }
@@ -159,7 +159,7 @@
     border-color: $gray-light;
 
     .pet-tile-header {
-      border-bottom: 2px solid $gray-dark;
+      border-bottom-color: $gray-dark;
       background-color: $gray-light;
       color: white;
     }
@@ -170,7 +170,7 @@
     border-color: $gray-light;
 
     .pet-tile-header {
-      border-bottom: 2px dashed $gray-light;
+      border-bottom-color: $gray-light;
       color: $gray-light;
     }
   }
@@ -178,11 +178,21 @@
   .pet-tile-border-dashed {
     border-width: 2px;
     border-style: dashed;
+
+    .pet-tile-header {
+      border-bottom-width: 2px;
+      border-bottom-style: dashed;
+    }
   }
 
   .pet-tile-border-solid {
     border-width: 2px;
     border-style: solid;
+
+    .pet-tile-header {
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+    }
   }
 
 }

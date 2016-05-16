@@ -1,4 +1,5 @@
 <section class="pets">
+  <!--#{{vm.pets.length}}-->
 
   <!-- FILTERS -->
   <div class="row">
@@ -14,11 +15,11 @@
         </div>
 
         <!-- COLLECTED -->
-        <div class="col-xs-3">
+        <div class="col-xs-4">
           <div class="btn-group">
-            <button class="btn btn-default" data-ng-click="vm.filterCollected(true)">Have</button>
-            <button class="btn btn-default" data-ng-click="vm.filterCollected(false)">Need</button>
-            <button class="btn btn-default" data-ng-click="vm.filterCollected()">All</button>
+            <button class="btn btn-default" data-ng-class="{'active': vm.filters.original}" data-ng-click="vm.filterCollected()">Collected</button>
+            <button class="btn btn-default" data-ng-class="{'active': vm.filters.notCollected}" data-ng-click="vm.filterNotCollected()">Not Collected</button>
+            <button class="btn btn-default" data-ng-class="{'active': vm.filters.duplicate}" data-ng-click="vm.filterDuplicate()">Duplicates</button>
           </div>
         </div>
 
@@ -74,25 +75,25 @@
               </div>
             </div>
             <!-- FAMILY -->
-            <div data-ng-if="pet.species.family==='dragonkin'" class="pet-family pet-family-dragonkin"
+            <div data-ng-if="pet.family==='dragonkin'" class="pet-family pet-family-dragonkin"
                  data-ng-include="'images/Pet_type_dragonkin.svg'"></div>
-            <div data-ng-if="pet.species.family==='magical'" class="pet-family pet-family-magical"
+            <div data-ng-if="pet.family==='magical'" class="pet-family pet-family-magical"
                  data-ng-include="'images/Pet_type_magical.svg'"></div>
-            <div data-ng-if="pet.species.family==='water'" class="pet-family pet-family-water"
+            <div data-ng-if="pet.family==='water'" class="pet-family pet-family-water"
                  data-ng-include="'images/Pet_type_water.svg'"></div>
-            <div data-ng-if="pet.species.family==='flying'" class="pet-family pet-family-flying"
+            <div data-ng-if="pet.family==='flying'" class="pet-family pet-family-flying"
                  data-ng-include="'images/Pet_type_flying.svg'"></div>
-            <div data-ng-if="pet.species.family==='mechanical'" class="pet-family pet-family-mechanical"
+            <div data-ng-if="pet.family==='mechanical'" class="pet-family pet-family-mechanical"
                  data-ng-include="'images/Pet_type_mechanical.svg'"></div>
-            <div data-ng-if="pet.species.family==='undead'" class="pet-family pet-family-undead"
+            <div data-ng-if="pet.family==='undead'" class="pet-family pet-family-undead"
                  data-ng-include="'images/Pet_type_undead.svg'"></div>
-            <div data-ng-if="pet.species.family==='beast'" class="pet-family pet-family-beast"
+            <div data-ng-if="pet.family==='beast'" class="pet-family pet-family-beast"
                  data-ng-include="'images/Pet_type_beast.svg'"></div>
-            <div data-ng-if="pet.species.family==='critter'" class="pet-family pet-family-critter"
+            <div data-ng-if="pet.family==='critter'" class="pet-family pet-family-critter"
                  data-ng-include="'images/Pet_type_critter.svg'"></div>
-            <div data-ng-if="pet.species.family==='elemental'" class="pet-family pet-family-elemental"
+            <div data-ng-if="pet.family==='elemental'" class="pet-family pet-family-elemental"
                  data-ng-include="'images/Pet_type_elemental.svg'"></div>
-            <div data-ng-if="pet.species.family==='humanoid'" class="pet-family pet-family-humanoid"
+            <div data-ng-if="pet.family==='humanoid'" class="pet-family pet-family-humanoid"
                  data-ng-include="'images/Pet_type_humanoid.svg'"></div>
           </div>
         </div>
