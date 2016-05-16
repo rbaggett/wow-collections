@@ -30,43 +30,43 @@
           }
         }
       })
-      .state('wcui.main', {
+      .state('wcui.tabs', {
         url: "/",
         views: {
           'wcui@': {
-            templateUrl: 'pages/main/main.html',
-            controller: 'MainController',
+            templateUrl: 'pages/tabs/tabs.html',
+            controller: 'TabsController',
             controllerAs: 'vm'
           }
         }
       })
 
 
-      .state('wcui.main.pets', {
+      .state('wcui.tabs.pets', {
         url: "",
         views: {
-          'tab@wcui.main': {
-            templateUrl: 'pages/pets/pets.html',
+          'tab@wcui.tabs': {
+            templateUrl: 'pages/tabs/pets/pets.html',
             controller: 'PetsController',
             controllerAs: 'vm'
           }
         }
       })
-      .state('wcui.main.mounts', {
+      .state('wcui.tabs.mounts', {
         url: "",
         views: {
-          'tab@wcui.main': {
-            templateUrl: 'pages/mounts/mounts.html',
+          'tab@wcui.tabs': {
+            templateUrl: 'pages/tabs/mounts/mounts.html',
             controller: 'MountsController',
             controllerAs: 'vm'
           }
         }
       })
-      .state('wcui.main.toys', {
+      .state('wcui.tabs.toys', {
         url: "",
         views: {
-          'tab@wcui.main': {
-            templateUrl: 'pages/toys/toys.html',
+          'tab@wcui.tabs': {
+            templateUrl: 'pages/tabs/toys/toys.html',
             controller: 'ToysController',
             controllerAs: 'vm'
           }
