@@ -28,6 +28,7 @@
 
 
     function getCharacter() {
+      $state.go('wcui.main');
       characterFactory
         .loadData(vm.realm, vm.character)
         .then(navigateToMain);
@@ -36,7 +37,7 @@
 
     function navigateToMain() {
       utilFactory.setActiveView();
-      $state.go('wcui.main');
+      $state.go('wcui.main.pets');
     }
 
   }
