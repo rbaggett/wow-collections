@@ -6,17 +6,13 @@
     .module('wcui')
     .controller('HeaderController', HeaderController);
 
-  function HeaderController($rootScope, $state, $stateParams, characterFactory, masterFactory, utilFactory) {
+  function HeaderController($state, $stateParams, characterFactory, masterFactory, utilFactory) {
 
     var vm = this;
 
     /* data */
-    // vm.character = 'Phalys';
-    // vm.character = 'Thulse';
     vm.character = '';
     vm.data = masterFactory.data;
-    // vm.realm = 'ghostlands';
-    // vm.realm = 'dalaran';
     vm.realm = '';
 
     /* functions */
@@ -24,10 +20,6 @@
 
 
     (function activate() {
-      var foo = $rootScope.$on('$stateChangeSuccess', function () {
-        console.log('state:', $state.current.name);
-      });
-      $rootScope.$on('$destory', foo);
       preLoadCharacter();
     })();
 
