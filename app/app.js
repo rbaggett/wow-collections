@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('wowCollectionsUi', [
+    .module('wcui', [
       'angularUtils.directives.dirPagination',
       'ngAnimate',
       'ngCookies',

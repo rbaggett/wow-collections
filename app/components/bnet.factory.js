@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('wowCollectionsUi')
+    .module('wcui')
     .factory('bnetFactory', bnetFactory);
 
   function bnetFactory(constants, httpFactory) {

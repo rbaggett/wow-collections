@@ -3,17 +3,31 @@
   'use strict';
 
   angular
-    .module('wowCollectionsUi')
+    .module('wcui')
     .config(routing);
 
 
+  function resolveCharacter($stateParams, characterFactory) {
+    return characterFactory
+      .loadData($stateParams.realm, $stateParams.character);
+  }
+
+
+  /**
+   * State routing master data resolve
+   * @param masterFactory {function} - master data factory
+   * @returns {promise} - master data load promise
+   */
   function resolveMasterData(masterFactory) {
-    return masterFactory.loadData();
+    return masterFactory
+      .loadData();
   }
 
 
   function routing($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise("/");
+
+    $urlRouterProvider
+      .otherwise("/");
 
     $stateProvider
       .state('wcui', {
@@ -30,8 +44,20 @@
           }
         }
       })
-      .state('wcui.tabs', {
+      .state('wcui.error', {
         url: "/",
+        views: {
+          'wcui@': {
+            templateUrl: 'pages/error/error.html'
+          }
+        }
+      })
+
+      .state('wcui.tabs', {
+        resolve: {
+          resolveCharacter: resolveCharacter
+        },
+        url: "/:realm/:character",
         views: {
           'wcui@': {
             templateUrl: 'pages/tabs/tabs.html',
@@ -40,10 +66,8 @@
           }
         }
       })
-
-
       .state('wcui.tabs.pets', {
-        url: "",
+        url: "/pets",
         views: {
           'tab@wcui.tabs': {
             templateUrl: 'pages/tabs/pets/pets.html',
@@ -53,7 +77,7 @@
         }
       })
       .state('wcui.tabs.mounts', {
-        url: "",
+        url: "/mounts",
         views: {
           'tab@wcui.tabs': {
             templateUrl: 'pages/tabs/mounts/mounts.html',
@@ -63,7 +87,7 @@
         }
       })
       .state('wcui.tabs.toys', {
-        url: "",
+        url: "/toys",
         views: {
           'tab@wcui.tabs': {
             templateUrl: 'pages/tabs/toys/toys.html',

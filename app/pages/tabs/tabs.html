@@ -1,7 +1,13 @@
 <ul class="nav nav-tabs">
-  <li data-ng-class="{'active':vm.viewState.tab.pets}"><a ui-sref=".pets">Pets</a></li>
-  <li data-ng-class="{'active':vm.viewState.tab.mounts}"><a ui-sref=".mounts">Mounts</a></li>
-  <li class="disabled" data-ng-class="{'active':vm.viewState.tab.toys}" title="coming soon&#8482;!"><a>Toys</a></li>
+  <li data-ng-class="{'active':vm.tab.pets.active}">
+    <a ui-sref=".pets">Pets</a>
+  </li>
+  <li data-ng-class="{'active':vm.tab.mounts.active}">
+    <a ui-sref=".mounts">Mounts</a>
+  </li>
+  <li class="disabled" data-ng-class="{'active':vm.tab.toys.active}" title="coming soon&#8482;">
+    <a>Toys</a>
+  </li>
 </ul>
 
 <div ui-view="tab"></div>

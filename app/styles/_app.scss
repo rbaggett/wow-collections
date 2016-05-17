@@ -16,6 +16,12 @@
   outline: none !important;
 }
 
+.btn-settings {
+  padding: 0;
+  //background-color: #eeeeee;
+;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -33,3 +39,11 @@ html {
   text-align: center;
 }
 
+.icon-table {
+  height: 20px;
+  width: 20px;
+
+  svg {
+    fill: blue;
+  }
+}

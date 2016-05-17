@@ -7,7 +7,7 @@
   };
 
   angular
-    .module('wowCollectionsUi')
+    .module('wcui')
     .constant('constants', constants);
 
 })();

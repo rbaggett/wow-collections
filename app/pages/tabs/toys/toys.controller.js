@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('wowCollectionsUi')
+    .module('wcui')
     .controller('ToysController', ToysController);
 
   function ToysController(utilFactory) {

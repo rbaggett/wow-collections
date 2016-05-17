@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('wowCollectionsUi')
+    .module('wcui')
     .controller('PetsController', PetsController);
 
   function PetsController($scope, characterFactory, masterFactory, utilFactory) {
@@ -11,23 +11,26 @@
     /* local data */
     var vm = this;
     var characterPets = characterFactory.character.pets.collected;
-    // var filters = {};
     var masterPets = masterFactory.data.pets;
     var pets = [];
 
     /* scope data */
     vm.breeds = masterFactory.data.breeds;
-    vm.filters = {};
+    vm.filters = {stats: {}};
     vm.pageSize = 24;
     vm.pets = [];
+    vm.search = '';
+    vm.showSettings = false;
 
     /* scope functions */
     vm.filterCollected = filterCollected;
     vm.filterDuplicate = filterDuplicate;
+    vm.filterLevel = filterLevel;
     vm.filterNotCollected = filterNotCollected;
     vm.filterPets = filterPets;
     vm.filterQuality = filterQuality;
     vm.getPetTile = getPetTile;
+    vm.toggleSettings = toggleSettings;
 
 
     (function activate() {
@@ -36,18 +39,12 @@
       sortPets(['creatureName']);
       pets = pets.concat(vm.pets);
       utilFactory.setActiveView('pets');
-      // console.log(characterPets.length)
-      // for (var k = 0, l = characterPets.length; k < l; k++) {
-      //   if (characterPets[k].creatureId === 104332) {
-      //     debugger
-      //   }
-      // }
-      // // for (var k = 0, l = masterPets.length; k < l; k++) {
-      // //   console.log(masterPets[k].name)
-      // // }
     })();
 
 
+    /**
+     * Toggle the collected pets filter
+     */
     function filterCollected() {
       vm.filters = _.omit(vm.filters, ['notCollected', 'duplicate']);
       if (vm.filters.original) {
@@ -59,6 +56,9 @@
     }
 
 
+    /**
+     * Toggle the duplicate pets filter
+     */
     function filterDuplicate() {
       vm.filters = _.omit(vm.filters, ['original', 'notCollected']);
       if (vm.filters.duplicate) {
@@ -70,6 +70,20 @@
     }
 
 
+    function filterLevel(level) {
+      if (vm.filters.stats.level == level) {
+        vm.filters.stats = _.omit(vm.filters.stats, ['level']);
+      }
+      else {
+        vm.filters.stats.level = level;
+      }
+      filterPets();
+    }
+
+
+    /**
+     * Toggle the un-collected pets filter
+     */
     function filterNotCollected() {
       vm.filters = _.omit(vm.filters, ['original', 'duplicate']);
       if (vm.filters.notCollected) {
@@ -81,22 +95,24 @@
     }
 
 
+    /**
+     * Apply filters
+     */
     function filterPets() {
       vm.pets.length = 0;
       vm.pets = vm.pets.concat(pets);
       vm.pets = _.filter(vm.pets, vm.filters);
-      console.log(vm.pets);
     }
 
 
     function filterQuality(quality) {
-      // if (quality === undefined) {
-      //   filters = _.omit(filters, ['qualityId']);
-      // }
-      // else {
-      //   filters.qualityId = quality;
-      // }
-      // filterPets();
+      if (vm.filters.qualityId == quality) {
+        vm.filters = _.omit(vm.filters, ['qualityId']);
+      }
+      else {
+        vm.filters.qualityId = quality;
+      }
+      filterPets();
     }
 
 
@@ -133,11 +149,11 @@
      * @returns {string} - class string
      */
     function getPetTile(pet) {
-      var classes = 'pet-tile-' + pet.theme;
+      var classes = 'tile-' + pet.theme;
       if (pet.collected) {
-        classes += ' pet-tile-border-solid';
+        classes += ' tile-border-solid';
       } else {
-        classes += ' pet-tile-border-dashed';
+        classes += ' tile-border-dashed';
       }
       return classes;
     }
@@ -207,6 +223,11 @@
      */
     function sortPets(properties) {
       vm.pets = _.sortBy(vm.pets, properties);
+    }
+
+
+    function toggleSettings() {
+      vm.showSettings = !vm.showSettings;
     }
 
   }

@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('wowCollectionsUi')
+    .module('wcui')
     .factory('masterFactory', masterFactory);
 
   function masterFactory($q, bnetFactory) {

@@ -1,5 +1,5 @@
 {
-  "name": "wowcollectionsui",
+  "name": "app",
   "private": true,
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",

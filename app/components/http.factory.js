@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('wowCollectionsUi')
+    .module('wcui')
     .factory('httpFactory', httpFactory);
 
   function httpFactory($http, $q) {
@@ -16,7 +16,7 @@
       var deferred = $q.defer();
       $http(settings)
         .success(requestSuccess(deferred))
-        .error(requestError);
+        .error(requestError(deferred));
       return deferred.promise;
     }
 
@@ -35,14 +35,14 @@
 
 
     function requestError(deferred) {
-    return function(data, status, headerse, config) {
+    return function(data, status, headers, config) {
         var response = {
           data: data,
           status: status,
           headers: headers,
           config: config
         };
-        deferred.reject(response);
+        throw deferred.reject(response);
       }
     }
 

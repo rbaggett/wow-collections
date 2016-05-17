@@ -1,102 +1,200 @@
 <section class="pets">
-  #{{vm.pets.length}}
+  <!--{{vm.filters}}-->
 
   <!-- FILTERS -->
-  <div class="row">
-    <div class="col-xs-12" style="padding-top:10px;">
-      <div class="col-xs-12" style="border-bottom: 1px solid #ddd; padding-bottom: 10px;">
 
-        <!-- PETS/PAGE -->
-        <div class="col-xs-2">
-          <div class="input-group">
-            <span class="input-group-addon">Pets/Page</span>
-            <input class="form-control" data-ng-model="vm.pageSize">
-          </div>
+  <!--<div class="hidden-md col-lg-12 filter-container">-->
+  <form class="form-inline">
+
+    <div class="row filter-container">
+
+      <div class="col-md-12 hidden-lg">
+
+        <!-- NAME -->
+        <div class="btn-group">
+          <input class="form-control" data-ng-model="vm.search" placeholder="search pet names">
+        </div>
+
+      </div>
+
+      <div class="hidden-md col-lg-12">
+
+        <!-- NAME -->
+        <div class="btn-group">
+          <input class="form-control" data-ng-model="vm.search" placeholder="search pet names">
         </div>
 
         <!-- COLLECTED -->
-        <div class="col-xs-4">
-          <div class="btn-group">
-            <button class="btn btn-default" data-ng-class="{'active': vm.filters.original}" data-ng-click="vm.filterCollected()">Collected</button>
-            <button class="btn btn-default" data-ng-class="{'active': vm.filters.notCollected}" data-ng-click="vm.filterNotCollected()">Not Collected</button>
-            <button class="btn btn-default" data-ng-class="{'active': vm.filters.duplicate}" data-ng-click="vm.filterDuplicate()">Duplicates</button>
-          </div>
+        <div class="btn-group filter-container-collected">
+          <button class="btn btn-default"
+                  data-ng-class="{'active': vm.filters.original}"
+                  data-ng-click="vm.filterCollected()">Have
+          </button>
+          <button class="btn btn-default"
+                  data-ng-class="{'active': vm.filters.notCollected}"
+                  data-ng-click="vm.filterNotCollected()">Need
+          </button>
+          <button class="btn  btn-default"
+                  data-ng-class="{'active': vm.filters.duplicate}"
+                  data-ng-click="vm.filterDuplicate()">Extras
+          </button>
         </div>
 
         <!-- QUALITY -->
-        <div class="col-xs-3">
-          <div>
-            <button class="btn btn-sm btn-primary" data-ng-click="vm.filterQuality(3)" style="width:40px;">R</button>
-            <button class="btn btn-sm btn-success" data-ng-click="vm.filterQuality(2)" style="width:40px;">U</button>
-            <button class="btn btn-sm btn-default" data-ng-click="vm.filterQuality(1)" style="width:40px;">C</button>
-          </div>
+        <div class="btn-group filter-container-quality">
+          <button class="btn btn-default"
+                  data-ng-class="{'active': vm.filters.qualityId==3}"
+                  data-ng-click="vm.filterQuality(3)">R
+          </button>
+          <button class="btn btn-default"
+                  data-ng-class="{'active': vm.filters.qualityId==2}"
+                  data-ng-click="vm.filterQuality(2)">U
+          </button>
+          <button class="btn btn-default"
+                  data-ng-class="{'active': vm.filters.qualityId==1}"
+                  data-ng-click="vm.filterQuality(1)">C/P
+          </button>
+        </div>
+
+        <!-- LEVEL -->
+        <div class="btn-group filter-container-level">
+          <button class="btn btn-default"
+                  data-ng-class="{'active': vm.filters.stats.level==25}"
+                  data-ng-click="vm.filterLevel(25)">25
+          </button>
+          <button class="btn btn-default"
+                  data-ng-class="{'active': vm.filters.stats.level==1}"
+                  data-ng-click="vm.filterLevel(1)">1
+          </button>
+        </div>
+
+        <!-- SETTINGS -->
+        <div class="btn-group filter-container-settings">
+          <button class="btn btn-default btn-settings"
+                  data-ng-class="{'active':vm.showSettings}"
+                  data-ng-click="vm.toggleSettings()">
+            <img src="images/settings-white.svg">
+          </button>
+        </div>
+
+        <!-- PET COUNT -->
+        <div class="input-group filter-container-count">
+          <label class="form-control">
+            <strong>
+              <span class="text-danger" data-ng-bind="vm.pets.length"></span>
+            </strong>
+          </label>
+          <span class="input-group-addon">Pets</span>
+        </div>
+
+        <!-- PETS/PAGE -->
+        <div class="input-group filter-container-tiles">
+          <span class="input-group-addon">
+            <img src="images/table.svg">
+          </span>
+          <input class="form-control count-input" data-ng-model="vm.pageSize">
         </div>
 
       </div>
     </div>
-  </div>
+
+    <div class="row" data-ng-show="vm.showSettings">
+
+      <!-- SETTINGS -->
+      <div class="col-xs-12" style="border:1px dashed #777777;margin-top:10px;border-radius:3px;">
+        <div style="height:34px;">settings!</div>
+      </div>
+
+    </div>
+
+  </form>
+
 
   <!-- TILES -->
   <div class="row">
-    <div class="col-xs-6 col-sm-4 col-md-3" data-dir-paginate="pet in vm.pets | itemsPerPage: vm.pageSize track by $index">
+    <div class="col-xs-6 col-sm-4 col-md-3"
+         data-dir-paginate="pet in vm.pets | itemsPerPage: vm.pageSize track by $index">
       <!-- favorite -->
       <!--<div class="pet-favorite" data-ng-if="pet.isFavorite" data-ng-include="'images/favorite.svg'"></div>-->
       <!-- tile -->
       <!--<div class="clearfix" data-ng-class="vm.getPetTile(pet)">-->
       <div class="clearfix" data-ng-class="vm.getPetTile(pet)">
 
-        <!-- NAME -->
+        <!-- PET NAME -->
         <div class="row">
-          <div class="text-center pet-tile-header" title="{{pet.creatureName}}">{{pet.creatureName}}</div>
+          <div class="text-center tile-header" title="{{pet.creatureName}}" data-ng-bind="pet.creatureName"></div>
         </div>
 
-        <!-- ICON -->
-        <div class="col-sm-3 pet-tile-body text-center">
+        <!-- PET ICON -->
+        <div class="col-sm-3 tile-body text-center">
           <a href="http://www.wowhead.com/npc={{pet.creatureId}}" target="_blank" title="view on wowhead.com">
-            <img class="pet-icon pet-icon-{{pet.theme}}" data-ng-src="http://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">
+            <img class="icon-{{pet.theme}}"
+                 data-ng-src="http://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">
           </a>
         </div>
 
-        <div class="col-sm-9 pet-tile-body">
+        <!-- PET DATA -->
+        <div class="col-sm-9 tile-body">
 
           <!-- STATS -->
           <div class="col-sm-5">
-            <div><span class="pet-battle-icon-health"></span>{{pet.stats.health}}</div>
-            <div><span class="pet-battle-icon-power"></span>{{pet.stats.power}}</div>
-            <div><span class="pet-battle-icon-speed"></span>{{pet.stats.speed}}</div>
+            <div>
+              <span class="battle-icon-health"></span>
+              <span data-ng-bind="pet.stats.health"></span>
+            </div>
+            <div>
+              <span class="battle-icon-power"></span>
+              <span data-ng-bind="pet.stats.power"></span>
+            </div>
+            <div>
+              <span class="battle-icon-speed"></span>
+              <span data-ng-bind="pet.stats.speed"></span>
+            </div>
           </div>
 
           <div class="col-sm-7 text-center">
-            <!-- LEVEL -->
-            <div class="pet-level-container">
-              <div class="pet-level-label">level</div>
-              <div class="text-{{pet.theme}} pet-level-number"><strong>{{pet.stats.level}}</strong>
-                {{vm.breeds[pet.stats.breedId].letters}}
+            <!-- LEVEL / BREED -->
+            <div class="level-container">
+              <div class="level-label">level</div>
+              <div class="level-number">
+                <strong class="text-{{pet.theme}}" data-ng-bind="pet.stats.level"></strong>
+                <span class="text-{{pet.theme}}" data-ng-bind="vm.breeds[pet.stats.breedId].letters"></span>
               </div>
             </div>
             <!-- FAMILY -->
-            <div data-ng-if="pet.family==='dragonkin'" class="pet-family pet-family-dragonkin"
+            <div data-ng-if="pet.family==='dragonkin'" class="family-dragonkin"
                  data-ng-include="'images/Pet_type_dragonkin.svg'"></div>
-            <div data-ng-if="pet.family==='magical'" class="pet-family pet-family-magical"
+            <div data-ng-if="pet.family==='magical'" class="family-magical"
                  data-ng-include="'images/Pet_type_magical.svg'"></div>
-            <div data-ng-if="pet.family==='water'" class="pet-family pet-family-water"
+            <div data-ng-if="pet.family==='water'" class="family-water"
                  data-ng-include="'images/Pet_type_water.svg'"></div>
-            <div data-ng-if="pet.family==='flying'" class="pet-family pet-family-flying"
+            <div data-ng-if="pet.family==='flying'" class="family-flying"
                  data-ng-include="'images/Pet_type_flying.svg'"></div>
-            <div data-ng-if="pet.family==='mechanical'" class="pet-family pet-family-mechanical"
+            <div data-ng-if="pet.family==='mechanical'" class="family-mechanical"
                  data-ng-include="'images/Pet_type_mechanical.svg'"></div>
-            <div data-ng-if="pet.family==='undead'" class="pet-family pet-family-undead"
+            <div data-ng-if="pet.family==='undead'" class="family-undead"
                  data-ng-include="'images/Pet_type_undead.svg'"></div>
-            <div data-ng-if="pet.family==='beast'" class="pet-family pet-family-beast"
+            <div data-ng-if="pet.family==='beast'" class="family-beast"
                  data-ng-include="'images/Pet_type_beast.svg'"></div>
-            <div data-ng-if="pet.family==='critter'" class="pet-family pet-family-critter"
+            <div data-ng-if="pet.family==='critter'" class="family-critter"
                  data-ng-include="'images/Pet_type_critter.svg'"></div>
-            <div data-ng-if="pet.family==='elemental'" class="pet-family pet-family-elemental"
+            <div data-ng-if="pet.family==='elemental'" class="family-elemental"
                  data-ng-include="'images/Pet_type_elemental.svg'"></div>
-            <div data-ng-if="pet.family==='humanoid'" class="pet-family pet-family-humanoid"
+            <div data-ng-if="pet.family==='humanoid'" class="family-humanoid"
                  data-ng-include="'images/Pet_type_humanoid.svg'"></div>
           </div>
+
         </div>
+      </div>
+    </div>
+
+    <!-- EMPTY TABLE -->
+    <div data-ng-hide="vm.pets.length">
+      <div class="col-xs-offset-1 col-xs-10"
+           style="border: 1px dashed grey;border-radius:3px;padding:20px;margin-top:20px;">
+        <h4 class="text-center text-muted">
+          <strong>I'm not saying you killed all the pets, but your filters sure made them disappear.</strong>
+        </h4>
       </div>
     </div>
   </div>

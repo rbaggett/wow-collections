@@ -3,18 +3,11 @@
   'use strict';
 
   angular
-    .module('wowCollectionsUi')
+    .module('wcui')
     .factory('characterFactory', characterFactory);
 
-  function characterFactory($q, bnetFactory) {
+  function characterFactory(bnetFactory, utilFactory) {
 
-    // var data = {
-    //   character: {},
-    //   loaded: false,
-    //   pets: [],
-    //   mounts: [],
-    //   toys: []
-    // };
     var character = {};
 
     return {
@@ -33,11 +26,15 @@
 
     function loadDataFailure(error) {
       console.log('loadData failed:' + error);
+      throw error;
     }
 
 
     function loadDataSuccess(response) {
       angular.copy(response.data, character);
+      utilFactory.viewState.tab.pets.count = character.pets.collected.length;
+      utilFactory.viewState.tab.mounts.count = character.mounts.collected.length;
+      utilFactory.viewState.tab.toys.count = 0;
     }
 
   }

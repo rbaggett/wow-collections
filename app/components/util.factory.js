@@ -3,16 +3,25 @@
   'use strict';
 
   angular
-    .module('wowCollectionsUi')
+    .module('wcui')
     .factory('utilFactory', utilFactory);
 
   function utilFactory() {
 
     var viewState = {
       tab: {
-        pets: false,
-        mounts: false,
-        toys: false
+        pets: {
+          active: false,
+          count: 10
+        },
+        mounts: {
+          active: false,
+          count: 0
+        },
+        toys: {
+          active: false,
+          count: 0
+        }
       }
     };
 
@@ -23,11 +32,11 @@
 
 
     function setActiveView(view) {
-      viewState.tab.pets = false;
-      viewState.tab.mounts = false;
-      viewState.tab.toys = false;
+      viewState.tab.pets.active = false;
+      viewState.tab.mounts.active = false;
+      viewState.tab.toys.active = false;
       if (view) {
-        viewState.tab[view] = true;
+        viewState.tab[view].active = true;
       }
     }
 
