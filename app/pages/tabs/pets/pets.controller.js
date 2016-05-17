@@ -6,7 +6,7 @@
     .module('wcui')
     .controller('PetsController', PetsController);
 
-  function PetsController($scope, characterFactory, masterFactory, utilFactory) {
+  function PetsController(characterFactory, masterFactory, utilFactory) {
 
     /* local data */
     var vm = this;
