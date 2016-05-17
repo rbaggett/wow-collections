@@ -18,7 +18,7 @@
     "angular-mocks": "^1.4.0"
   },
   "appPath": "app",
-  "moduleName": "app",
+  "moduleName": "wcui",
   "overrides": {
     "bootstrap": {
       "main": [
