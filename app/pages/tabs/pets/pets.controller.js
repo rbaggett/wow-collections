@@ -17,19 +17,30 @@
     /* scope data */
     vm.breeds = masterFactory.data.breeds;
     vm.filters = {stats: {}};
+    // vm.filtersTest = {
+    //   collected: true
+    // };
+    vm.levelMax = {};
+    vm.levelMin = {};
+    vm.levelsMax = utilFactory.getPetLevels();
+    vm.levelsMin = utilFactory.getPetLevels();
     vm.pageSize = 24;
+    vm.pageSizeDefault = 24;
     vm.pets = [];
     vm.search = '';
     vm.showSettings = false;
 
+
     /* scope functions */
     vm.filterCollected = filterCollected;
     vm.filterDuplicate = filterDuplicate;
-    vm.filterLevel = filterLevel;
-    vm.filterNotCollected = filterNotCollected;
+    vm.filterUncollected = filterUncollected;
     vm.filterPets = filterPets;
     vm.filterQuality = filterQuality;
     vm.getPetTile = getPetTile;
+    vm.setLevelMax = setLevelMax;
+    vm.setLevelMin = setLevelMin;
+    vm.resetPageSize = resetPageSize;
     vm.toggleSettings = toggleSettings;
 
 
@@ -39,14 +50,25 @@
       sortPets(['creatureName']);
       pets = pets.concat(vm.pets);
       utilFactory.setActiveView('pets');
+      setLevelMax();
+      setLevelMin();
     })();
+
+
+    function lessThan(value) {
+      return value.stats.level <= vm.levelMax.value;
+    }
+
+    function greaterThan(value) {
+      return value.stats.level >= vm.levelMin.value;
+    }
 
 
     /**
      * Toggle the collected pets filter
      */
     function filterCollected() {
-      vm.filters = _.omit(vm.filters, ['notCollected', 'duplicate']);
+      vm.filters = _.omit(vm.filters, ['uncollected', 'duplicate']);
       if (vm.filters.original) {
         vm.filters = _.omit(vm.filters, ['original']);
       } else {
@@ -60,7 +82,7 @@
      * Toggle the duplicate pets filter
      */
     function filterDuplicate() {
-      vm.filters = _.omit(vm.filters, ['original', 'notCollected']);
+      vm.filters = _.omit(vm.filters, ['original', 'uncollected']);
       if (vm.filters.duplicate) {
         vm.filters = _.omit(vm.filters, ['duplicate']);
       } else {
@@ -70,28 +92,16 @@
     }
 
 
-    function filterLevel(level) {
-      if (vm.filters.stats.level == level) {
-        vm.filters.stats = _.omit(vm.filters.stats, ['level']);
-      }
-      else {
-        vm.filters.stats.level = level;
-      }
+    function filterLevelMax() {
       filterPets();
+      vm.pets = _.filter(vm.pets, lessThan);
     }
 
 
-    /**
-     * Toggle the un-collected pets filter
-     */
-    function filterNotCollected() {
-      vm.filters = _.omit(vm.filters, ['original', 'duplicate']);
-      if (vm.filters.notCollected) {
-        vm.filters = _.omit(vm.filters, ['notCollected']);
-      } else {
-        vm.filters.notCollected = true;
-      }
+    function filterLevelMin() {
+
       filterPets();
+      vm.pets = _.filter(vm.pets, greaterThan);
     }
 
 
@@ -102,6 +112,8 @@
       vm.pets.length = 0;
       vm.pets = vm.pets.concat(pets);
       vm.pets = _.filter(vm.pets, vm.filters);
+      vm.pets = _.filter(vm.pets, lessThan);
+      vm.pets = _.filter(vm.pets, greaterThan);
     }
 
 
@@ -111,6 +123,20 @@
       }
       else {
         vm.filters.qualityId = quality;
+      }
+      filterPets();
+    }
+
+
+    /**
+     * Toggle the un-collected pets filter
+     */
+    function filterUncollected() {
+      vm.filters = _.omit(vm.filters, ['original', 'duplicate']);
+      if (vm.filters.uncollected) {
+        vm.filters = _.omit(vm.filters, ['uncollected']);
+      } else {
+        vm.filters.uncollected = true;
       }
       filterPets();
     }
@@ -200,7 +226,7 @@
             nPet = angular.copy(_.extend(mPet, cPets[k]));
             nPet.collected = true;
             nPet.duplicate = (k > 0);
-            nPet.notCollected = false;
+            nPet.uncollected = false;
             nPet.original = (k === 0);
             nPet.theme = getPetTheme(nPet);
             vm.pets.push(nPet);
@@ -210,10 +236,26 @@
         /* not collected */
         mPet.collected = false;
         mPet.creatureName = mPet.name;
-        mPet.notCollected = true;
+        mPet.uncollected = true;
         mPet.theme = getPetTheme(mPet);
         vm.pets.push(mPet);
       }
+    }
+
+
+    function resetPageSize() {
+      vm.pageSize = vm.pageSizeDefault;
+    }
+
+
+    function setLevelMax() {
+      vm.levelMax = vm.levelsMax[25];
+      filterPets();
+    }
+
+    function setLevelMin() {
+      vm.levelMin = vm.levelsMin[0];
+      filterPets();
     }
 
 

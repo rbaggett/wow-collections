@@ -25,7 +25,6 @@
 
 
     function loadDataFailure(error) {
-      console.log('loadData failed:' + error);
       throw error;
     }
 

@@ -6,10 +6,11 @@
     .module('wcui')
     .controller('TabsController', TabsController);
 
-  function TabsController($state, utilFactory) {
+  function TabsController($state, characterFactory, utilFactory) {
 
     var vm = this;
 
+    vm.name = characterFactory.character.name;
     vm.tab = utilFactory.viewState.tab;
 
     (function activate() {

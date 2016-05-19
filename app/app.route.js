@@ -66,6 +66,16 @@
           }
         }
       })
+      // .state('wcui.tabs.character', {
+      //   url: "/profile",
+      //   views: {
+      //     'tab@wcui.tabs': {
+      //       templateUrl: 'pages/tabs/character/character.html',
+      //       controller: 'CharacterController',
+      //       controllerAs: 'vm'
+      //     }
+      //   }
+      // })
       .state('wcui.tabs.pets', {
         url: "/pets",
         views: {

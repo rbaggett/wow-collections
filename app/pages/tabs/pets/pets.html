@@ -1,14 +1,10 @@
 <section class="pets">
-  <!--{{vm.filters}}-->
 
   <!-- FILTERS -->
-
-  <!--<div class="hidden-md col-lg-12 filter-container">-->
   <form class="form-inline">
+    <div class="col-xs-12 filter-container">
 
-    <div class="row filter-container">
-
-      <div class="col-md-12 hidden-lg">
+      <div class="hidden-lg">
 
         <!-- NAME -->
         <div class="btn-group">
@@ -17,11 +13,11 @@
 
       </div>
 
-      <div class="hidden-md col-lg-12">
+      <div class="hidden-xs hidden-sm hidden-md">
 
         <!-- NAME -->
         <div class="btn-group">
-          <input class="form-control" data-ng-model="vm.search" placeholder="search pet names">
+          <input class="form-control" data-ng-model="vm.search" placeholder="search pet names" style="height:35px;">
         </div>
 
         <!-- COLLECTED -->
@@ -31,8 +27,8 @@
                   data-ng-click="vm.filterCollected()">Have
           </button>
           <button class="btn btn-default"
-                  data-ng-class="{'active': vm.filters.notCollected}"
-                  data-ng-click="vm.filterNotCollected()">Need
+                  data-ng-class="{'active': vm.filters.uncollected}"
+                  data-ng-click="vm.filterUncollected()">Need
           </button>
           <button class="btn  btn-default"
                   data-ng-class="{'active': vm.filters.duplicate}"
@@ -58,24 +54,36 @@
 
         <!-- LEVEL -->
         <div class="btn-group filter-container-level">
-          <button class="btn btn-default"
-                  data-ng-class="{'active': vm.filters.stats.level==25}"
-                  data-ng-click="vm.filterLevel(25)">25
-          </button>
-          <button class="btn btn-default"
-                  data-ng-class="{'active': vm.filters.stats.level==1}"
-                  data-ng-click="vm.filterLevel(1)">1
-          </button>
+          <div class="input-group">
+            <div class="input-group-btn">
+              <button class="btn btn-default" data-ng-click="vm.setLevelMin()">min</button>
+            </div>
+            <select class="form-control"
+                    data-ng-model="vm.levelMin"
+                    data-ng-options="level.text for level in vm.levelsMin"
+                    data-ng-change="vm.filterPets()">
+            </select>
+          </div>
+          <div class="input-group">
+            <select class="form-control"
+                    data-ng-model="vm.levelMax"
+                    data-ng-options="level.text for level in vm.levelsMax"
+                    data-ng-change="vm.filterPets()">
+            </select>
+            <div class="input-group-btn">
+              <button class="btn btn-default" data-ng-click="vm.setLevelMax()">max</button>
+            </div>
+          </div>
         </div>
 
-        <!-- SETTINGS -->
-        <div class="btn-group filter-container-settings">
-          <button class="btn btn-default btn-settings"
-                  data-ng-class="{'active':vm.showSettings}"
-                  data-ng-click="vm.toggleSettings()">
-            <img src="images/settings-white.svg">
-          </button>
-        </div>
+        <!--&lt;!&ndash; SETTINGS &ndash;&gt;-->
+        <!--<div class="btn-group btn-container-settings">-->
+          <!--<button class="btn btn-default btn-settings"-->
+                  <!--data-ng-class="{'active':vm.showSettings}"-->
+                  <!--data-ng-click="vm.toggleSettings()">-->
+            <!--<img src="images/settings-white.svg">-->
+          <!--</button>-->
+        <!--</div>-->
 
         <!-- PET COUNT -->
         <div class="input-group filter-container-count">
@@ -89,24 +97,21 @@
 
         <!-- PETS/PAGE -->
         <div class="input-group filter-container-tiles">
-          <span class="input-group-addon">
-            <img src="images/table.svg">
-          </span>
-          <input class="form-control count-input" data-ng-model="vm.pageSize">
+          <div class="input-group-btn">
+            <button class="btn btn-default" data-ng-click="vm.resetPageSize()">
+              <img src="images/table.svg">
+            </button>
+          </div>
+          <input class="form-control count-input" data-ng-model="vm.pageSize" style="height:35px;">
         </div>
 
       </div>
-    </div>
 
-    <div class="row" data-ng-show="vm.showSettings">
-
-      <!-- SETTINGS -->
-      <div class="col-xs-12" style="border:1px dashed #777777;margin-top:10px;border-radius:3px;">
-        <div style="height:34px;">settings!</div>
-      </div>
+      <!--&lt;!&ndash; SETTINGS &ndash;&gt;-->
+      <!--<div class="col-xs-12 filter-container-settings" data-ng-show="vm.showSettings">-->
+      <!--</div>-->
 
     </div>
-
   </form>
 
 
@@ -122,13 +127,15 @@
 
         <!-- PET NAME -->
         <div class="row">
-          <div class="text-center tile-header" title="{{pet.creatureName}}" data-ng-bind="pet.creatureName"></div>
+          <!--<div class="text-center tile-header" title="{{pet.creatureName}}" data-ng-bind="pet.creatureName"></div>-->
+          <div class="text-center tile-header" title="{{pet.creatureName}}" data-ng-bind="pet.name"></div>
         </div>
 
         <!-- PET ICON -->
         <div class="col-sm-3 tile-body text-center">
           <a href="http://www.wowhead.com/npc={{pet.creatureId}}" target="_blank" title="view on wowhead.com">
-            <img class="icon-{{pet.theme}}" data-ng-src="https://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">
+            <img class="icon-{{pet.theme}}"
+                 data-ng-src="https://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">
           </a>
         </div>
 

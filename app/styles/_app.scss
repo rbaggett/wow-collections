@@ -8,8 +8,12 @@
   display: block;
 }
 
+.btn-default, .btn-default:focus {
+  background-color: #EEE;
+}
+
 .btn-default:not(.active):focus {
-  background-color: white !important;
+  //background-color: white !important;
 }
 
 .btn-default:focus {

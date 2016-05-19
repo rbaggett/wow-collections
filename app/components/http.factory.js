@@ -7,6 +7,7 @@
     .factory('httpFactory', httpFactory);
 
   function httpFactory($http, $q) {
+
     return {
       request: request
     };

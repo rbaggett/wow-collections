@@ -1,0 +1,30 @@
+<div class="character">
+  <div class="col-xs-12">
+
+    <p>
+      Welcome to shift-p.net! Please , or if you are especially savvy, visit the repo and log
+      an issue!
+    </p>
+
+    <div class="col-xs-12" style="border-bottom:1px solid grey;">
+      <h1>{{vm.character.name}} of {{vm.character.realm}}</h1>
+    </div>
+
+    <div class="col-xs-2">
+      <img class="portrait-{{vm.character.class}}"
+           src="http://us.battle.net/static-render/us/{{vm.character.thumbnail}}">
+    </div>
+    <div class="col-xs-1"></div>
+    <div class="col-xs-9">
+      <ul>
+        <li>Pets: {{vm.character.pets.collected.length}}/{{vm.data.pets.length}}</li>
+        <li>Mounts: {{vm.character.mounts.collected.length}}/{{vm.data.mounts.length}}</li>
+      </ul>
+    </div>
+
+
+  </div>
+</div>
+
+<pre data-ng-bind="vm.character | json"></pre>
+

@@ -6,7 +6,7 @@
     .module('wcui')
     .factory('masterFactory', masterFactory);
 
-  function masterFactory($q, bnetFactory) {
+  function masterFactory($q, bnetFactory, utilFactory) {
 
     var breeds =  {
       4: {letters: 'P/P', gender: 'male'},

@@ -81,9 +81,18 @@
 
   /* FILTER SECTION */
 
+  .btn-container-settings {
+    float: right;
+
+    img {
+      height: 32px;
+      width: 32px;
+    }
+  }
+
   .filter-container {
     border-bottom: 1px solid #ddd;
-    padding-top: 10px;
+    margin-top: 10px;
     padding-bottom: 10px;
   }
 
@@ -91,7 +100,7 @@
     margin-left: 10px;
 
     button {
-      width: 80px;
+      width: 75px;
     }
   }
 
@@ -123,11 +132,10 @@
   }
 
   .filter-container-settings {
-    float: right;
-
-    img {
-      height: 32px;
-    }
+    border: 1px dashed #777777;
+    border-radius: 3px;
+    margin-top: 10px;
+    padding: 10px;
   }
 
   .filter-container-tiles {

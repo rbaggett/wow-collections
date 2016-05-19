@@ -1,0 +1,73 @@
+.character {
+
+  .portrait {
+    border-color: #090909;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 2px;
+    height: 168px;
+    padding: 10px;
+    width: 168px;
+  }
+
+  /* warrior */
+  .portrait-1 {
+    @extend .portrait;
+    background-color: #C79C6E;
+  }
+
+  /* paladin */
+  .portrait-2 {
+    @extend .portrait;
+    background-color: #F58CBA;
+  }
+
+  /* hunter */
+  .portrait-3 {
+    @extend .portrait;
+    background-color: #ABD473;
+  }
+
+  /* rogue */
+  .portrait-4 {
+    @extend .portrait;
+    background-color: #FFF569;
+  }
+
+  /* deathknight */
+  .portrait-6 {
+    @extend .portrait;
+    background-color: #C41F3B;
+  }
+
+  /* shaman */
+  .portrait-7 {
+    @extend .portrait;
+    background-color: #0070DE;
+  }
+
+  /* mage */
+  .portrait-8 {
+    @extend .portrait;
+    background-color: #69CCF0;
+  }
+
+  /* priest */
+  .portrait-9 {
+    @extend .portrait;
+    background-color: #FFFFFF;
+  }
+
+  /* monk */
+  .portrait-10 {
+    @extend .portrait;
+    background-color: #00FF96;
+  }
+
+  /* druid */
+  .portrait-11 {
+    @extend .portrait;
+    background-color: #FF7D0A;
+  }
+
+}
