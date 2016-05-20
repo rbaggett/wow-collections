@@ -6,7 +6,7 @@
     .module('wcui')
     .controller('PetsController', PetsController);
 
-  function PetsController(characterFactory, masterFactory, utilFactory) {
+  function PetsController($sce, characterFactory, masterFactory, utilFactory) {
 
     /* local data */
     var vm = this;
@@ -17,9 +17,7 @@
     /* scope data */
     vm.breeds = masterFactory.data.breeds;
     vm.filters = {stats: {}};
-    // vm.filtersTest = {
-    //   collected: true
-    // };
+    vm.help = '';
     vm.levelMax = {};
     vm.levelMin = {};
     vm.levelsMax = utilFactory.getPetLevels();
@@ -28,7 +26,7 @@
     vm.pageSizeDefault = 24;
     vm.pets = [];
     vm.search = '';
-    vm.showSettings = false;
+    vm.tooltips = {};
 
 
     /* scope functions */
@@ -38,9 +36,11 @@
     vm.filterPets = filterPets;
     vm.filterQuality = filterQuality;
     vm.getPetTile = getPetTile;
+    vm.hideHelp = hideHelp;
     vm.setLevelMax = setLevelMax;
     vm.setLevelMin = setLevelMin;
     vm.resetPageSize = resetPageSize;
+    vm.showHelp = showHelp;
     vm.toggleSettings = toggleSettings;
 
 
@@ -49,10 +49,28 @@
       fixProblemPets();
       sortPets(['creatureName']);
       pets = pets.concat(vm.pets);
+      vm.levelMax = vm.levelsMax[25];
+      vm.levelMin = vm.levelsMin[0];
+
+      createTooltips();
       utilFactory.setActiveView('pets');
-      setLevelMax();
-      setLevelMin();
     })();
+
+
+    function createTooltips() {
+      var tooltip;
+
+      tooltip =
+        '<div class="tooltip-quality">' +
+          '<div>Filter pets by selecting a rarity</div>' +
+          '<div>' +
+            '<span class="rare">R: rare (blue)</span>, ' +
+            '<span class="uncommon">U: uncommon (green)</span>, ' +
+            '<span class="common">C: common/poor (white/grey)</span>' +
+          '</div>' +
+        '</div>';
+      vm.tooltips.quality = $sce.trustAsHtml(tooltip);
+    }
 
 
     function lessThan(value) {
@@ -169,6 +187,11 @@
     }
 
 
+    function hideHelp() {
+      vm.help = '';
+    }
+
+
     /**
      * Get the pet tile class
      * @param pet {Object} - pet
@@ -256,6 +279,11 @@
     function setLevelMin() {
       vm.levelMin = vm.levelsMin[0];
       filterPets();
+    }
+
+
+    function showHelp(event, topic) {
+      vm.help = topic;
     }
 
 

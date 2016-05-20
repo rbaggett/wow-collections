@@ -11,6 +11,7 @@
       'ngRoute',
       'ngSanitize',
       'ngTouch',
+      'ui.bootstrap',
       'ui.router'
     ]);
 

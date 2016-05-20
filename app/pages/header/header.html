@@ -4,7 +4,7 @@
             data-ng-options="realm.slug as realm.name for realm in vm.data.realms"
             placeholder="character realm"></select>
     <input class="form-control" data-ng-model="vm.character" placeholder="character name">
-    <button class="btn btn-success" data-ng-click="vm.getCharacter()" data-ng-disabled="!vm.realm || !vm.character">
+    <button class="btn btn-primary" data-ng-click="vm.getCharacter()" data-ng-disabled="!vm.realm || !vm.character">
       Search
     </button>
   </form>

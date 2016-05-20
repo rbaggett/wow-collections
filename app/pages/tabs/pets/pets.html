@@ -1,8 +1,12 @@
 <section class="pets">
 
+  <div class="filter-help" data-ng-show="vm.help">
+    <span data-ng-bind="vm.help"></span>
+  </div>
+
   <!-- FILTERS -->
   <form class="form-inline">
-    <div class="col-xs-12 filter-container">
+    <div class="col-xs-12 filter-container text-center">
 
       <div class="hidden-lg">
 
@@ -13,24 +17,27 @@
 
       </div>
 
+
       <div class="hidden-xs hidden-sm hidden-md">
 
         <!-- NAME -->
         <div class="btn-group">
-          <input class="form-control" data-ng-model="vm.search" placeholder="search pet names" style="height:35px;">
+          <div class="text-muted filter-label">pet name</div>
+          <input class="form-control filter-input" data-ng-model="vm.search" placeholder="search pet names">
         </div>
 
         <!-- COLLECTED -->
         <div class="btn-group filter-container-collected">
-          <button class="btn btn-default"
+          <div class="text-muted filter-label">collecting</div>
+          <button class="btn btn-default" title="collected pets only"
                   data-ng-class="{'active': vm.filters.original}"
                   data-ng-click="vm.filterCollected()">Have
           </button>
-          <button class="btn btn-default"
+          <button class="btn btn-default" title="uncollected pets only"
                   data-ng-class="{'active': vm.filters.uncollected}"
                   data-ng-click="vm.filterUncollected()">Need
           </button>
-          <button class="btn  btn-default"
+          <button class="btn  btn-default" title="duplicate pets only (does not include the original)"
                   data-ng-class="{'active': vm.filters.duplicate}"
                   data-ng-click="vm.filterDuplicate()">Extras
           </button>
@@ -38,22 +45,34 @@
 
         <!-- QUALITY -->
         <div class="btn-group filter-container-quality">
-          <button class="btn btn-default"
+          <div class="text-muted filter-label"
+               data-uib-popover-html="vm.tooltips.quality"
+               data-popover-trigger="mouseenter">
+            <span>rarity</span>
+            <i class="glyphicon glyphicon-info-sign"></i>
+          </div>
+          <button class="btn btn-default" title="rare pets only"
                   data-ng-class="{'active': vm.filters.qualityId==3}"
                   data-ng-click="vm.filterQuality(3)">R
           </button>
-          <button class="btn btn-default"
+          <button class="btn btn-default" title="uncommon pets only"
                   data-ng-class="{'active': vm.filters.qualityId==2}"
                   data-ng-click="vm.filterQuality(2)">U
           </button>
-          <button class="btn btn-default"
+          <button class="btn btn-default" title="common/poor pets only"
                   data-ng-class="{'active': vm.filters.qualityId==1}"
-                  data-ng-click="vm.filterQuality(1)">C/P
+                  data-ng-click="vm.filterQuality(1)">C
           </button>
         </div>
 
         <!-- LEVEL -->
         <div class="btn-group filter-container-level">
+          <div class="text-muted filter-label">
+            <!--<div class="text-muted filter-label" data-tooltips data-tooltip-class="tooltip-levels"-->
+            <!--data-tooltip-template="Select a min and/or a max level to display pets within a range<br>min/max buttons reset the values to 0/25 respectively">-->
+            <span>level range</span>
+            <i class="glyphicon glyphicon-info-sign"></i>
+          </div>
           <div class="input-group">
             <div class="input-group-btn">
               <button class="btn btn-default" data-ng-click="vm.setLevelMin()">min</button>
@@ -64,6 +83,7 @@
                     data-ng-change="vm.filterPets()">
             </select>
           </div>
+          <span>-</span>
           <div class="input-group">
             <select class="form-control"
                     data-ng-model="vm.levelMax"
@@ -76,41 +96,34 @@
           </div>
         </div>
 
-        <!--&lt;!&ndash; SETTINGS &ndash;&gt;-->
-        <!--<div class="btn-group btn-container-settings">-->
-          <!--<button class="btn btn-default btn-settings"-->
-                  <!--data-ng-class="{'active':vm.showSettings}"-->
-                  <!--data-ng-click="vm.toggleSettings()">-->
-            <!--<img src="images/settings-white.svg">-->
-          <!--</button>-->
-        <!--</div>-->
+        <!-- PET TILES -->
+        <div class="btn-group filter-container-tiles">
+          <div class="text-muted filter-label"># tiles</div>
+          <div class="input-group">
+            <div class="input-group-btn">
+              <button class="btn btn-default" data-ng-click="vm.resetPageSize()">
+                <img src="images/table.svg">
+              </button>
+            </div>
+            <input class="form-control filter-input count-input" data-ng-model="vm.pageSize">
+          </div>
+        </div>
 
         <!-- PET COUNT -->
-        <div class="input-group filter-container-count">
-          <label class="form-control">
-            <strong>
-              <span class="text-danger" data-ng-bind="vm.pets.length"></span>
-            </strong>
-          </label>
-          <span class="input-group-addon">Pets</span>
+        <div class="btn-group filter-container-count">
+          <div class="text-muted filter-label"># filtered</div>
+          <div class="input-group">
+            <label class="form-control">
+              <strong>
+                <span class="text-danger count-left" data-ng-bind="vm.pets.length"></span>
+              </strong>
+            </label>
+            <span class="input-group-addon count-right">Pets</span>
+          </div>
         </div>
 
-        <!-- PETS/PAGE -->
-        <div class="input-group filter-container-tiles">
-          <div class="input-group-btn">
-            <button class="btn btn-default" data-ng-click="vm.resetPageSize()">
-              <img src="images/table.svg">
-            </button>
-          </div>
-          <input class="form-control count-input" data-ng-model="vm.pageSize" style="height:35px;">
-        </div>
 
       </div>
-
-      <!--&lt;!&ndash; SETTINGS &ndash;&gt;-->
-      <!--<div class="col-xs-12 filter-container-settings" data-ng-show="vm.showSettings">-->
-      <!--</div>-->
-
     </div>
   </form>
 
@@ -212,3 +225,5 @@
 
 
 </section>
+
+

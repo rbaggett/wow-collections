@@ -1,19 +1,13 @@
-//@font-face {
-//  font-family: 'LifeCraft';
-//  src: url('/fonts/LifeCraft_Font.ttf'),
-//  url('/fonts/LifeCraft_Font.eot'); /* IE */
-//}
-
 .block {
   display: block;
 }
 
-.btn-default, .btn-default:focus {
-  background-color: #EEE;
+body {
+  margin-bottom: 60px;
 }
 
-.btn-default:not(.active):focus {
-  //background-color: white !important;
+.btn-default, .btn-default:focus {
+  background-color: #EEE;
 }
 
 .btn-default:focus {
@@ -22,8 +16,6 @@
 
 .btn-settings {
   padding: 0;
-  //background-color: #eeeeee;
-;
 }
 
 .browsehappy {
@@ -33,8 +25,19 @@
   padding: 0.2em 0;
 }
 
+.footer {
+  background-color: #f8f8f8;
+  border: 1px solid #e7e7e7;
+  bottom: 0;
+  height: 60px;
+  position: absolute;
+  width: 100%;
+}
+
 html {
+  min-height: 100%;
   overflow-y: scroll;
+  position: relative;
 }
 
 .navbar-center {

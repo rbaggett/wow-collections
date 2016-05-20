@@ -81,14 +81,14 @@
 
   /* FILTER SECTION */
 
-  .btn-container-settings {
-    float: right;
-
-    img {
-      height: 32px;
-      width: 32px;
-    }
-  }
+  //.btn-container-settings {
+  //  float: right;
+  //
+  //  img {
+  //    height: 32px;
+  //    width: 32px;
+  //  }
+  //}
 
   .filter-container {
     border-bottom: 1px solid #ddd;
@@ -105,8 +105,16 @@
   }
 
   .filter-container-count {
-    float: right;
-    margin-right: 10px;
+    margin-left: 10px;
+
+    .count-left {
+      width: 50px;
+    }
+
+    .count-right {
+      background-color: white;
+      border-style: dashed;
+    }
 
     label {
       border-style: dashed;
@@ -139,8 +147,7 @@
   }
 
   .filter-container-tiles {
-    float: right;
-    margin-right: 10px;
+    margin-left: 10px;
 
     img {
       height: 20px;
@@ -150,6 +157,19 @@
       text-align: center;
       width: 50px;
     }
+  }
+
+  .filter-help {
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 1px solid black;
+    border-radius: 6px;
+    height: 200px;
+    left: 38%;
+    padding: 19px;
+    position: absolute;
+    top: 17%;
+    width: 400px;
+    z-index: 100;
   }
 
   //.pet-favorite {
@@ -168,6 +188,25 @@
   //    stroke-width: 28px;
   //  }
   //}
+
+  .filter-input {
+    height: 35px;
+  }
+
+  .filter-label {
+    border: 1px dashed rgba(119, 119, 119, 0.25);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    font-size: 12px;
+    justify-content: center;
+    align-items: center;
+
+    i {
+      margin-left: 5px;
+      padding-bottom: 3px;
+    }
+  }
 
   /* ICON SECTION */
 
@@ -287,4 +326,40 @@
     }
   }
 
+  /* TOOLTIPS */
+
+  .tooltip-base {
+    border-radius: 3px;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .tooltip-levels {
+    @extend .tooltip-base;
+    width: 500px;
+  }
+
+  .tooltip-quality {
+    @extend .tooltip-base;
+    width: 350px;
+
+    .common {
+      color: #777777;
+    }
+
+    .rare {
+      color: #5094ce;
+    }
+
+    .uncommon {
+      color: #80c780;
+    }
+  }
+
+
+  /* OVERRIDES */
+
+  .popover {
+    max-width: 600px;
+  }
 }

@@ -25,11 +25,16 @@
 
 
     function getCharacter() {
-      $state.go('wcui.empty');
+      // navigateToEmpty();
       characterFactory
         .loadData(vm.realm, vm.character)
         .then(navigateToMain)
         .catch(navigateToError);
+    }
+
+
+    function navigateToEmpty() {
+      $state.go('wcui.empty');
     }
 
 

@@ -25,6 +25,7 @@
 <div class="container">
   <div data-ui-view="wcui"></div>
 </div>
+<footer data-ng-include="'pages/footer/footer.html'" data-ng-controller="FooterController as vm"></footer>
 
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
@@ -40,14 +41,17 @@
 <script src="bower_components/lodash/lodash.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="app.js"></script>
 <script src="app.route.js"></script>
+<script src="app.config.js"></script>
 
 <!-- controllers -->
+<script src="pages/footer/footer.controller.js"></script>
 <script src="pages/header/header.controller.js"></script>
 <script src="pages/tabs/tabs.controller.js"></script>
 <script src="pages/tabs/character/character.controller.js"></script>
