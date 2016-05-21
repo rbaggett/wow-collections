@@ -6,13 +6,13 @@
     .module('wcui')
     .controller('ToysController', ToysController);
 
-  function ToysController(utilFactory) {
+  function ToysController(utilityFactory) {
 
     var vm = this;
 
 
     (function activate() {
-      utilFactory.setActiveView('toys');
+      utilityFactory.setActiveView('toys');
     })();
 
   }

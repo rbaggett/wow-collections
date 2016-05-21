@@ -6,12 +6,12 @@
     .module('wcui')
     .controller('TabsController', TabsController);
 
-  function TabsController($state, characterFactory, utilFactory) {
+  function TabsController($state, characterFactory, utilityFactory) {
 
     var vm = this;
 
     vm.name = characterFactory.character.name;
-    vm.tab = utilFactory.viewState.tab;
+    vm.tab = utilityFactory.viewState.tab;
 
     (function activate() {
       loadDefaultTab();

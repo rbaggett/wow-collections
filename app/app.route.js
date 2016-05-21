@@ -7,9 +7,13 @@
     .config(routing);
 
 
-  function resolveCharacter($stateParams, characterFactory) {
+  function resolveCharacter($state, $stateParams, resolveMasterData, characterFactory, petsFactory) {
     return characterFactory
-      .loadData($stateParams.realm, $stateParams.character);
+      .loadData($stateParams.realm, $stateParams.character)
+      .then(petsFactory.loadData);
+      // .catch(function () {
+      //   $state.go('wcui.error');
+      // });
   }
 
 
@@ -45,7 +49,7 @@
         }
       })
       .state('wcui.error', {
-        url: "/",
+        url: "/error",
         views: {
           'wcui@': {
             templateUrl: 'pages/error/error.html'
@@ -66,16 +70,6 @@
           }
         }
       })
-      // .state('wcui.tabs.character', {
-      //   url: "/profile",
-      //   views: {
-      //     'tab@wcui.tabs': {
-      //       templateUrl: 'pages/tabs/character/character.html',
-      //       controller: 'CharacterController',
-      //       controllerAs: 'vm'
-      //     }
-      //   }
-      // })
       .state('wcui.tabs.pets', {
         url: "/pets",
         views: {

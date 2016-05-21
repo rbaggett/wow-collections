@@ -6,7 +6,7 @@
     .module('wcui')
     .controller('CharacterController', CharacterController);
 
-  function CharacterController(characterFactory, masterFactory, utilFactory) {
+  function CharacterController(characterFactory, masterFactory, utilityFactory) {
 
     var vm = this;
 
@@ -14,7 +14,7 @@
     vm.data = masterFactory.data;
 
     (function activate() {
-      utilFactory.setActiveView('character');
+      utilityFactory.setActiveView('character');
     })();
 
   }

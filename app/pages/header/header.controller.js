@@ -6,7 +6,7 @@
     .module('wcui')
     .controller('HeaderController', HeaderController);
 
-  function HeaderController($state, $stateParams, characterFactory, masterFactory, utilFactory) {
+  function HeaderController($rootScope, $state, $stateParams, characterFactory, masterFactory, utilityFactory) {
 
     var vm = this;
 
@@ -20,16 +20,16 @@
 
 
     (function activate() {
+      $rootScope.$on('$stateChangeError', processStateError);
       preLoadCharacter();
     })();
 
 
     function getCharacter() {
-      // navigateToEmpty();
       characterFactory
         .loadData(vm.realm, vm.character)
-        .then(navigateToMain)
-        .catch(navigateToError);
+        .then(navigateToMain);
+        // .catch(navigateToError);
     }
 
 
@@ -44,7 +44,7 @@
 
 
     function navigateToMain() {
-      utilFactory.setActiveView();
+      utilityFactory.setActiveView();
       $state.go('wcui.tabs.pets', {realm: vm.realm, character: vm.character});
     }
 
@@ -54,6 +54,14 @@
         vm.realm = stateParams.realm;
         vm.character = stateParams.character;
         getCharacter();
+      }
+    }
+
+
+    function processStateError(event, toState, toParams, fromState, fromParams, error) {
+      event.preventDefault();
+      if (error.status === 404) {
+        $state.go('wcui.error');
       }
     }
 

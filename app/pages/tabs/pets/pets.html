@@ -1,9 +1,5 @@
 <section class="pets">
 
-  <div class="filter-help" data-ng-show="vm.help">
-    <span data-ng-bind="vm.help"></span>
-  </div>
-
   <!-- FILTERS -->
   <form class="form-inline">
     <div class="col-xs-12 filter-container text-center">
@@ -67,15 +63,15 @@
 
         <!-- LEVEL -->
         <div class="btn-group filter-container-level">
-          <div class="text-muted filter-label">
-            <!--<div class="text-muted filter-label" data-tooltips data-tooltip-class="tooltip-levels"-->
-            <!--data-tooltip-template="Select a min and/or a max level to display pets within a range<br>min/max buttons reset the values to 0/25 respectively">-->
+          <div class="text-muted filter-label"
+               data-uib-popover-html="vm.tooltips.levels"
+               data-popover-trigger="mouseenter">
             <span>level range</span>
             <i class="glyphicon glyphicon-info-sign"></i>
           </div>
           <div class="input-group">
             <div class="input-group-btn">
-              <button class="btn btn-default" data-ng-click="vm.setLevelMin()">min</button>
+              <button class="btn btn-default" data-ng-click="vm.filterPets()">min</button>
             </div>
             <select class="form-control"
                     data-ng-model="vm.levelMin"
@@ -91,7 +87,7 @@
                     data-ng-change="vm.filterPets()">
             </select>
             <div class="input-group-btn">
-              <button class="btn btn-default" data-ng-click="vm.setLevelMax()">max</button>
+              <button class="btn btn-default" data-ng-click="vm.filterPets()">max</button>
             </div>
           </div>
         </div>
@@ -113,9 +109,9 @@
         <div class="btn-group filter-container-count">
           <div class="text-muted filter-label"># filtered</div>
           <div class="input-group">
-            <label class="form-control">
+            <label class="form-control count-left">
               <strong>
-                <span class="text-danger count-left" data-ng-bind="vm.pets.length"></span>
+                <span class="text-danger" data-ng-bind="vm.pets.length"></span>
               </strong>
             </label>
             <span class="input-group-addon count-right">Pets</span>
@@ -131,24 +127,20 @@
   <!-- TILES -->
   <div class="row">
     <div class="col-xs-6 col-sm-4 col-md-3"
-         data-dir-paginate="pet in vm.pets | itemsPerPage: vm.pageSize track by $index">
-      <!-- favorite -->
-      <!--<div class="pet-favorite" data-ng-if="pet.isFavorite" data-ng-include="'images/favorite.svg'"></div>-->
-      <!-- tile -->
-      <!--<div class="clearfix" data-ng-class="vm.getPetTile(pet)">-->
-      <div class="clearfix" data-ng-class="vm.getPetTile(pet)">
+         data-dir-paginate="pet in vm.pets | itemsPerPage: vm.pageSize track by $index"
+         data-ng-click="vm.openDetails(pet)">
+
+      <div class="clearfix tile-details" data-ng-class="vm.getPetTile(pet)">
 
         <!-- PET NAME -->
         <div class="row">
-          <!--<div class="text-center tile-header" title="{{pet.creatureName}}" data-ng-bind="pet.creatureName"></div>-->
           <div class="text-center tile-header" title="{{pet.creatureName}}" data-ng-bind="pet.name"></div>
         </div>
 
         <!-- PET ICON -->
         <div class="col-sm-3 tile-body text-center">
           <a href="http://www.wowhead.com/npc={{pet.creatureId}}" target="_blank" title="view on wowhead.com">
-            <img class="icon-{{pet.theme}}"
-                 data-ng-src="https://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">
+            <img class="icon-{{pet.theme}}" data-ng-src="https://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">
           </a>
         </div>
 
@@ -204,6 +196,8 @@
           </div>
 
         </div>
+
+
       </div>
     </div>
 

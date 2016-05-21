@@ -6,7 +6,7 @@
     .module('wcui')
     .factory('characterFactory', characterFactory);
 
-  function characterFactory(bnetFactory, utilFactory) {
+  function characterFactory(bnetFactory) {
 
     var character = {};
 
@@ -31,9 +31,6 @@
 
     function loadDataSuccess(response) {
       angular.copy(response.data, character);
-      utilFactory.viewState.tab.pets.count = character.pets.collected.length;
-      utilFactory.viewState.tab.mounts.count = character.mounts.collected.length;
-      utilFactory.viewState.tab.toys.count = 0;
     }
 
   }
