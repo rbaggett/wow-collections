@@ -29,7 +29,6 @@
       characterFactory
         .loadData(vm.realm, vm.character)
         .then(navigateToMain);
-        // .catch(navigateToError);
     }
 
 

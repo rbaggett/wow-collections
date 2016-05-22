@@ -56,7 +56,7 @@
           }
         }
       })
-
+      
       .state('wcui.tabs', {
         resolve: {
           resolveCharacter: resolveCharacter

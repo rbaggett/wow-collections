@@ -29,20 +29,21 @@
       var tooltip;
 
       // @formatter:off
+
+      /* pet collecting tooltip */
       tooltip =
-        '<div class="tooltip-quality">' +
-          '<div>Filter pets by selecting a rarity</div>' +
-          '<div>' +
-            '<span class="rare">R: rare (blue)</span>, ' +
-            '<span class="uncommon">U: uncommon (green)</span>, ' +
-            '<span class="common">C: common/poor (white/grey)</span>' +
+        '<div class="tooltip-collecting">' +
+          '<div class="text-left">' +
+            '<div><strong>Have</strong>: A unique listing of pets you already own</div> ' +
+            '<div><strong>Need</strong>: A unique listing of pets you do not own (yet!)</div> ' +
+            '<div><strong>Extras</strong>: Any pets that are duplicate (does not include the original pet)</div>' +
           '</div>' +
         '</div>';
-      tooltips.pets.quality = $sce.trustAsHtml(tooltip);
+      tooltips.pets.collecting = $sce.trustAsHtml(tooltip);
 
+      /* pet level tooltip */
       tooltip =
         '<div class="tooltip-levels">' +
-          '<div>Select a min and/or a max level to display pets within a range</div>' +
           '<div>The ' +
             '<div class="btn-group btn-group-xs">' +
               '<button class="btn btn-default">min</button>' +
@@ -51,6 +52,28 @@
           '</div>' +
         '</div>';
       tooltips.pets.levels = $sce.trustAsHtml(tooltip);
+
+      /* pet quality tooltip */
+      tooltip =
+        '<div class="tooltip-quality">' +
+          '<div>' +
+            '<span class="rare">R: rare (blue)</span>, ' +
+            '<span class="uncommon">U: uncommon (green)</span>, ' +
+            '<span class="common">C: common/poor (white/grey)</span>' +
+          '</div>' +
+        '</div>';
+      tooltips.pets.quality = $sce.trustAsHtml(tooltip);
+
+      /* pet sort tooltip */
+      tooltip =
+        '<div class="tooltip-sort">' +
+          '<div class="text-left">' +
+            '<div>Sorts default to ascending (except levels, which defaults to descending)</div>' +
+            '<div>Clicking a sort a second time will reverse the sort, e.g., descending->ascending</div>' +
+          '</div>' +
+        '</div>';
+      tooltips.pets.sort = $sce.trustAsHtml(tooltip);
+
       // @formatter:on
     }
 

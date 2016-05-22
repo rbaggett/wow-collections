@@ -72,7 +72,7 @@
      */
     function loadData() {
       pets.length = 0;
-      mergePets(angular.copy(characterFactory.character.pets.collected), angular.copy(masterFactory.data.pets));
+      mergePets();
       fixProblemPets();
     }
 
@@ -81,8 +81,11 @@
      * Merge the character and master pet lists and store on the factory api
      * - both arrays are merged, and data is supplemented
      */
-    function mergePets(characterPets, masterPets) {
+    function mergePets() {
+      var characterPets = angular.copy(characterFactory.character.pets.collected);
+      var masterPets = angular.copy(masterFactory.data.pets);
       var cPets, mPet, nPet;
+
       /* loop through the master pet list */
       for (var i = 0, j = masterPets.length; i < j; i++) {
         mPet = angular.copy(masterPets[i]);
@@ -119,6 +122,5 @@
       angular.copy(character.data, character);
     }
 
-
-   }
+  }
 })();

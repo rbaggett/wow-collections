@@ -1,5 +1,12 @@
 .pets {
 
+  .no-pets {
+    border: 1px dashed grey;
+    border-radius: 3px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+
   /* PET BATTLE SECTION */
 
   .battle-icon-health {
@@ -81,15 +88,6 @@
 
   /* FILTER SECTION */
 
-  //.btn-container-settings {
-  //  float: right;
-  //
-  //  img {
-  //    height: 32px;
-  //    width: 32px;
-  //  }
-  //}
-
   .filter-container {
     border-bottom: 1px solid #ddd;
     margin-top: 10px;
@@ -103,6 +101,8 @@
       width: 75px;
     }
   }
+
+  /*
 
   .filter-container-count {
     margin-left: 10px;
@@ -122,6 +122,7 @@
       width: 50px;
     }
   }
+  */
 
   .filter-container-level {
     margin-left: 10px;
@@ -139,11 +140,25 @@
     }
   }
 
+  .filter-container-reset {
+    margin-left: 10px;
+
+    label {
+      border-style: dashed;
+      text-align: center;
+      width: 50px;
+    }
+  }
+
   .filter-container-settings {
     border: 1px dashed #777777;
     border-radius: 3px;
     margin-top: 10px;
     padding: 10px;
+  }
+
+  .filter-container-sort {
+    margin-left: 10px;
   }
 
   .filter-container-tiles {
@@ -250,7 +265,7 @@
   /* TILE SECTION */
 
   .tile {
-    border-radius: 3px;
+    border-radius: 4px;
     box-shadow: 7px 7px 15px 0 lighten(black, 50%);
     margin-top: 20px;
     overflow: hidden;
@@ -271,6 +286,13 @@
     border-width: 2px;
     border-style: dashed;
 
+    .tile-footer {
+      border-top-width: 1px;
+      border-top-style: dashed;
+      font-weight: bold;
+      height: 21px;
+    }
+
     .tile-header {
       border-bottom-width: 2px;
       border-bottom-style: dashed;
@@ -281,15 +303,28 @@
     border-width: 2px;
     border-style: solid;
 
+    .tile-footer {
+      border-top-width: 1px;
+      border-top-style: solid;
+      font-weight: bold;
+      height: 21px;
+    }
+
     .tile-header {
       border-bottom-width: 2px;
       border-bottom-style: solid;
+      font-weight: bold;
     }
   }
 
   .tile-default {
     @extend .tile;
     border-color: $gray-light;
+
+    .tile-footer {
+      border-top-color: $gray-dark;
+      color: lighten($gray-dark, 10%);
+    }
 
     .tile-header {
       border-bottom-color: $gray-dark;
@@ -302,6 +337,11 @@
     @extend .tile;
     border-color: $gray-light;
 
+    .tile-footer {
+      border-top-color: $gray-light;
+      color: lighten($gray-light, 10%);
+    }
+
     .tile-header {
       border-bottom-color: $gray-light;
       color: $gray-light;
@@ -309,19 +349,23 @@
   }
 
   .tile-details {
-    //background-color: red;
     cursor: pointer;
     transition: all 0.4s ease-in-out;
   }
 
   .tile-details:hover {
-    box-shadow: 2px 2px 15px 0 rgba(112,122,133,1);
+    box-shadow: 2px 2px 15px 0 rgba(112, 122, 133, 1);
     transition: all 0.2s ease-in-out;
   }
 
   .tile-primary {
     @extend .tile;
     border-color: lighten($brand-primary, 10%);
+
+    .tile-footer {
+      border-top-color: $brand-primary;
+      color: lighten($brand-primary, 10%);
+    }
 
     .tile-header {
       border-bottom-color: $brand-primary;
@@ -333,6 +377,11 @@
   .tile-success {
     @extend .tile;
     border-color: lighten($brand-success, 10%);
+
+    .tile-footer {
+      border-top-color: $brand-success;
+      color: lighten($brand-success, 10%);
+    }
 
     .tile-header {
       border-bottom-color: $brand-success;
@@ -374,6 +423,11 @@
     .uncommon {
       color: #80c780;
     }
+  }
+
+  .tooltip-sort {
+    @extend .tooltip-base;
+    width: 400px;
   }
 
   /* OVERRIDES */

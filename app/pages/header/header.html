@@ -1,8 +1,12 @@
 <nav class="navbar navbar-default header">
   <form class="navbar-form navbar-center" role="search">
-    <select class="form-control" data-ng-model="vm.realm"
-            data-ng-options="realm.slug as realm.name for realm in vm.data.realms"
-            placeholder="character realm"></select>
+    <!--<select class="form-control" data-ng-model="vm.realm"-->
+    <!--data-ng-options="realm.slug as realm.name for realm in vm.data.realms"-->
+    <!--placeholder="character realm"></select>-->
+    <input class="form-control" data-ng-model="vm.realm"
+           data-uib-typeahead="realm.slug as realm.name for realm in vm.data.realms | filter:$viewValue | limitTo:8"
+           data-typeahead-select-on-exact="true"
+           placeholder="character realm">
     <input class="form-control" data-ng-model="vm.character" placeholder="character name">
     <button class="btn btn-primary" data-ng-click="vm.getCharacter()" data-ng-disabled="!vm.realm || !vm.character">
       Search
