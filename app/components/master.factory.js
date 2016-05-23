@@ -14,6 +14,7 @@
       pets: [],
       mounts: [],
       realms: [],
+      realmsText: [],
       toys: []
     };
 
@@ -59,7 +60,10 @@
 
 
     function loadRealmsSuccess(response) {
-      data.realms = response.data.realms;
+      for (var i = 0, j = response.data.realms.length; i < j; i++) {
+        data.realms.push(response.data.realms[i]);
+        data.realmsText.push(response.data.realms[i].name);
+      }
     }
 
 

@@ -9,9 +9,39 @@
   function petsFactory(characterFactory, masterFactory) {
 
     var pets = [];
+    var petsText = [];
+    var tcgs = {
+      23234: 'banana_charm',
+      59020: 'eye_of_the_legion',
+      34694: 'heavy_murloc_egg',
+      50468: 'landros_lil_xt',
+      54438: 'murkys_little_soulstone',
+      54383: 'purple_puffer',
+      51122: 'smoldering_murloc_egg',
+      36482: 'tuskarr_kite',
+      15186: 'blue_murloc_egg',
+      54730: 'grell_moss',
+      17255: 'hippogryph_hatchling',
+      52344: 'nightsaber_cub',
+      25109: 'rocket_chicken',
+      27914: 'soultrader_beacon',
+      29089: 'tyraels_hilt',
+      25110: 'dragon_kite',
+      69208: 'gusting_grimoire',
+      52343: 'landros_lichling',
+      74405: 'murkalots_flail',
+      54745: 'sand_scarab',
+      36511: 'spectral_tiger_cub',
+      11325: 'wow_vanilla_collectors_edition',
+      11326: 'wow_vanilla_collectors_edition',
+      11327: 'wow_vanilla_collectors_edition'
+    };
 
     return {
       pets: pets,
+      petsText: petsText,
+      getPetBreeds: getPetBreeds,
+      getPetLevels: getPetLevels,
       loadData: loadData
     };
 
@@ -40,6 +70,64 @@
       if (petIndex) {
         pets[petIndex].icon = 'trade_archaeology_draenei-candelabra';
       }
+    }
+
+
+    function getPetBreeds() {
+      return {
+        4: {letters: 'P/P', gender: 'male'},
+        14: {letters: 'P/P', gender: 'female'},
+        5: {letters: 'S/S', gender: 'male'},
+        15: {letters: 'S/S', gender: 'female'},
+        6: {letters: 'H/H', gender: 'male'},
+        16: {letters: 'H/H', gender: 'female'},
+        7: {letters: 'H/P', gender: 'male'},
+        17: {letters: 'H/P', gender: 'female'},
+        8: {letters: 'P/S', gender: 'male'},
+        18: {letters: 'P/S', gender: 'female'},
+        9: {letters: 'H/S', gender: 'male'},
+        19: {letters: 'H/S', gender: 'female'},
+        10: {letters: 'P/B', gender: 'male'},
+        20: {letters: 'P/B', gender: 'female'},
+        11: {letters: 'S/B', gender: 'male'},
+        21: {letters: 'S/B', gender: 'female'},
+        12: {letters: 'H/B', gender: 'male'},
+        22: {letters: 'H/B', gender: 'female'},
+        3: {letters: 'B/B', gender: 'male'},
+        13: {letters: 'B/B', gender: 'female'}
+      };
+    }
+
+
+    function getPetLevels() {
+      return [
+        {value: 0, text: '0'},
+        {value: 1, text: '1'},
+        {value: 2, text: '2'},
+        {value: 3, text: '3'},
+        {value: 4, text: '4'},
+        {value: 5, text: '5'},
+        {value: 6, text: '6'},
+        {value: 7, text: '7'},
+        {value: 8, text: '8'},
+        {value: 9, text: '9'},
+        {value: 10, text: '10'},
+        {value: 11, text: '11'},
+        {value: 12, text: '12'},
+        {value: 13, text: '13'},
+        {value: 14, text: '14'},
+        {value: 15, text: '15'},
+        {value: 16, text: '16'},
+        {value: 17, text: '17'},
+        {value: 18, text: '18'},
+        {value: 19, text: '19'},
+        {value: 20, text: '20'},
+        {value: 21, text: '21'},
+        {value: 22, text: '22'},
+        {value: 23, text: '23'},
+        {value: 24, text: '24'},
+        {value: 25, text: '25'}
+      ]
     }
 
 
@@ -97,19 +185,23 @@
             nPet = angular.copy(_.extend(mPet, cPets[k]));
             nPet.collected = true;
             nPet.duplicate = (k > 0);
-            nPet.uncollected = false;
             nPet.original = (k === 0);
+            nPet.tcg = tcgs[nPet.creatureId];
             nPet.theme = getPetTheme(nPet);
+            nPet.uncollected = false;
             pets.push(nPet);
+            petsText.push(nPet.creatureName);
           }
           continue;
         }
         /* not collected */
         mPet.collected = false;
         mPet.creatureName = mPet.name;
-        mPet.uncollected = true;
+        mPet.tcg = tcgs[mPet.creatureId];
         mPet.theme = getPetTheme(mPet);
+        mPet.uncollected = true;
         pets.push(mPet);
+        petsText.push(mPet.creatureName);
       }
     }
 

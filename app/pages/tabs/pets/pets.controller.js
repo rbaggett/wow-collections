@@ -6,18 +6,25 @@
     .module('wcui')
     .controller('PetsController', PetsController);
 
-  function PetsController($uibModal, petsFactory, tooltipFactory, utilityFactory) {
+  function PetsController($uibModal, constants, petsFactory, tooltipFactory, utilityFactory) {
 
     /* local data */
     var vm = this;
+    // var metaFilters = [{creatureName:'=tcg'}, {creatureName:'=humanoid'}];
     var order = 'asc';
+    var pageSizeDefault = 20;
     var pets = petsFactory.pets;
 
     /* scope factory data */
-    vm.breeds = utilityFactory.getPetBreeds();
-    vm.levelsMax = utilityFactory.getPetLevels();
-    vm.levelsMin = utilityFactory.getPetLevels();
+    vm.breeds = petsFactory.getPetBreeds();
+    vm.levelsMax = petsFactory.getPetLevels();
+    vm.levelsMin = petsFactory.getPetLevels();
+    vm.searchItems = petsFactory.petsText;
     vm.tooltips = tooltipFactory.tooltips.pets;
+    vm.urls = constants.urls;
+
+    /* scope factory functions */
+    vm.startsWith = utilityFactory.startsWith;
 
     /* scope data */
     vm.filters = {};
@@ -25,7 +32,6 @@
     vm.levelMax = vm.levelsMax[25];
     vm.levelMin = vm.levelsMin[0];
     vm.pageSize = 20;
-    vm.pageSizeDefault = 20;
     vm.pets = angular.copy(pets);
     vm.search = '';
     vm.sort = '';
@@ -48,7 +54,6 @@
     /* initialize */
     (function activate() {
       filterCollected();
-      sortPets('creatureName');
       utilityFactory.setActiveView('pets');
     })();
 
@@ -95,9 +100,12 @@
 
       /* name filter */
       if (vm.search) {
-        vm.pets = _.filter(vm.pets, function (value) {
-          return (value.creatureName.toLocaleLowerCase().indexOf(vm.search.toLocaleLowerCase(), 0) === 0);
-        });
+        vm.pets = _.filter(vm.pets,
+          function (value) {
+            var cname = value.creatureName.toLocaleLowerCase();
+            var sname = vm.search.toLocaleLowerCase();
+            return cname.startsWith(sname);
+          });
       }
 
       /* max level filter */
@@ -117,6 +125,10 @@
       /* all of the queued filters */
       vm.pets = _.filter(vm.pets, vm.filters);
 
+      /* resort pets */
+      sortPets('creatureName', 'asc', true);
+
+      /* construct the filter trail */
       setFilterTrail();
     }
 
@@ -171,6 +183,17 @@
     }
 
 
+    function getSearchItems() {
+      if (vm.search[0] === '=') {
+        vm.searchItems = metaFilters;
+      }
+      else {
+        vm.searchItems = pets;
+      }
+      filterPets();
+    }
+
+
     function openDetails(pet) {
 
 
@@ -203,10 +226,10 @@
       vm.filters = {};
       vm.levelMax = vm.levelsMax[25];
       vm.levelMin = vm.levelsMin[0];
-      vm.pageSize = vm.pageSizeDefault;
+      vm.pageSize = pageSizeDefault;
       vm.search = '';
       filterCollected();
-      sortPets('creatureName', 'desc');
+      sortPets('creatureName', 'asc', true);
     }
 
 
@@ -214,7 +237,7 @@
      * Reset the page size to its default
      */
     function resetPageSize() {
-      vm.pageSize = vm.pageSizeDefault;
+      vm.pageSize = pageSizeDefault;
     }
 
 
@@ -261,11 +284,15 @@
 
       /* collecting */
       if (vm.filters.original) {
-        vm.filterTrail += ' owned';
+        vm.filterTrail += ' unique owned';
       } else if (vm.filters.uncollected) {
         vm.filterTrail += ' unowned (yet)';
       } else if (vm.filters.duplicate) {
         vm.filterTrail += ' duplicate';
+      }
+
+      if (vm.search === '=tcg') {
+        vm.filterTrail += '<a href=\'' + vm.urls.tcgLoot + '\' target=\'_blank\'> tcg <i class="glyphicon glyphicon-new-window"></i></a>';
       }
 
       /* pet or pets based on count */
@@ -280,17 +307,22 @@
     /**
      * Sort the pets based on properties
      * @param property {string} - property for sorting
+     * @param newOrder
+     * @param reset
      */
-    function sortPets(property, newOrder) {
+    function sortPets(property, newOrder, reset) {
       if (newOrder) {
         order = newOrder;
+      }
+      if (reset) {
+        vm.sort = '';
       }
       /* if the sort is repeated, toggle the order */
       if (vm.sort === property) {
         order = (order === 'asc') ? 'desc' : 'asc';
       }
       /* levels default to descending */
-      else if ('stats.level' === property) {
+      else if (property.includes('stats')) {
         order = 'desc';
       }
       /* everything else defaults to ascending */

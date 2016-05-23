@@ -17,6 +17,7 @@
 
     /* functions */
     vm.getCharacter = getCharacter;
+    vm.startsWith = utilityFactory.startsWith;
 
 
     (function activate() {

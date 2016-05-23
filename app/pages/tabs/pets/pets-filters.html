@@ -1,0 +1,171 @@
+<form class="form-inline">
+  <div class="col-xs-12 filter-container text-center">
+
+    <div class="hidden-lg">
+
+      <!-- NAME -->
+      <div class="btn-group">
+        <input class="form-control" data-ng-model="vm.search" placeholder="search pet names">
+      </div>
+
+    </div>
+
+
+    <div class="hidden-xs hidden-sm hidden-md">
+
+      <!-- NAME -->
+      <div class="btn-group">
+        <div class="text-muted filter-label-center">pet name</div>
+        <input class="form-control" data-ng-model="vm.search"
+               data-ng-keydown="$event.which === 13 && vm.filterPets()"
+               data-uib-typeahead="item for item in vm.searchItems | filter:$viewValue:vm.startsWith | limitTo:8"
+               data-typeahead-focus-first="false"
+               data-typeahead-on-select="vm.filterPets()"
+               placeholder="e.g., mini-tyrael">
+        <div data-ng-if="vm.search.length" class="clear-search-container">
+          <a data-ng-click="vm.search=''">
+            <i class="glyphicon glyphicon-remove"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- COLLECTED -->
+      <div class="btn-group filter-container-collected">
+        <div class="text-muted filter-label-center"
+             data-uib-popover-html="vm.tooltips.collecting"
+             data-popover-title="Filter pets by collection status"
+             data-popover-trigger="mouseenter">
+          <span>collecting</span>
+          <i class="glyphicon glyphicon-question-sign"></i>
+        </div>
+        <button type="button" class="btn btn-default" title="collected pets only"
+                data-ng-class="{'active': vm.filters.original}"
+                data-ng-click="vm.filterCollected()">Have
+        </button>
+        <button type="button" class="btn btn-default" title="uncollected pets only"
+                data-ng-class="{'active': vm.filters.uncollected}"
+                data-ng-click="vm.filterUncollected()">Need
+        </button>
+        <button type="button" class="btn  btn-default" title="duplicate pets only (does not include the original)"
+                data-ng-class="{'active': vm.filters.duplicate}"
+                data-ng-click="vm.filterDuplicate()">Extras
+        </button>
+      </div>
+
+      <!-- QUALITY -->
+      <div class="btn-group filter-container-quality">
+        <div class="text-muted filter-label-center"
+             data-uib-popover-html="vm.tooltips.quality"
+             data-popover-title="Filter pets by selecting a rarity"
+             data-popover-trigger="mouseenter">
+          <span>rarity</span>
+          <i class="glyphicon glyphicon-question-sign"></i>
+        </div>
+        <button type="button" class="btn btn-default" title="rare pets only"
+                data-ng-class="{'active': vm.filters.qualityId==3}"
+                data-ng-click="vm.filterQuality(3)">R
+        </button>
+        <button type="button" class="btn btn-default" title="uncommon pets only"
+                data-ng-class="{'active': vm.filters.qualityId==2}"
+                data-ng-click="vm.filterQuality(2)">U
+        </button>
+        <button type="button" class="btn btn-default" title="common/poor pets only"
+                data-ng-class="{'active': vm.filters.qualityId==1}"
+                data-ng-click="vm.filterQuality(1)">C
+        </button>
+      </div>
+
+      <!-- LEVEL -->
+      <div class="btn-group filter-container-level">
+        <div class="text-muted filter-label-center"
+             data-uib-popover-html="vm.tooltips.levels"
+             data-popover-title="Select a min and/or a max level to display pets within a range"
+             data-popover-trigger="mouseenter">
+          <span>level range</span>
+          <i class="glyphicon glyphicon-question-sign"></i>
+        </div>
+        <div class="input-group">
+          <div class="input-group-btn" title="reset level min">
+            <button type="button" class="btn btn-default" data-ng-click="vm.resetMin()">min</button>
+          </div>
+          <select class="form-control"
+                  data-ng-model="vm.levelMin" title="select a level min"
+                  data-ng-options="level.text for level in vm.levelsMin"
+                  data-ng-change="vm.filterPets()">
+          </select>
+        </div>
+        <span>-</span>
+        <div class="input-group">
+          <select class="form-control" title="select a level max"
+                  data-ng-model="vm.levelMax"
+                  data-ng-options="level.text for level in vm.levelsMax"
+                  data-ng-change="vm.filterPets()">
+          </select>
+          <div class="input-group-btn" title="reset level max">
+            <button type="button" class="btn btn-default" data-ng-click="vm.resetMax()">max</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SORT -->
+      <div class="input-group filter-container-sort">
+        <div class="text-muted filter-label-center"
+             data-uib-popover-html="vm.tooltips.sort"
+             data-popover-title="Select a sorting field"
+             data-popover-trigger="mouseenter">
+          <span>sort</span>
+          <i class="glyphicon glyphicon-question-sign"></i>
+        </div>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+          sort by <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a data-ng-click="vm.sortPets('creatureName')">Creature Name</a></li>
+          <li><a data-ng-click="vm.sortPets('name')">Player Name</a></li>
+          <li><a data-ng-click="vm.sortPets('stats.level')">Pet Level</a></li>
+          <li><a data-ng-click="vm.sortPets('stats.health')">Pet Health</a></li>
+          <li><a data-ng-click="vm.sortPets('stats.power')">Pet Power</a></li>
+          <li><a data-ng-click="vm.sortPets('stats.speed')">Pet Speed</a></li>
+        </ul>
+      </div>
+
+      <!-- PET TILES -->
+      <div class="btn-group filter-container-tiles">
+        <div class="text-muted filter-label-center"
+             data-uib-popover-html="vm.tooltips.pageSize"
+             data-popover-title="Customize pets per page"
+             data-popover-trigger="mouseenter">
+          <span>pets/page</span>
+          <i class="glyphicon glyphicon-question-sign"></i>
+        </div>
+        <div class="input-group">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default" data-ng-click="vm.resetPageSize()"
+                    title="default pets per page">
+              <img src="images/table.svg">
+            </button>
+          </div>
+          <input class="form-control filter-input count-input" data-ng-model="vm.pageSize"
+                 title="custom pets per page">
+        </div>
+      </div>
+
+      <!-- RESET -->
+      <div class="input-group filter-container-reset" title="reset all filters">
+        <div class="text-muted filter-label-center">reset</div>
+        <div tabindex="0" role="button" class="btn btn-default" data-ng-click="vm.resetFilters()">
+          <i class="glyphicon glyphicon-repeat"></i>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</form>
+
+<!-- FILTER TRAIL -->
+<div class="col-xs-12" data-ng-show="vm.pets.length">
+  <div class="text-center text-muted">
+    <small><strong data-ng-bind="vm.pets.length"></strong><span data-ng-bind-html="vm.filterTrail"></span></small>
+  </div>
+</div>

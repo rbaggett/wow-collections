@@ -88,6 +88,22 @@
 
   /* FILTER SECTION */
 
+  .clear-search-container {
+    position: absolute;
+    top: 26px;
+    left: 171px;
+    cursor: pointer;
+    width: 20px;
+    height: 30px;
+
+    a {
+      font-weight: bold;
+      font-size: 18px;
+      color: rgba(51, 122, 183, 0.5);
+      text-decoration: none;
+    }
+  }
+
   .filter-container {
     border-bottom: 1px solid #ddd;
     margin-top: 10px;
@@ -159,6 +175,10 @@
 
   .filter-container-sort {
     margin-left: 10px;
+
+    a {
+      cursor: pointer;
+    }
   }
 
   .filter-container-tiles {
@@ -214,13 +234,23 @@
     border-top-right-radius: 5px;
     display: flex;
     font-size: 12px;
-    justify-content: center;
-    align-items: center;
 
     i {
       margin-left: 5px;
       padding-bottom: 3px;
     }
+  }
+
+  .filter-label-center {
+    @extend .filter-label;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filter-label-left {
+    @extend .filter-label;
+    justify-content: left;
+    align-items: center;
   }
 
   /* ICON SECTION */
@@ -408,6 +438,11 @@
     width: 400px;
   }
 
+  .tooltip-page-size {
+    @extend .tooltip-base;
+    width: 250px;
+  }
+
   .tooltip-quality {
     @extend .tooltip-base;
     width: 350px;
@@ -427,7 +462,7 @@
 
   .tooltip-sort {
     @extend .tooltip-base;
-    width: 400px;
+    width: 500px;
   }
 
   /* OVERRIDES */

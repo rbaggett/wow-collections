@@ -1,0 +1,83 @@
+<div class="clearfix tile-details" data-ng-class="vm.getPetTile(pet)">
+
+  <!-- HEADER -->
+  <div class="row">
+    <div class="text-center tile-header" title="{{pet.creatureName}}">{{pet.creatureName}}</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="row">
+    <div class="col-xs-12">
+
+      <!-- PET ICON -->
+      <div class="col-sm-3 tile-body text-center">
+        <a href="{{vm.urls.wowHeadNpc + pet.creatureId}}" target="_blank" title="view on wowhead.com"
+           data-ng-click="$event.stopPropagation();">
+          <img class="icon-{{pet.theme}}" data-ng-src="{{vm.urls.battleIcons + pet.icon}}.jpg">
+        </a>
+      </div>
+
+      <div class="col-sm-9 tile-body">
+
+        <!-- PET STATS -->
+        <div class="col-sm-5">
+          <div>
+            <span class="battle-icon-health"></span>
+            <span data-ng-bind="pet.stats.health"></span>
+          </div>
+          <div>
+            <span class="battle-icon-power"></span>
+            <span data-ng-bind="pet.stats.power"></span>
+          </div>
+          <div>
+            <span class="battle-icon-speed"></span>
+            <span data-ng-bind="pet.stats.speed"></span>
+          </div>
+        </div>
+
+        <div class="col-sm-7 text-center">
+
+          <!-- LEVEL / BREED -->
+          <div class="level-container">
+            <div class="level-label">level</div>
+            <div class="level-number">
+              <strong class="text-{{pet.theme}}" data-ng-bind="pet.stats.level"></strong>
+              <span class="text-{{pet.theme}}" data-ng-bind="vm.breeds[pet.stats.breedId].letters"></span>
+            </div>
+          </div>
+
+          <!-- FAMILY -->
+          <div data-ng-if="pet.family==='dragonkin'" class="family-dragonkin"
+               data-ng-include="'images/Pet_type_dragonkin.svg'"></div>
+          <div data-ng-if="pet.family==='magical'" class="family-magical"
+               data-ng-include="'images/Pet_type_magical.svg'"></div>
+          <div data-ng-if="pet.family==='water'" class="family-water"
+               data-ng-include="'images/Pet_type_water.svg'"></div>
+          <div data-ng-if="pet.family==='flying'" class="family-flying"
+               data-ng-include="'images/Pet_type_flying.svg'"></div>
+          <div data-ng-if="pet.family==='mechanical'" class="family-mechanical"
+               data-ng-include="'images/Pet_type_mechanical.svg'"></div>
+          <div data-ng-if="pet.family==='undead'" class="family-undead"
+               data-ng-include="'images/Pet_type_undead.svg'"></div>
+          <div data-ng-if="pet.family==='beast'" class="family-beast"
+               data-ng-include="'images/Pet_type_beast.svg'"></div>
+          <div data-ng-if="pet.family==='critter'" class="family-critter"
+               data-ng-include="'images/Pet_type_critter.svg'"></div>
+          <div data-ng-if="pet.family==='elemental'" class="family-elemental"
+               data-ng-include="'images/Pet_type_elemental.svg'"></div>
+          <div data-ng-if="pet.family==='humanoid'" class="family-humanoid"
+               data-ng-include="'images/Pet_type_humanoid.svg'"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="row">
+    <div class="text-center tile-footer">
+      <span data-ng-if="pet.name !== pet.creatureName">"{{pet.name}}"</span>
+    </div>
+  </div>
+
+</div>

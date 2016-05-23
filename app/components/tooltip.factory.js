@@ -53,6 +53,17 @@
         '</div>';
       tooltips.pets.levels = $sce.trustAsHtml(tooltip);
 
+      /* page size tooltip */
+      tooltip =
+        '<div class="tooltip-page-size">' +
+          '<div>The ' +
+            '<div class="btn-group btn-group-xs">' +
+                '<button class="btn btn-default"><img src="images/table.svg"></button>' +
+            '</div> button resets the page size to its default' +
+          '</div>' +
+        '</div>';
+      tooltips.pets.pageSize = $sce.trustAsHtml(tooltip);
+
       /* pet quality tooltip */
       tooltip =
         '<div class="tooltip-quality">' +
@@ -68,7 +79,7 @@
       tooltip =
         '<div class="tooltip-sort">' +
           '<div class="text-left">' +
-            '<div>Sorts default to ascending (except levels, which defaults to descending)</div>' +
+            '<div>Sorts default to <strong>Ascending</strong> for character fields (A-Z), and <strong>Descending</strong> for numerical fields (1,2,3)</div>' +
             '<div>Clicking a sort a second time will reverse the sort, e.g., descending->ascending</div>' +
           '</div>' +
         '</div>';

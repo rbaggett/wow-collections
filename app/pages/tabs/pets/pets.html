@@ -1,252 +1,18 @@
 <section class="pets">
 
   <!-- FILTERS -->
-  <form class="form-inline">
-    <div class="col-xs-12 filter-container text-center">
+  <div data-ng-include="'pages/tabs/pets/pets-filters.html'"></div>
 
-      <div class="hidden-lg">
-
-        <!-- NAME -->
-        <div class="btn-group">
-          <input class="form-control" data-ng-model="vm.search" placeholder="search pet names">
-        </div>
-
-      </div>
-
-
-      <div class="hidden-xs hidden-sm hidden-md">
-
-        <!-- NAME -->
-        <div class="btn-group">
-          <div class="text-muted filter-label">pet name</div>
-          <input class="form-control filter-input" data-ng-model="vm.search" data-ng-change="vm.filterPets()"
-                 placeholder="spot the wonder mutt">
-        </div>
-
-
-        <!-- COLLECTED -->
-        <div class="btn-group filter-container-collected">
-          <div class="text-muted filter-label"
-               data-uib-popover-html="vm.tooltips.collecting"
-               data-popover-title="Filter pets by collection status"
-               data-popover-trigger="mouseenter">
-            <span>collecting</span>
-            <i class="glyphicon glyphicon-question-sign"></i>
-          </div>
-          <button class="btn btn-default" title="collected pets only"
-                  data-ng-class="{'active': vm.filters.original}"
-                  data-ng-click="vm.filterCollected()">Have
-          </button>
-          <button class="btn btn-default" title="uncollected pets only"
-                  data-ng-class="{'active': vm.filters.uncollected}"
-                  data-ng-click="vm.filterUncollected()">Need
-          </button>
-          <button class="btn  btn-default" title="duplicate pets only (does not include the original)"
-                  data-ng-class="{'active': vm.filters.duplicate}"
-                  data-ng-click="vm.filterDuplicate()">Extras
-          </button>
-        </div>
-
-        <!-- QUALITY -->
-        <div class="btn-group filter-container-quality">
-          <div class="text-muted filter-label"
-               data-uib-popover-html="vm.tooltips.quality"
-               data-popover-title="Filter pets by selecting a rarity"
-               data-popover-trigger="mouseenter">
-            <span>rarity</span>
-            <i class="glyphicon glyphicon-question-sign"></i>
-          </div>
-          <button class="btn btn-default" title="rare pets only"
-                  data-ng-class="{'active': vm.filters.qualityId==3}"
-                  data-ng-click="vm.filterQuality(3)">R
-          </button>
-          <button class="btn btn-default" title="uncommon pets only"
-                  data-ng-class="{'active': vm.filters.qualityId==2}"
-                  data-ng-click="vm.filterQuality(2)">U
-          </button>
-          <button class="btn btn-default" title="common/poor pets only"
-                  data-ng-class="{'active': vm.filters.qualityId==1}"
-                  data-ng-click="vm.filterQuality(1)">C
-          </button>
-        </div>
-
-        <!-- LEVEL -->
-        <div class="btn-group filter-container-level">
-          <div class="text-muted filter-label"
-               data-uib-popover-html="vm.tooltips.levels"
-               data-popover-title="Select a min and/or a max level to display pets within a range"
-               data-popover-trigger="mouseenter">
-            <span>level range</span>
-            <i class="glyphicon glyphicon-question-sign"></i>
-          </div>
-          <div class="input-group">
-            <div class="input-group-btn" title="reset level min">
-              <button class="btn btn-default" data-ng-click="vm.resetMin()">min</button>
-            </div>
-            <select class="form-control"
-                    data-ng-model="vm.levelMin" title="select a level min"
-                    data-ng-options="level.text for level in vm.levelsMin"
-                    data-ng-change="vm.filterPets()">
-            </select>
-          </div>
-          <span>-</span>
-          <div class="input-group">
-            <select class="form-control" title="select a level max"
-                    data-ng-model="vm.levelMax"
-                    data-ng-options="level.text for level in vm.levelsMax"
-                    data-ng-change="vm.filterPets()">
-            </select>
-            <div class="input-group-btn" title="reset level max">
-              <button class="btn btn-default" data-ng-click="vm.resetMax()">max</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- SORT -->
-        <div class="input-group filter-container-sort">
-          <div class="text-muted filter-label"
-               data-uib-popover-html="vm.tooltips.sort"
-               data-popover-title="Select a sorting field"
-               data-popover-trigger="mouseenter">
-            <span>sort</span>
-            <i class="glyphicon glyphicon-question-sign"></i>
-          </div>
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false">
-            sort by <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a data-ng-click="vm.sortPets('creatureName')">Creature Name</a></li>
-            <li><a data-ng-click="vm.sortPets('name')">Player Name</a></li>
-            <li><a data-ng-click="vm.sortPets('stats.level')">Pet Level</a></li>
-          </ul>
-        </div>
-
-        <!-- PET TILES -->
-        <div class="btn-group filter-container-tiles">
-          <div class="text-muted filter-label">pets/page</div>
-          <div class="input-group">
-            <div class="input-group-btn">
-              <button class="btn btn-default" data-ng-click="vm.resetPageSize()" title="default pets per page">
-                <img src="images/table.svg">
-              </button>
-            </div>
-            <input class="form-control filter-input count-input" data-ng-model="vm.pageSize"
-                   title="custom pets per page">
-          </div>
-        </div>
-
-        <!-- RESET -->
-        <div class="input-group filter-container-reset" title="reset all filters">
-          <div class="text-muted filter-label">reset</div>
-          <div class="btn btn-default" data-ng-click="vm.resetFilters()">
-            <i class="glyphicon glyphicon-repeat"></i>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </form>
-
-  <!-- FILTER TRAIL -->
-  <div class="col-xs-12" data-ng-show="vm.pets.length">
-    <div class="text-center text-muted">
-      <small><strong>{{vm.pets.length}}</strong> {{vm.filterTrail}}</small>
-    </div>
-  </div>
-
-  <!-- TILES -->
   <div class="row">
+
+    <!-- TILES -->
     <div class="col-xs-6 col-sm-4 col-md-3"
          data-dir-paginate="pet in vm.pets | itemsPerPage: vm.pageSize track by $index"
          data-ng-click="vm.openDetails(pet)">
-
-      <div class="clearfix tile-details" data-ng-class="vm.getPetTile(pet)">
-
-        <!-- PET NAME -->
-        <div class="row">
-          <div class="text-center tile-header" title="{{pet.creatureName}}">{{pet.creatureName}}</div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-12">
-
-            <!-- PET ICON -->
-            <div class="col-sm-3 tile-body text-center">
-              <a href="http://www.wowhead.com/npc={{pet.creatureId}}" target="_blank" title="view on wowhead.com"
-                 data-ng-click="$event.stopPropagation();">
-                <img class="icon-{{pet.theme}}"
-                     data-ng-src="https://wow.zamimg.com/images/wow/icons/medium/{{pet.icon}}.jpg">
-              </a>
-            </div>
-
-            <!-- PET DATA -->
-            <div class="col-sm-9 tile-body">
-
-              <!-- STATS -->
-              <div class="col-sm-5">
-                <div>
-                  <span class="battle-icon-health"></span>
-                  <span data-ng-bind="pet.stats.health"></span>
-                </div>
-                <div>
-                  <span class="battle-icon-power"></span>
-                  <span data-ng-bind="pet.stats.power"></span>
-                </div>
-                <div>
-                  <span class="battle-icon-speed"></span>
-                  <span data-ng-bind="pet.stats.speed"></span>
-                </div>
-              </div>
-
-              <div class="col-sm-7 text-center">
-                <!-- LEVEL / BREED -->
-                <div class="level-container">
-                  <div class="level-label">level</div>
-                  <div class="level-number">
-                    <strong class="text-{{pet.theme}}" data-ng-bind="pet.stats.level"></strong>
-                    <span class="text-{{pet.theme}}" data-ng-bind="vm.breeds[pet.stats.breedId].letters"></span>
-                  </div>
-                </div>
-                <!-- FAMILY -->
-                <div data-ng-if="pet.family==='dragonkin'" class="family-dragonkin"
-                     data-ng-include="'images/Pet_type_dragonkin.svg'"></div>
-                <div data-ng-if="pet.family==='magical'" class="family-magical"
-                     data-ng-include="'images/Pet_type_magical.svg'"></div>
-                <div data-ng-if="pet.family==='water'" class="family-water"
-                     data-ng-include="'images/Pet_type_water.svg'"></div>
-                <div data-ng-if="pet.family==='flying'" class="family-flying"
-                     data-ng-include="'images/Pet_type_flying.svg'"></div>
-                <div data-ng-if="pet.family==='mechanical'" class="family-mechanical"
-                     data-ng-include="'images/Pet_type_mechanical.svg'"></div>
-                <div data-ng-if="pet.family==='undead'" class="family-undead"
-                     data-ng-include="'images/Pet_type_undead.svg'"></div>
-                <div data-ng-if="pet.family==='beast'" class="family-beast"
-                     data-ng-include="'images/Pet_type_beast.svg'"></div>
-                <div data-ng-if="pet.family==='critter'" class="family-critter"
-                     data-ng-include="'images/Pet_type_critter.svg'"></div>
-                <div data-ng-if="pet.family==='elemental'" class="family-elemental"
-                     data-ng-include="'images/Pet_type_elemental.svg'"></div>
-                <div data-ng-if="pet.family==='humanoid'" class="family-humanoid"
-                     data-ng-include="'images/Pet_type_humanoid.svg'"></div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-        <!-- PET CUSTOM NAME -->
-        <div class="row">
-          <div class="text-center tile-footer">
-            <span data-ng-if="pet.name !== pet.creatureName">"{{pet.name}}"</span>
-          </div>
-        </div>
-
-      </div>
+      <div data-ng-include="'pages/tabs/pets/pets-tile.html'"></div>
     </div>
 
-    <!-- EMPTY TABLE -->
+    <!-- NO TILES -->
     <div data-ng-hide="vm.pets.length">
       <div class="col-xs-offset-1 col-xs-10 no-pets">
         <h4 class="text-center text-muted">
@@ -254,13 +20,13 @@
         </h4>
       </div>
     </div>
+
   </div>
 
   <!-- PAGING -->
   <div class="row text-center">
     <dir-pagination-controls></dir-pagination-controls>
   </div>
-
 
 </section>
 
