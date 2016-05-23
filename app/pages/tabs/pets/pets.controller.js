@@ -48,6 +48,7 @@
     vm.resetPageSize = resetPageSize;
     vm.resetMax = resetMax;
     vm.resetMin = resetMin;
+    vm.resetSearch = resetSearch;
     vm.sortPets = sortPets;
 
 
@@ -194,26 +195,30 @@
     }
 
 
-    function openDetails(pet) {
+    function openDetails(test) {
 
 
       var modalInstance = $uibModal.open({
         // animation: $scope.animationsEnabled,
         templateUrl: 'pages/tabs/pets/details/details.html',
         controller: 'PetDetailsController',
+        controllerAs: 'vm',
         // size: size,
         resolve: {
-          items: function () {
-            return true;
+          pet: function () {
+            return test;
           }
         }
       });
 
-      modalInstance.result.then(function (selectedItem) {
-        var selected = selectedItem;
-      }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
-      });
+      modalInstance
+        .result.then(
+        function (selectedItem) {
+          var selected = selectedItem;
+        },
+        function () {
+          console.log('Modal dismissed at: ' + new Date());
+        });
 
 
     }
@@ -255,6 +260,15 @@
      */
     function resetMin() {
       vm.levelMin = vm.levelsMin[0];
+      filterPets();
+    }
+
+
+    /**
+     * Reset the search to its default
+     */
+    function resetSearch() {
+      vm.search = '';
       filterPets();
     }
 

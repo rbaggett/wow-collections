@@ -1,0 +1,64 @@
+.pet-details {
+
+  .family {
+    height: 410px;
+    position: absolute;
+    left: 250px;
+    top: 0;
+    width: 410px;
+    opacity: .15;
+    z-index: 0;
+  }
+
+
+  //.family-dragonkin {
+  //  @extend .family;
+  //  fill: $brand-success;
+  //}
+  //
+  //.family-magical {
+  //  @extend .family;
+  //  fill: #6a37ff;
+  //}
+  //
+  //.family-water {
+  //  @extend .family;
+  //  fill: $brand-primary;
+  //}
+  //
+  //.family-flying {
+  //  @extend .family;
+  //  fill: #867218;
+  //}
+  //
+  //.family-mechanical {
+  //  @extend .family;
+  //  fill: #4e4e4e;
+  //}
+  //
+  //.family-undead {
+  //  @extend .family;
+  //  fill: #8e666a;
+  //}
+  //
+  //.family-beast {
+  //  @extend .family;
+  //  fill: $brand-danger;
+  //}
+  //
+  //.family-critter {
+  //  @extend .family;
+  //  fill: #8e666a;
+  //}
+  //
+  //.family-elemental {
+  //  @extend .family;
+  //  fill: $brand-danger;
+  //}
+  //
+  //.family-humanoid {
+  //  @extend .family;
+  //  fill: $brand-primary;
+  //}
+
+}

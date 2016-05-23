@@ -23,7 +23,7 @@
                data-typeahead-on-select="vm.filterPets()"
                placeholder="e.g., mini-tyrael">
         <div data-ng-if="vm.search.length" class="clear-search-container">
-          <a data-ng-click="vm.search=''">
+          <a data-ng-click="vm.resetSearch()">
             <i class="glyphicon glyphicon-remove"></i>
           </a>
         </div>

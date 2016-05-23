@@ -45,3 +45,9 @@ html {
     fill: blue;
   }
 }
+
+/* OVERRIDES */
+
+.modal-content {
+  overflow: hidden;
+}

@@ -1,15 +1,31 @@
-<div class="modal-header">
-  <h3 class="modal-title">I'm a modal!</h3>
-</div>
-<div class="modal-body">
-  <ul>
-    <li ng-repeat="item in items">
-      <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
-    </li>
-  </ul>
-  Selected: <b>{{ selected.item }}</b>
-</div>
-<div class="modal-footer">
-  <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-  <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+<div class="pet-details">
+  <div class="modal-header">
+    <img class="family" data-ng-src="images/Pet_type_{{vm.pet.family}}.png">
+    <h3 class="modal-title text-{{vm.pet.theme}}">
+      <span data-ng-bind="vm.pet.creatureName"></span>
+      <span data-ng-if="vm.pet.creatureName !== vm.pet.name">({{vm.pet.name}})</span>
+    </h3>
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <label>Description</label>
+        <div>{{vm.species.description}}</div>
+      </div>
+
+      <div class="col-xs-12">
+        <label>Source</label>
+        <div>{{vm.species.source}}</div>
+      </div>
+
+      <div class="family-{{vm.pet.family}}">
+        <!--<pre>{{vm.pet | json}}</pre>-->
+        <!--<pre>{{vm.species | json}}</pre>-->
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" data-ng-click="vm.close()">close</button>
+  </div>
 </div>

@@ -10,7 +10,7 @@
     return {
       getCharacter: getCharacter,
       getPets: getPets,
-      // getCharacterPets: getCharacterPets,
+      getPetSpecies: getPetSpecies,
       getRealms: getRealms
     };
 
@@ -33,6 +33,15 @@
     }
 
 
+    function getPetSpecies(speciesId) {
+      var settings = {
+        method: 'GET',
+        url: 'https://us.api.battle.net/wow/pet/species/' + speciesId + '?locale=en_US&apikey=' + constants.bnetKey
+      };
+      return httpFactory.request(settings);
+
+    }
+
     // function getCharacterPets(server, player) {
     //   var settings = {
     //     method: 'GET',
@@ -45,7 +54,7 @@
     function getRealms() {
       var settings = {
         method: 'GET',
-        url: 'https://us.api.battle.net/wow/realm/status?locale=en_US&apikey=' + constants.bnetKey
+        url: 'https://us.api.battle.net/wow/realm/status?&apikey=' + constants.bnetKey
       };
       return httpFactory.request(settings);
     }

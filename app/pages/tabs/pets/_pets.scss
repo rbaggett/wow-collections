@@ -10,80 +10,30 @@
   /* PET BATTLE SECTION */
 
   .battle-icon-health {
-    background: url(http://wow.zamimg.com/images/BattlePetStatCalc/stat-health.png) left 0 no-repeat;
-    padding-left: 19px;
+    height: 18px;
+    width: 18px;
   }
 
   .battle-icon-power {
-    background: url(http://wow.zamimg.com/images/BattlePetStatCalc/stat-power.png) left 0 no-repeat;
-    padding-left: 19px;
+    height: 18px;
+    width: 18px;
   }
 
   .battle-icon-speed {
-    background: url(http://wow.zamimg.com/images/BattlePetStatCalc/stat-speed.png) left 0 no-repeat;
-    padding-left: 19px;
+    height: 18px;
+    width: 18px;
   }
 
   /* FAMILY SECTION */
 
   .family {
-    height: 170px;
+    height: 50px;
     position: absolute;
-    right: -20px;
-    top: -40px;
-    width: 170px;
+    right: 110px;
+    top: -70px;
+    width: 50px;
     opacity: 0.15;
     z-index: -1;
-  }
-
-  .family-dragonkin {
-    @extend .family;
-    fill: $brand-success;
-  }
-
-  .family-magical {
-    @extend .family;
-    fill: #6a37ff;
-  }
-
-  .family-water {
-    @extend .family;
-    fill: $brand-primary;
-  }
-
-  .family-flying {
-    @extend .family;
-    fill: #867218;
-  }
-
-  .family-mechanical {
-    @extend .family;
-    fill: #4e4e4e;
-  }
-
-  .family-undead {
-    @extend .family;
-    fill: #8e666a;
-  }
-
-  .family-beast {
-    @extend .family;
-    fill: $brand-danger;
-  }
-
-  .family-critter {
-    @extend .family;
-    fill: #8e666a;
-  }
-
-  .family-elemental {
-    @extend .family;
-    fill: $brand-danger;
-  }
-
-  .family-humanoid {
-    @extend .family;
-    fill: $brand-primary;
   }
 
   /* FILTER SECTION */
@@ -265,12 +215,12 @@
 
   .icon-primary {
     @extend .icon;
-    background-color: lighten($brand-primary, 10%);
+    background-color: $brand-primary;
   }
 
   .icon-success {
     @extend .icon;
-    background-color: lighten($brand-success, 10%);
+    background-color: $brand-success;
   }
 
   .icon-default {
@@ -353,7 +303,7 @@
 
     .tile-footer {
       border-top-color: $gray-dark;
-      color: lighten($gray-dark, 10%);
+      color: $gray-dark;
     }
 
     .tile-header {
@@ -369,7 +319,7 @@
 
     .tile-footer {
       border-top-color: $gray-light;
-      color: lighten($gray-light, 10%);
+      color: $gray-light;
     }
 
     .tile-header {
@@ -390,32 +340,32 @@
 
   .tile-primary {
     @extend .tile;
-    border-color: lighten($brand-primary, 10%);
+    border-color: $brand-primary;
 
     .tile-footer {
       border-top-color: $brand-primary;
-      color: lighten($brand-primary, 10%);
+      color: $brand-primary;
     }
 
     .tile-header {
       border-bottom-color: $brand-primary;
-      background-color: lighten($brand-primary, 10%);
+      background-color: $brand-primary;
       color: white;
     }
   }
 
   .tile-success {
     @extend .tile;
-    border-color: lighten($brand-success, 10%);
+    border-color: $brand-success;
 
     .tile-footer {
       border-top-color: $brand-success;
-      color: lighten($brand-success, 10%);
+      color: $brand-success;
     }
 
     .tile-header {
       border-bottom-color: $brand-success;
-      background-color: lighten($brand-success, 10%);
+      background-color: $brand-success;
       color: white;
     }
   }
