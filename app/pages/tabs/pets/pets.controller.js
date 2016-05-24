@@ -10,7 +10,6 @@
 
     /* local data */
     var vm = this;
-    // var metaFilters = [{creatureName:'=tcg'}, {creatureName:'=humanoid'}];
     var order = 'asc';
     var pageSizeDefault = 20;
     var pets = petsFactory.pets;
@@ -97,34 +96,53 @@
      * Apply filters
      */
     function filterPets() {
+      // debugger
       vm.pets = angular.copy(pets);
 
-      /* name filter */
-      if (vm.search) {
-        vm.pets = _.filter(vm.pets,
-          function (value) {
-            var cname = value.creatureName.toLocaleLowerCase();
-            var sname = vm.search.toLocaleLowerCase();
-            return cname.startsWith(sname);
-          });
-      }
+      var pet;
 
-      /* max level filter */
-      if (vm.levelMax !== vm.levelsMax[25]) {
-        vm.pets = _.filter(vm.pets, function (value) {
-          return value.stats.level <= vm.levelMax.value;
-        });
-      }
+      for (var i = vm.pets.length - 1; i >= 0; i--) {
+        pet = vm.pets[i];
 
-      /* min level filter */
-      if (vm.levelMin !== vm.levelsMin[0]) {
-        vm.pets = _.filter(vm.pets, function (value) {
-          return value.stats.level >= vm.levelMin.value;
-        });
-      }
+        /* name */
+        if (vm.search.length) {
+          if (!pet.creatureName.toLocaleLowerCase().startsWith(vm.search.toLocaleLowerCase())) {
+            vm.pets.splice(i, 1);
+            continue;
+          }
+        }
 
-      /* all of the queued filters */
-      vm.pets = _.filter(vm.pets, vm.filters);
+        /* levels */
+        if (pet.stats.level < vm.levelMin.value) {
+          vm.pets.splice(i, 1);
+          continue;
+        }
+        if (pet.stats.level > vm.levelMax.value) {
+          vm.pets.splice(i, 1);
+          continue;
+        }
+
+        /* collection */
+        if (vm.filters.original && !pet.original) {
+          vm.pets.splice(i, 1);
+          continue;
+        }
+        if (vm.filters.uncollected && !pet.uncollected) {
+          vm.pets.splice(i, 1);
+          continue;
+        }
+        if (vm.filters.duplicate && !pet.duplicate) {
+          vm.pets.splice(i, 1);
+          continue;
+        }
+
+        /* quality */
+        if (vm.filters.qualityId !== undefined) {
+          if (vm.filters.qualityId !== pet.qualityId) {
+            vm.pets.splice(i, 1);
+          }
+        }
+      }
 
       /* resort pets */
       sortPets('creatureName', 'asc', true);
@@ -195,7 +213,7 @@
     }
 
 
-    function openDetails(test) {
+    function openDetails(pet) {
 
 
       var modalInstance = $uibModal.open({
@@ -206,7 +224,10 @@
         // size: size,
         resolve: {
           pet: function () {
-            return test;
+            return pet;
+          },
+          species: function () {
+            return petsFactory.getSpecies(pet);
           }
         }
       });
@@ -239,14 +260,6 @@
 
 
     /**
-     * Reset the page size to its default
-     */
-    function resetPageSize() {
-      vm.pageSize = pageSizeDefault;
-    }
-
-
-    /**
      * Reset the max level to its default
      */
     function resetMax() {
@@ -261,6 +274,14 @@
     function resetMin() {
       vm.levelMin = vm.levelsMin[0];
       filterPets();
+    }
+
+
+    /**
+     * Reset the page size to its default
+     */
+    function resetPageSize() {
+      vm.pageSize = pageSizeDefault;
     }
 
 
@@ -285,13 +306,13 @@
         switch (vm.filters.qualityId) {
           case 4:
           case 3:
-            vm.filterTrail += ' rare';
+            vm.filterTrail += ' <strong><span class="text-primary">rare</span></strong>';
             break;
           case 2:
-            vm.filterTrail += ' uncommon';
+            vm.filterTrail += ' <strong><span class="text-success">uncommon</span></strong>';
             break;
           default:
-            vm.filterTrail += ' common/poor';
+            vm.filterTrail += ' <strong>common/poor</strong>';
             break;
         }
       }
@@ -303,10 +324,6 @@
         vm.filterTrail += ' unowned (yet)';
       } else if (vm.filters.duplicate) {
         vm.filterTrail += ' duplicate';
-      }
-
-      if (vm.search === '=tcg') {
-        vm.filterTrail += '<a href=\'' + vm.urls.tcgLoot + '\' target=\'_blank\'> tcg <i class="glyphicon glyphicon-new-window"></i></a>';
       }
 
       /* pet or pets based on count */

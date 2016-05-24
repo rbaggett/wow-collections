@@ -6,7 +6,7 @@
     .module('wcui')
     .factory('petsFactory', petsFactory);
 
-  function petsFactory(characterFactory, masterFactory) {
+  function petsFactory($timeout, bnetFactory, characterFactory, masterFactory) {
 
     var pets = [];
     var petsText = [];
@@ -42,6 +42,7 @@
       petsText: petsText,
       getPetBreeds: getPetBreeds,
       getPetLevels: getPetLevels,
+      getSpecies: getSpecies,
       loadData: loadData
     };
 
@@ -156,6 +157,26 @@
 
 
     /**
+     * Get a pet's species data
+     * @param pet {number} - pet creature id
+     * @returns {promise} - species service promise
+     */
+    function getSpecies(pet) {
+      return bnetFactory
+        .getPetSpecies(pet.stats.speciesId)
+        .then(function (response) {
+          return response.data;
+        })
+        .catch(function (error) {
+          return {
+            description: 'No description for this pet',
+            source: 'No source for this pet'
+          };
+        });
+    }
+
+
+    /**
      * Initialize the factory data
      */
     function loadData() {
@@ -203,6 +224,39 @@
         pets.push(mPet);
         petsText.push(mPet.creatureName);
       }
+
+      // var test = [];
+      // for (var i = 0, j = masterPets.length; i < j; i++) {
+      //   getSpecies(masterPets[i])
+      //     .then(function (response) {
+      //       test.push(response.source);
+      //     })
+      // }
+      //
+      // $timeout(function () {
+      //   save(test, 'test.txt');
+      // }, 30000);
+      //
+      //
+      // function save(data, filename) {
+      //
+      //   if (typeof data === 'object') {
+      //     data = JSON.stringify(data, undefined, 2);
+      //   }
+      //
+      //   var blob = new Blob([data], {type: 'text/json'}),
+      //     e = document.createEvent('MouseEvents'),
+      //     a = document.createElement('a');
+      //
+      //   a.download = filename;
+      //   a.href = window.URL.createObjectURL(blob);
+      //   a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
+      //   e.initEvent('click', true, false, window,
+      //     0, 0, 0, 0, 0, false, false, false, false, 0, null);
+      //   a.dispatchEvent(e);
+      // }
+
+
     }
 
 
