@@ -36,6 +36,9 @@
       11326: 'wow_vanilla_collectors_edition',
       11327: 'wow_vanilla_collectors_edition'
     };
+    var store = {
+      85283: 'world-of-warcraft-pet-brightpaw'
+    };
 
     return {
       pets: pets,
@@ -207,6 +210,7 @@
             nPet.collected = true;
             nPet.duplicate = (k > 0);
             nPet.original = (k === 0);
+            nPet.store = store[nPet.creatureId];
             nPet.tcg = tcgs[nPet.creatureId];
             nPet.theme = getPetTheme(nPet);
             nPet.uncollected = false;
@@ -218,6 +222,7 @@
         /* not collected */
         mPet.collected = false;
         mPet.creatureName = mPet.name;
+        mPet.store = store[mPet.creatureId];
         mPet.tcg = tcgs[mPet.creatureId];
         mPet.theme = getPetTheme(mPet);
         mPet.uncollected = true;

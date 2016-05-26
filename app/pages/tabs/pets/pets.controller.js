@@ -94,13 +94,17 @@
 
     /**
      * Apply filters
+     * - refresh the pet list
+     * - with any filter failure, remove the pet and move on
+     * - re-sort the pets and update the filter trail
      */
     function filterPets() {
-      // debugger
-      vm.pets = angular.copy(pets);
-
       var pet;
 
+      /* refresh the pets */
+      vm.pets = angular.copy(pets);
+
+      /* for each pet */
       for (var i = vm.pets.length - 1; i >= 0; i--) {
         pet = vm.pets[i];
 
@@ -202,26 +206,15 @@
     }
 
 
-    function getSearchItems() {
-      if (vm.search[0] === '=') {
-        vm.searchItems = metaFilters;
-      }
-      else {
-        vm.searchItems = pets;
-      }
-      filterPets();
-    }
-
-
+    /**
+     * Open the details modal window for a pet
+     * @param pet {Object} - pet
+     */
     function openDetails(pet) {
-
-
       var modalInstance = $uibModal.open({
-        // animation: $scope.animationsEnabled,
         templateUrl: 'pages/tabs/pets/details/details.html',
         controller: 'PetDetailsController',
         controllerAs: 'vm',
-        // size: size,
         resolve: {
           pet: function () {
             return pet;
@@ -231,17 +224,6 @@
           }
         }
       });
-
-      modalInstance
-        .result.then(
-        function (selectedItem) {
-          var selected = selectedItem;
-        },
-        function () {
-          console.log('Modal dismissed at: ' + new Date());
-        });
-
-
     }
 
 
@@ -338,8 +320,8 @@
     /**
      * Sort the pets based on properties
      * @param property {string} - property for sorting
-     * @param newOrder
-     * @param reset
+     * @param newOrder {string} - override the current order
+     * @param reset {boolean} - reset the current sort
      */
     function sortPets(property, newOrder, reset) {
       if (newOrder) {

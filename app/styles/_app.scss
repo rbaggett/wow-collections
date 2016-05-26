@@ -25,6 +25,11 @@ body {
   padding: 0.2em 0;
 }
 
+.flex-center {
+  align-items: center;
+  display: flex;
+}
+
 html {
   min-height: 100%;
   overflow-y: scroll;
