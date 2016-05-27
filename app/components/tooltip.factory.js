@@ -41,6 +41,22 @@
         '</div>';
       tooltips.pets.collecting = $sce.trustAsHtml(tooltip);
 
+      /* pet collecting tooltip */
+      tooltip =
+        '<div class="tooltip-count">' +
+          '<div class="text-left">The number of pets displayed based on filters</div>' +
+        '</div>';
+      tooltips.pets.count = $sce.trustAsHtml(tooltip);
+
+      /* pet family tooltip */
+      tooltip =
+        '<div class="tooltip-family">' +
+          '<div class="text-left">' +
+            '<div>Filter pets based on one of the nine family types.</div>' +
+          '</div>' +
+        '</div>';
+      tooltips.pets.family = $sce.trustAsHtml(tooltip);
+
       /* pet level tooltip */
       tooltip =
         '<div class="tooltip-levels">' +
@@ -80,10 +96,20 @@
         '<div class="tooltip-sort">' +
           '<div class="text-left">' +
             '<div>Sorts default to <strong>Ascending</strong> for character fields (A-Z), and <strong>Descending</strong> for numerical fields (1,2,3)</div>' +
-            '<div>Clicking a sort a second time will reverse the sort, e.g., descending->ascending</div>' +
+            '<div>Clicking a sort a second time will reverse the sort, e.g., descending->ascending->descending</div>' +
           '</div>' +
         '</div>';
       tooltips.pets.sort = $sce.trustAsHtml(tooltip);
+
+      /* pet sort tooltip */
+      tooltip =
+        '<div class="tooltip-special">' +
+          '<div class="text-left">' +
+            '<div><strong>TCG</strong>: filter for pets available from wow tcg loot</div> ' +
+            '<div><strong>B.Net</strong>: filter for pets available from the Blizzard store</div> ' +
+          '</div>' +
+        '</div>';
+      tooltips.pets.special = $sce.trustAsHtml(tooltip);
 
       // @formatter:on
     }

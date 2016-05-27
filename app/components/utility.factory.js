@@ -27,11 +27,15 @@
 
     return {
       viewState: viewState,
-      setActiveView: setActiveView,
-      startsWith: startsWith
+      setActiveView: setActiveView
+      // startsWith: startsWith
     };
 
 
+    /**
+     * Set the active view
+     * @param view {string} - view to set
+     */
     function setActiveView(view) {
       viewState.tab.character.active = false;
       viewState.tab.pets.active = false;
@@ -43,9 +47,9 @@
     }
 
 
-    function startsWith(item, viewValue) {
-      return item.substr(0, viewValue.length).toLowerCase() == viewValue.toLowerCase();
-    }
+    // function startsWith(item, viewValue) {
+    //   return item.substr(0, viewValue.length).toLowerCase() == viewValue.toLowerCase();
+    // }
 
   }
 })();

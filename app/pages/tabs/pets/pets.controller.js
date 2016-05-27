@@ -22,9 +22,6 @@
     vm.tooltips = tooltipFactory.tooltips.pets;
     vm.urls = constants.urls;
 
-    /* scope factory functions */
-    vm.startsWith = utilityFactory.startsWith;
-
     /* scope data */
     vm.filters = {};
     vm.filterTrail = '';
@@ -33,14 +30,17 @@
     vm.pageSize = 20;
     vm.pets = angular.copy(pets);
     vm.search = '';
+    vm.showTooltips = false;
     vm.sort = '';
 
     /* scope functions */
     vm.filterCollected = filterCollected;
     vm.filterDuplicate = filterDuplicate;
-    vm.filterUncollected = filterUncollected;
+    vm.filterFamily = filterFamily;
     vm.filterPets = filterPets;
     vm.filterQuality = filterQuality;
+    vm.filterSpecial = filterSpecial;
+    vm.filterUncollected = filterUncollected;
     vm.getPetTile = getPetTile;
     vm.openDetails = openDetails;
     vm.resetFilters = resetFilters;
@@ -49,6 +49,7 @@
     vm.resetMin = resetMin;
     vm.resetSearch = resetSearch;
     vm.sortPets = sortPets;
+    vm.toggleTooltips = toggleTooltips;
 
 
     /* initialize */
@@ -93,6 +94,23 @@
 
 
     /**
+     * Add/remove a pet family filter
+     * @param family {string} - pet family
+     */
+    function filterFamily(family) {
+      if (vm.filters.family == family) {
+        /* remove the filter */
+        vm.filters = _.omit(vm.filters, ['family']);
+      }
+      else {
+        /* add the filter */
+        vm.filters.family = family;
+      }
+      filterPets();
+    }
+
+
+    /**
      * Apply filters
      * - refresh the pet list
      * - with any filter failure, remove the pet and move on
@@ -110,10 +128,24 @@
 
         /* name */
         if (vm.search.length) {
-          if (!pet.creatureName.toLocaleLowerCase().startsWith(vm.search.toLocaleLowerCase())) {
+          if (pet.creatureName.toLocaleLowerCase().indexOf(vm.search.toLocaleLowerCase()) === -1) {
             vm.pets.splice(i, 1);
             continue;
           }
+        }
+
+        /* family */
+        if (vm.filters.family !== undefined) {
+          if (vm.filters.family !== pet.family) {
+            vm.pets.splice(i, 1);
+            continue;
+          }
+        }
+
+        /* special */
+        if (vm.filters.special && !pet[vm.filters.special]) {
+          vm.pets.splice(i, 1);
+          continue;
         }
 
         /* levels */
@@ -127,15 +159,21 @@
         }
 
         /* collection */
-        if (vm.filters.original && !pet.original) {
-          vm.pets.splice(i, 1);
-          continue;
+        if (vm.filters.original || vm.filters.uncollected || vm.filters.duplicate) {
+          if (vm.filters.original && !pet.original) {
+            vm.pets.splice(i, 1);
+            continue;
+          }
+          else if (vm.filters.uncollected && !pet.uncollected) {
+            vm.pets.splice(i, 1);
+            continue;
+          }
+          else if (vm.filters.duplicate && !pet.duplicate) {
+            vm.pets.splice(i, 1);
+            continue;
+          }
         }
-        if (vm.filters.uncollected && !pet.uncollected) {
-          vm.pets.splice(i, 1);
-          continue;
-        }
-        if (vm.filters.duplicate && !pet.duplicate) {
+        else if (pet.duplicate) {
           vm.pets.splice(i, 1);
           continue;
         }
@@ -153,6 +191,23 @@
 
       /* construct the filter trail */
       setFilterTrail();
+    }
+
+
+    /**
+     * Add/remove a pet special filter
+     * @param special {string} - special category
+     */
+    function filterSpecial(special) {
+      if (vm.filters.special == special) {
+        /* remove the filter */
+        vm.filters = _.omit(vm.filters, ['special']);
+      }
+      else {
+        /* add the filter */
+        vm.filters.special = special;
+      }
+      filterPets();
     }
 
 
@@ -345,6 +400,14 @@
 
       vm.sort = property;
       vm.pets = _.orderBy(vm.pets, [property], [order]);
+    }
+
+
+    /**
+     * Toggle filter tooltips visiblity
+     */
+    function toggleTooltips() {
+      vm.showTooltips = !vm.showTooltips;
     }
 
 

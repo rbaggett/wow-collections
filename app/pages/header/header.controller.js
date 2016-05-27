@@ -29,7 +29,8 @@
     function getCharacter() {
       characterFactory
         .loadData(vm.realm, vm.character)
-        .then(navigateToMain);
+        .then(navigateToMain)
+        .catch(navigateToError);
     }
 
 

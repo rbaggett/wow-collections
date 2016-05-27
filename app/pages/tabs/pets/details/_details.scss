@@ -2,21 +2,6 @@
 
   border: 2px solid white;
 
-  .btn-view {
-    background-color: white;
-    border-color: $gray-dark;
-
-    img {
-      height: 20px;
-      width: 20px;
-    }
-  }
-
-  .btn-view:hover {
-    background-color: #e6e6e6;
-    border-color: $gray-darker;
-  }
-
   .pet-details-body {
     //background-image: url("../images/Pet_type_beast.png");
     //background-repeat: no-repeat;
@@ -85,6 +70,8 @@
     border-top-right-radius: 4px;
     color: white;
     padding: 15px;
+    position: relative;
+    z-index: 1;
   }
 
   .pet-details-header-default {

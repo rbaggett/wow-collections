@@ -8,7 +8,7 @@
       battleIcons: 'https://wow.zamimg.com/images/wow/icons/medium/',
       tcgLoot: 'http://www.wowtcgloot.com/',
       wowHeadNpc: 'http://www.wowhead.com/npc=',
-      wowPetStore: 'https://us.battle.net/shop/en/product/'      
+      wowPetStore: 'https://us.battle.net/shop/en/product/world-of-warcraft-pet-'      
     }
   };
 

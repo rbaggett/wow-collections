@@ -40,8 +40,8 @@
 
   .clear-search-container {
     position: absolute;
-    top: 26px;
-    left: 171px;
+    top: 8px;
+    left: 338px;
     cursor: pointer;
     width: 20px;
     height: 30px;
@@ -54,6 +54,10 @@
     }
   }
 
+  .clear-search-container-tooltips {
+    top: 23px;
+  }
+
   .filter-container {
     border-bottom: 1px solid #ddd;
     margin-top: 10px;
@@ -64,34 +68,25 @@
     margin-left: 10px;
 
     button {
+      margin-left: 3px;
       width: 75px;
     }
   }
 
-  /*
-
   .filter-container-count {
     margin-left: 10px;
+  }
 
-    .count-left {
-      width: 50px;
-    }
+  .filter-container-family {
+    margin-left: 10px;
 
-    .count-right {
-      background-color: white;
-      border-style: dashed;
-    }
-
-    label {
-      border-style: dashed;
-      text-align: center;
-      width: 50px;
+    button {
+      margin-left: 3px;
     }
   }
-  */
 
   .filter-container-level {
-    margin-left: 10px;
+    //margin-left: 10px;
 
     button {
       width: 50px;
@@ -102,6 +97,7 @@
     margin-left: 10px;
 
     button {
+      margin-left: 3px;
       width: 50px;
     }
   }
@@ -116,11 +112,12 @@
     }
   }
 
-  .filter-container-settings {
-    border: 1px dashed #777777;
-    border-radius: 3px;
-    margin-top: 10px;
-    padding: 10px;
+  .filter-container-special {
+    margin-left: 10px;
+
+    button {
+      margin-left: 3px;
+    }
   }
 
   .filter-container-sort {
@@ -157,33 +154,16 @@
     z-index: 100;
   }
 
-  //.pet-favorite {
-  //  position: absolute;
-  //  top: 10px;
-  //  left: 5px;
-  //
-  //  svg {
-  //    height: 25px;
-  //    width: 25px;
-  //    fill: yellow;
-  //  }
-  //
-  //  polygon, path {
-  //    stroke: black;
-  //    stroke-width: 28px;
-  //  }
-  //}
-
   .filter-input {
     height: 35px;
   }
 
   .filter-label {
-    border: 1px dashed rgba(119, 119, 119, 0.25);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    //border: 1px dashed rgba(119, 119, 119, 0.25);
+    //border-top-left-radius: 5px;
+    //border-top-right-radius: 5px;
     display: flex;
-    font-size: 12px;
+    font-size: 11px;
 
     i {
       margin-left: 5px;
@@ -201,6 +181,17 @@
     @extend .filter-label;
     justify-content: left;
     align-items: center;
+  }
+
+  .filter-pet-count {
+    border: 1px dashed #cccccc;
+    border-radius: 3px;
+    padding: 6px 12px;
+    width: 60px;
+  }
+
+  .filter-search {
+    width: 365px;
   }
 
   /* ICON SECTION */
@@ -253,8 +244,8 @@
     white-space: nowrap;
 
     .tile-body {
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
 
       img:hover {
         background-color: rgba(0, 0, 0, 0.1);
@@ -386,6 +377,16 @@
     width: 400px;
   }
 
+  .tooltip-count {
+    @extend .tooltip-base;
+    width: 250px;
+  }
+
+  .tooltip-family {
+    @extend .tooltip-base;
+    width: 200px;
+  }
+
   .tooltip-levels {
     @extend .tooltip-base;
     width: 400px;
@@ -403,11 +404,9 @@
     .common {
       color: #777777;
     }
-
     .rare {
       color: #5094ce;
     }
-
     .uncommon {
       color: #80c780;
     }
@@ -416,6 +415,11 @@
   .tooltip-sort {
     @extend .tooltip-base;
     width: 500px;
+  }
+
+  .tooltip-special {
+    @extend .tooltip-base;
+    width: 350px;
   }
 
   /* OVERRIDES */

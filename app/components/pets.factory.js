@@ -37,7 +37,19 @@
       11327: 'wow_vanilla_collectors_edition'
     };
     var store = {
-      85283: 'world-of-warcraft-pet-brightpaw'
+      85283: 'brightpaw',
+      74402: 'alterac-brew-pup',
+      88807: 'argi',
+      71488: 'blossoming-ancient',
+      53623: 'cenarion-hatchling',
+      68267: 'cinder-kitten',
+      36979: 'lil-kt',
+      51600: 'lil-ragnaros',
+      40703: 'lil-xt',
+      51601: 'moonkin-hatchling',
+      51649: 'moonkin-hatchling',
+      36911: 'pandaren-monk',
+      58163: 'soul-of-the-aspects'
     };
 
     return {
@@ -215,8 +227,8 @@
             nPet.theme = getPetTheme(nPet);
             nPet.uncollected = false;
             pets.push(nPet);
-            petsText.push(nPet.creatureName);
           }
+          petsText.push(nPet.creatureName);
           continue;
         }
         /* not collected */

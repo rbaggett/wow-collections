@@ -33,15 +33,15 @@
     </div>
   </div>
   <div class=" pet-details-footer-{{vm.pet.theme}}">
-    <a data-ng-if="vm.pet.store" href="{{vm.urls.wowPetStore + vm.pet.store}}" class="btn btn-default btn-view"
+    <a data-ng-if="vm.pet.store" href="{{vm.urls.wowPetStore + vm.pet.store}}" class="btn btn-default btn-vendor"
        title="view on battle.net" target="_blank">
       <img src="images/battlenet.png">
     </a>
-    <a data-ng-if="vm.pet.tcg" href="{{vm.urls.tcgLoot + vm.pet.tcg}}.htm" class="btn btn-default btn-view"
+    <a data-ng-if="vm.pet.tcg" href="{{vm.urls.tcgLoot + vm.pet.tcg}}.htm" class="btn btn-default btn-vendor"
        title="view on wowtcgloot.com" target="_blank">
       <img src="images/UI-GoldIcon.png">
     </a>
-    <a href="{{vm.urls.wowHeadNpc + vm.pet.creatureId}}" class="btn btn-default btn-view" title="view on wowhead.com"
+    <a href="{{vm.urls.wowHeadNpc + vm.pet.creatureId}}" class="btn btn-default btn-vendor" title="view on wowhead.com"
        target="_blank">
       <img src="images/wowheadicon.png">
     </a>
