@@ -71,19 +71,19 @@
 
       /* warlock_summon_voidlord */
       petIndex = _.findIndex(pets, {creatureId: 71021});
-      if (petIndex) {
+      if (petIndex >= 0) {
         pets[petIndex].icon = 'warlock_summon_-voidlord';
       }
 
       /* inv_pet_goat */
       petIndex = _.findIndex(pets, {creatureId: 83817});
-      if (petIndex) {
+      if (petIndex >= 0) {
         pets[petIndex].icon = 'inv_pet_-goat';
       }
 
       /* trade_archaeology_draeneicandelabra */
       petIndex = _.findIndex(pets, {creatureId: 88814});
-      if (petIndex) {
+      if (petIndex >= 0) {
         pets[petIndex].icon = 'trade_archaeology_draenei-candelabra';
       }
     }
@@ -271,6 +271,75 @@
       //   e.initEvent('click', true, false, window,
       //     0, 0, 0, 0, 0, false, false, false, false, 0, null);
       //   a.dispatchEvent(e);
+      // }
+
+
+      // for (var i = 0, j = pets.length; i < j; i++) {
+      //   console.log(pets[i].icon + '.jpg');
+      // }
+
+
+      // window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+      //
+      // var pet, src, dest;
+      // for (var i = 0, j = pets.length; i < j; i++) {
+      //   pet = pets[i];
+      //   dest = 'C:\\Users\\Robert\\wow-collections-ui\\app\\images\\icons\\pets';
+      //   src = 'C:\\Program Files (x86)\\World of Warcraft\\BlizzardInterfaceArt\\Interface\\ICONS\\INV_' + pet.icon + '.jpg';
+      //
+      //   window.requestFileSystem(window.TEMPORARY, 1024*1024, function(fs) {
+      //     // copy(fs.root, src, dest);
+      //     move(fs, src, dest);
+      //   }, errorHandler);
+      //
+      // }
+      //
+      // function move(fs, src, dirName) {
+      //   fs.root.getFile(src, {}, function(fileEntry) {
+      //
+      //     fs.root.getDirectory(dirName, {}, function(dirEntry) {
+      //       fileEntry.moveTo(dirEntry);
+      //     }, errorHandler);
+      //
+      //   }, errorHandler);
+      // }
+      //
+      //
+      // function copy(cwd, src, dest) {
+      //   cwd.getFile(src, {}, function(fileEntry) {
+      //
+      //     cwd.getDirectory(dest, {}, function(dirEntry) {
+      //       fileEntry.copyTo(dirEntry);
+      //     }, errorHandler);
+      //
+      //   }, errorHandler);
+      // }
+      //
+      //
+      // function errorHandler(e) {
+      //   var msg = '';
+      //   switch (e.code) {
+      //     case FileError.QUOTA_EXCEEDED_ERR:
+      //       msg = 'QUOTA_EXCEEDED_ERR';
+      //       break;
+      //     case FileError.NOT_FOUND_ERR:
+      //       msg = 'NOT_FOUND_ERR';
+      //       break;
+      //     case FileError.SECURITY_ERR:
+      //       msg = 'SECURITY_ERR';
+      //       break;
+      //     case FileError.INVALID_MODIFICATION_ERR:
+      //       msg = 'INVALID_MODIFICATION_ERR';
+      //       break;
+      //     case FileError.INVALID_STATE_ERR:
+      //       msg = 'INVALID_STATE_ERR';
+      //       break;
+      //     default:
+      //       msg = 'Unknown Error';
+      //       break;
+      //   }
+      //
+      //   console.log('Error: ' + msg);
       // }
 
 

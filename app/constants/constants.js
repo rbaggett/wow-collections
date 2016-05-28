@@ -5,10 +5,10 @@
   var constants = {
     bnetKey: 'eedv8cxqvh58re7gmfwhy5bhqbkcgwfh',
     urls: {
-      battleIcons: 'https://wow.zamimg.com/images/wow/icons/medium/',
+      blizzardIcon36: 'http://media.blizzard.com/wow/icons/36/',
       tcgLoot: 'http://www.wowtcgloot.com/',
       wowHeadNpc: 'http://www.wowhead.com/npc=',
-      wowPetStore: 'https://us.battle.net/shop/en/product/world-of-warcraft-pet-'      
+      battleNetShop: 'https://us.battle.net/shop/en/product/world-of-warcraft-pet-'
     }
   };
 

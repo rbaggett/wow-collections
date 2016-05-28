@@ -7,8 +7,8 @@
 
     <!-- TILES -->
     <div class="col-xs-4 col-sm-4 col-md-3"
-         data-dir-paginate="pet in vm.pets | itemsPerPage: vm.pageSize track by $index"
-         data-ng-click="vm.openDetails(pet)">
+         data-dir-paginate="pet in vm.pets | itemsPerPage: vm.pageSize track by $index">
+         <!--data-ng-click="vm.openDetails(pet)">-->
       <div data-ng-include="'pages/tabs/pets/pets-tile.html'"></div>
     </div>
 

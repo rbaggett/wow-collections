@@ -7,13 +7,17 @@
     .config(routing);
 
 
-  function resolveCharacter($state, $stateParams, resolveMasterData, characterFactory, petsFactory) {
+  /**
+   * State routing character data resolve
+   * @param $stateParams {Object} - state parameters
+   * @param characterFactory {function} - character factory
+   * @param petsFactory {function} - pets factory
+   * @returns {promise} - character data load promise
+   */
+  function resolveCharacter($stateParams, resolveMasterData, characterFactory, petsFactory) {
     return characterFactory
       .loadData($stateParams.realm, $stateParams.character)
       .then(petsFactory.loadData);
-      // .catch(function () {
-      //   $state.go('wcui.error');
-      // });
   }
 
 
@@ -28,6 +32,11 @@
   }
 
 
+  /**
+   * State routing for the application
+   * @param $stateProvider
+   * @param $urlRouterProvider
+   */
   function routing($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider
@@ -56,7 +65,7 @@
           }
         }
       })
-      
+
       .state('wcui.tabs', {
         resolve: {
           resolveCharacter: resolveCharacter
