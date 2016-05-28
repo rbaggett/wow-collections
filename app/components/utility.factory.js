@@ -27,8 +27,8 @@
 
     return {
       viewState: viewState,
-      setActiveView: setActiveView
-      // startsWith: startsWith
+      setActiveView: setActiveView,
+      startsWith: startsWith
     };
 
 
@@ -47,9 +47,9 @@
     }
 
 
-    // function startsWith(item, viewValue) {
-    //   return item.substr(0, viewValue.length).toLowerCase() == viewValue.toLowerCase();
-    // }
+    function startsWith(item, viewValue) {
+      return item.substr(0, viewValue.length).toLowerCase() == viewValue.toLowerCase();
+    }
 
   }
 })();

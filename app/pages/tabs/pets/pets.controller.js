@@ -47,7 +47,6 @@
     vm.resetPageSize = resetPageSize;
     vm.resetMax = resetMax;
     vm.resetMin = resetMin;
-    vm.resetSearch = resetSearch;
     vm.sortPets = sortPets;
     vm.toggleTooltips = toggleTooltips;
 
@@ -188,9 +187,6 @@
 
       /* resort pets */
       sortPets('creatureName', 'asc', true);
-
-      /* construct the filter trail */
-      setFilterTrail();
     }
 
 
@@ -319,56 +315,6 @@
      */
     function resetPageSize() {
       vm.pageSize = pageSizeDefault;
-    }
-
-
-    /**
-     * Reset the search to its default
-     */
-    function resetSearch() {
-      vm.search = '';
-      filterPets();
-    }
-
-
-    /**
-     * Create string based on pet count and filters applied
-     * [pet count] [rarity] [collecting] pet(s) [level range]
-     */
-    function setFilterTrail() {
-      vm.filterTrail = '';
-
-      /* rarity */
-      if (vm.filters.qualityId) {
-        switch (vm.filters.qualityId) {
-          case 4:
-          case 3:
-            vm.filterTrail += ' <strong><span class="text-primary">rare</span></strong>';
-            break;
-          case 2:
-            vm.filterTrail += ' <strong><span class="text-success">uncommon</span></strong>';
-            break;
-          default:
-            vm.filterTrail += ' <strong>common/poor</strong>';
-            break;
-        }
-      }
-
-      /* collecting */
-      if (vm.filters.original) {
-        vm.filterTrail += ' unique owned';
-      } else if (vm.filters.uncollected) {
-        vm.filterTrail += ' unowned (yet)';
-      } else if (vm.filters.duplicate) {
-        vm.filterTrail += ' duplicate';
-      }
-
-      /* pet or pets based on count */
-      vm.filterTrail += (vm.pets.length > 1) ? ' pets' : ' pet';
-
-
-      /* level range */
-      vm.filterTrail += ' between levels ' + vm.levelMin.value + ' and ' + vm.levelMax.value;
     }
 
 

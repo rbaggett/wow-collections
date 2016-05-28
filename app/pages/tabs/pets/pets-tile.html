@@ -1,4 +1,4 @@
-<div class="clearfix tile-details" data-ng-class="vm.getPetTile(pet)">
+<div class="clearfix tile-details" data-ng-class="vm.getPetTile(pet)" tabindex="0">
 
   <!-- HEADER -->
   <div class="row">
@@ -10,28 +10,27 @@
     <div class="col-xs-12">
 
       <!-- PET ICON -->
-      <div class="col-sm-3 tile-body text-center">
+      <div class="col-sm-3 tile-body tile-body-left text-center">
         <a href="{{vm.urls.wowHeadNpc + pet.creatureId}}" target="_blank" title="view on wowhead.com"
            data-ng-click="$event.stopPropagation();">
           <img class="icon-{{pet.theme}}" data-ng-src="{{vm.urls.battleIcons + pet.icon}}.jpg">
         </a>
-        <!--<div data-ng-bind="pet.creatureId"></div>-->
       </div>
 
       <div class="col-sm-9 tile-body">
 
         <!-- PET STATS -->
-        <div class="col-sm-5">
+        <div class="col-sm-5 text-center">
           <div>
-            <span><img class="battle-icon-health" src="images/PetBattle_Health.png"></span>
+            <span><img class="battle-icon" src="images/PetBattle_Health.png"></span>
             <span data-ng-bind="pet.stats.health"></span>
           </div>
           <div>
-            <span><img class="battle-icon-power" src="images/PetBattle_Attack.png"></span>
+            <span><img class="battle-icon" src="images/PetBattle_Attack.png"></span>
             <span data-ng-bind="pet.stats.power"></span>
           </div>
           <div>
-            <span><img class="battle-icon-speed" src="images/PetBattle_Speed.png"></span>
+            <span><img class="battle-icon" src="images/PetBattle_Speed.png"></span>
             <span data-ng-bind="pet.stats.speed"></span>
           </div>
         </div>

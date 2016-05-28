@@ -1,11 +1,35 @@
 .header {
 
-  input {
-    height: 35px;
+  /* XSMALL RESOLUTION */
+  @media (min-width: $screen-xs-min) {
+
+    #character {
+      margin-top: 5px;
+    }
+
+    #search {
+      float: right;
+      margin-bottom: 10px;
+      margin-top: 5px;
+      width: 100%;
+    }
+
   }
 
-  select {
-    height: 35px;
+  /* XSMALL RESOLUTION */
+  @media (min-width: $screen-sm-min) {
+
+    #character {
+      margin-top: 0;
+    }
+
+    #search {
+      float: none;
+      margin-bottom: 0;
+      margin-top: 0;
+      width: inherit;
+    }
+
   }
 
 }

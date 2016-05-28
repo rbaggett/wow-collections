@@ -1,9 +1,13 @@
-.block {
-  display: block;
-}
+//.block {
+//  display: block;
+//}
 
 body {
   margin-bottom: 60px;
+}
+
+body.modal-open {
+  padding-right: 0 !important;
 }
 
 .browsehappy {
@@ -49,20 +53,20 @@ html {
   position: relative;
 }
 
-.navbar-center {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-}
+//.navbar-center {
+//  position: absolute;
+//  width: 100%;
+//  text-align: center;
+//}
 
-.icon-table {
-  height: 20px;
-  width: 20px;
-
-  svg {
-    fill: blue;
-  }
-}
+//.icon-table {
+//  height: 20px;
+//  width: 20px;
+//
+//  svg {
+//    fill: blue;
+//  }
+//}
 
 /* OVERRIDES */
 
